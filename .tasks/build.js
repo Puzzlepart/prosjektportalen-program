@@ -25,7 +25,6 @@ gulp.task("stampVersionToTemplates", done => {
                 path.join(configuration.PATHS.TEMPLATES_TEMP, "/*.xml")
             ])
                 .pipe(flatmap((stream, file) => {
-                    log(file.path);
                     return stream
                         .pipe(replace(configuration.VERSION_REPLACE_TOKEN, format("{0}.{1}", pkg.version, gitHash)))
                         .pipe(gulp.dest(configuration.PATHS.TEMPLATES_TEMP))
