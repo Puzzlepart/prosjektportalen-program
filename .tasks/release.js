@@ -23,7 +23,7 @@ gulp.task("zipDist", (done) => {
 });
 
 gulp.task("release", (done) => {
-    runSequence("clean", "packagePnpTemplates", "copyBuild", "zipDist", () => {
+    runSequence("clean", "copyPnpTemplates", "stampVersionToTemplates", "packagePnpTemplates", "copyBuild", "zipDist", () => {
         done();
     });
 });

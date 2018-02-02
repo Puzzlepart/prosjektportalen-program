@@ -1,4 +1,4 @@
-$TemplatesPath = "./templates"
+$TemplatesPath = "./_templates"
 $TemplatesOutputPath = "./dist/templates"
 
 mkdir $TemplatesOutputPath -Force

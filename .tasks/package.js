@@ -38,7 +38,7 @@ gulp.task("packageCodeMinify", ["buildLib"], (done) => {
 });
 
 gulp.task("packageCodeTemplate", ["buildLib"], (done) => {
-    webpack(wpProd(path.join(__dirname, "../templates/root/SiteAssets/js")), (err, stats) => {
+    webpack(wpProd(configuration.PATHS.ROOT_TEMPLATE, "SiteAssets/js"), (err, stats) => {
         if (err) throw new pluginError("packageCodeTemplate", err);
         done();
     });

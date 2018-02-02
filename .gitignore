@@ -7,3 +7,4 @@ templates/root/SiteAssets/js/pp.program.js
 templates/root/SiteAssets/css/pp.program.css
 build/bundle
 npm-debug.log
+_templates

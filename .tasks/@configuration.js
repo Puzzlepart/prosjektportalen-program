@@ -26,5 +26,6 @@ module.exports = {
             'whatwg-fetch',
             'regenerator-runtime/runtime',
         ],
-    }
+    },
+    VERSION_REPLACE_TOKEN: "{package-version}"
 }
