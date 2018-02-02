@@ -99,25 +99,12 @@ function Start-Install() {
     else {
         Set-PnPTraceLog -Off
     }
-  
-    # Installing taxonomy
-    try {
-        Write-Host "Installing taxonomy (term sets and initial terms)..." -ForegroundColor Green -NoNewLine
-        Apply-Template -Template "root" -Handlers TermGroups
-        Write-Host "DONE" -ForegroundColor Green
-    }
-    catch {
-        Write-Host
-        Write-Host "Error installing taxonomy" -ForegroundColor Red
-        Write-Host $error[0] -ForegroundColor Red
-        exit 1 
-    }
 
     if ($ProjectPortalReleasePath.IsPresent) {    
         # Installing project portal base
         $OriginalPSScriptRoot = $PSScriptRoot
         try {
-            cd $ProjectPortalReleasePath
+            Set-Location $ProjectPortalReleasePath
             Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green
             if ($CurrentCredentials.IsPresent) {
                 .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase="{e1487481-8088-4d5f-a5ca-91908db4feca}"}
@@ -126,10 +113,10 @@ function Start-Install() {
             }
             
             Write-Host "DONE" -ForegroundColor Green
-            cd $OriginalPSScriptRoot
+            Set-Location $OriginalPSScriptRoot
         }
         catch {
-            cd $OriginalPSScriptRoot
+            Set-Location $OriginalPSScriptRoot
             Write-Host
             Write-Host "Error installing project portal" -ForegroundColor Red
             Write-Host $error[0] -ForegroundColor Red
