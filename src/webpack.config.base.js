@@ -4,17 +4,9 @@ var path = require("path"),
     config = require("../.tasks/@configuration.js"),
     BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = (devtool, exclude, env, path = config.paths.dist) => ({
-    entry: {
-        program: [
-            'core-js/fn/object/assign',
-            'core-js/es6/promise',
-            'whatwg-fetch',
-            'regenerator-runtime/runtime',
-            './lib/js/index.js',
-        ],
-    },
-    output: { path, filename: "pp.[name].js", libraryTarget: "umd" },
+module.exports = (devtool, exclude, env, output = path.join(config.paths.dist, "js")) => ({
+    entry: { program: [...config.js.polyfills, './lib/js/index.js'] },
+    output: { path: output, filename: "pp.[name].js", libraryTarget: "umd" },
     resolve: { extensions: ['.jsx', '.js', '.json', '.txt'], alias: {} },
     module: {
         rules: [
@@ -34,22 +26,13 @@ module.exports = (devtool, exclude, env, path = config.paths.dist) => ({
         ]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            '__VERSION': JSON.stringify(pkg.version),
-            'process.env': { NODE_ENV: JSON.stringify(env) },
-        }),
+        new webpack.DefinePlugin({ '__VERSION': JSON.stringify(pkg.version) }),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /nb/)
     ]
         .concat(env === "production" ? [
             new webpack.optimize.UglifyJsPlugin({
                 mangle: true,
-                compress: {
-                    warnings: false,
-                    pure_getters: true,
-                    unsafe: true,
-                    unsafe_comps: true,
-                    screw_ie8: true
-                },
+                compress: { warnings: false, pure_getters: true, unsafe: true, unsafe_comps: true, screw_ie8: true },
                 output: { comments: false },
             }),
             new webpack.optimize.AggressiveMergingPlugin()
