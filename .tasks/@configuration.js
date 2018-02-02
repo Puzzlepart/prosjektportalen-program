@@ -16,4 +16,12 @@ module.exports = {
         rootTemplate: path.join(__dirname, "../templates/root"),
     },
     useBundleAnalyzer: false,
+    js: {
+        polyfills: [
+            'core-js/fn/object/assign',
+            'core-js/es6/promise',
+            'whatwg-fetch',
+            'regenerator-runtime/runtime',
+        ],
+    }
 }
