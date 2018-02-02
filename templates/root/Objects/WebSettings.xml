@@ -1,0 +1,3 @@
+<pnp:WebSettings 
+      xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema" WelcomePage="SitePages/ProgramHome.aspx">
+</pnp:WebSettings>

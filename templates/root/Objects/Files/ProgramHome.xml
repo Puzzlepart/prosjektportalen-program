@@ -1,0 +1,118 @@
+<pnp:File Src="SitePages\ProgramHome.aspx" Folder="SitePages" Level="Published" Overwrite="false" 
+    xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+    <pnp:Properties>
+        <pnp:Property Key="Title" Value="" />
+    </pnp:Properties>
+    <pnp:WebParts>
+        <pnp:WebPart Title="ProjectList" Order="0" Zone="LeftColumn">
+            <pnp:Contents>
+                <webParts>
+                    <webPart 
+                        xmlns="http://schemas.microsoft.com/WebPart/v3">
+                        <metaData>
+                            <type name="Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+                            <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+                        </metaData>
+                        <data>
+                            <properties>
+                                <property name="Description" type="string" null="true" />
+                                <property name="Content" type="string">&lt;div id=&#39;pp-projectlist&#39; data-props=&#39;{&quot;loadingText&quot;:&quot;Laster prosjekter og programmer...&quot;,&quot;searchBoxLabelText&quot;:&quot;S&#248;k i alle prosjekter og programmer...&quot;,&quot;emptyMessage&quot;:&quot;Ingen prosjekter/programmer funnet. Visningen bruker s&#248;k, s&#229; det kan ta noen minutter fra prosjekter/programmer er lagt til eller oppdatert til de vises her.&quot;,&quot;propertyClassNames&quot;:[&quot;RefinableString01&quot;]}&#39;&gt;&lt;/div&gt;</property>
+                                <property name="Title" type="string">ProjectList</property>
+                                <property name="TitleUrl" type="string" null="true" />
+                                <property name="ChromeType" type="chrometype">None</property>
+                            </properties>
+                        </data>
+                    </webPart>
+                </webParts>
+            </pnp:Contents>
+        </pnp:WebPart>
+        <pnp:WebPart Title="NewProjectLink" Order="0" Zone="RightColumn">
+            <pnp:Contents>
+                <webParts>
+                    <webPart 
+                        xmlns="http://schemas.microsoft.com/WebPart/v3">
+                        <metaData>
+                            <type name="Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+                            <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+                        </metaData>
+                        <data>
+                            <properties>
+                                <property name="Description" type="string" null="true" />
+                                <property name="Content" type="string">&lt;div id=&#39;pp-newprojectlink&#39; data-props=&#39;{&quot;linkText&quot;:&quot;Opprett nytt program&quot;,&quot;dlgHeaderText&quot;:&quot;Opprett nytt program&quot;,&quot;dlgSubHeaderText&quot;:&quot;&quot;,&quot;creationModalTitle&quot;:&quot;Oppretter programomr&#229;de for {0}&quot;}&#39;&gt;&lt;/div&gt;</property>
+                                <property name="Title" type="string">NewProjectLink</property>
+                                <property name="TitleUrl" type="string" null="true" />
+                                <property name="ChromeType" type="chrometype">None</property>
+                            </properties>
+                        </data>
+                    </webPart>
+                </webParts>
+            </pnp:Contents>
+        </pnp:WebPart>
+        <pnp:WebPart Title="Announcements" Order="1" Zone="RightColumn">
+            <pnp:Contents>
+                <webParts>
+                    <webPart 
+                        xmlns="http://schemas.microsoft.com/WebPart/v3">
+                        <metaData>
+                            <type name="Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+                            <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+                        </metaData>
+                        <data>
+                            <properties>
+                                <property name="Description" type="string" null="true" />
+                                <property name="Content" type="string">&lt;div id=&#39;pp-announcements&#39;&gt;&lt;/div&gt;</property>
+                                <property name="Title" type="string">Announcements</property>
+                                <property name="TitleUrl" type="string" null="true" />
+                                <property name="ChromeType" type="chrometype">None</property>
+                            </properties>
+                        </data>
+                    </webPart>
+                </webParts>
+            </pnp:Contents>
+        </pnp:WebPart>
+        <pnp:WebPart Title="QuickLinks" Order="2" Zone="RightColumn">
+            <pnp:Contents>
+                <webParts>
+                    <webPart 
+                        xmlns="http://schemas.microsoft.com/WebPart/v3">
+                        <metaData>
+                            <type name="Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+                            <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+                        </metaData>
+                        <data>
+                            <properties>
+                                <property name="Description" type="string" null="true" />
+                                <property name="Content" type="string">&lt;div id=&#39;pp-quicklinks&#39;&gt;&lt;/div&gt;</property>
+                                <property name="Title" type="string">QuickLinks</property>
+                                <property name="TitleUrl" type="string" null="true" />
+                                <property name="ChromeType" type="chrometype">None</property>
+                            </properties>
+                        </data>
+                    </webPart>
+                </webParts>
+            </pnp:Contents>
+        </pnp:WebPart>
+        <pnp:WebPart Title="LatestProjects" Order="3" Zone="RightColumn">
+            <pnp:Contents>
+                <webParts>
+                    <webPart 
+                        xmlns="http://schemas.microsoft.com/WebPart/v3">
+                        <metaData>
+                            <type name="Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+                            <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+                        </metaData>
+                        <data>
+                            <properties>
+                                <property name="Description" type="string" null="true" />
+                                <property name="Content" type="string">&lt;div id=&#39;pp-latestprojects&#39; data-props=&#39;{&quot;chromeTitle&quot;:&quot;Siste programmer&quot;,&quot;loadingText&quot;:&quot;Laster siste programmet...&quot;,&quot;underCreationLabel&quot;:&quot;Program under opprettelse...&quot;}&#39;&gt;&lt;/div&gt;</property>
+                                <property name="Title" type="string">LatestProjects</property>
+                                <property name="TitleUrl" type="string" null="true" />
+                                <property name="ChromeType" type="chrometype">None</property>
+                            </properties>
+                        </data>
+                    </webPart>
+                </webParts>
+            </pnp:Contents>
+        </pnp:WebPart>
+    </pnp:WebParts>
+</pnp:File>

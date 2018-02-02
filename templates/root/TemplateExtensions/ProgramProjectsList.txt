@@ -1,0 +1,31 @@
+{
+    "Lists": [
+        {
+            "Title": "Programmets prosjekter",
+            "Description": "",
+            "Template": 103,
+            "AdditionalSettings": {
+                "OnQuickLaunch": false,
+                "EnableAttachments": false,
+                "EnableFolderCreation": false
+            },
+            "Fields": [
+                "<Field Type=\"DateTime\" DisplayName=\"Sist synkronisert til tidslinje\" ID=\"{4442c7af-3d9f-4d77-a6be-4e5f346e53c0}\" StaticName=\"TimelineLastSyncTime\" InternalName=\"TimelineLastSyncTime\" />"
+            ],
+            "Views": [
+                {
+                    "Title": "Alle koblinger",
+                    "ViewFields": [
+                        "URL",
+                        "TimelineLastSyncTime"
+                    ],
+                    "AdditionalSettings": {
+                        "RowLimit": 100,
+                        "Paged": true,
+                        "ViewQuery": ""
+                    }
+                }
+            ]
+        }
+    ]
+}

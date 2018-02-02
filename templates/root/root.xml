@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<pnp:Provisioning 
+    xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+    <pnp:Preferences>
+        <pnp:Parameters>
+            <pnp:Parameter Key="AssetsSiteUrl">{sitecollection}</pnp:Parameter>
+            <pnp:Parameter Key="DataSourceSiteUrl">{sitecollection}</pnp:Parameter>
+            <pnp:Parameter Key="ScriptRevision">3ED762EC0DF8</pnp:Parameter>
+            <pnp:Parameter Key="ScriptLoadTimeout">1000</pnp:Parameter>
+        </pnp:Parameters>
+    </pnp:Preferences>
+    <pnp:Templates ID="CONTAINER-PP-PROGRAM">
+        <pnp:ProvisioningTemplate ID="TEMPLATE-PP-PROGRAM-ROOT" Version="0">
+            <xi:include 
+                xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/SiteFields.xml" />
+            <xi:include 
+                xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/ContentTypes.xml" />
+            <xi:include 
+                xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Files.xml" />
+            <xi:include 
+                xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/WebSettings.xml" />
+            <xi:include 
+                xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Navigation.xml" />
+            <xi:include 
+                xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/CustomActions.xml" />
+        </pnp:ProvisioningTemplate>
+    </pnp:Templates>
+</pnp:Provisioning>

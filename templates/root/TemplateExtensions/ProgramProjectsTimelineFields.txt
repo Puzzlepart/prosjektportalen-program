@@ -1,0 +1,20 @@
+{
+    "Lists": [
+        {
+            "Title": "Prosjekttidslinje",
+            "Description": "",
+            "Template": 171,
+            "ContentTypesEnabled": true,
+            "FieldRefs": [
+                {
+                    "ID": "fa564e0f-0c70-4ab9-b863-0177e6ddd247",
+                    "DisplayName": "Tittel"
+                },
+                {
+                    "ID": "cd21b4c2-6841-4f9e-a23a-738a65f99889",
+                    "DisplayName": "Sluttdato"
+                }
+            ]
+        }
+    ]
+}

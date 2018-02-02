@@ -1,0 +1,98 @@
+{
+    "Lists": [
+        {
+            "Title": "Prosjekttidslinje",
+            "Description": "",
+            "Template": 171,
+            "AdditionalSettings": {
+                "OnQuickLaunch": false,
+                "EnableAttachments": false,
+                "EnableFolderCreation": false
+            },
+            "ContentTypesEnabled": true,
+            "RemoveExistingContentTypes": true,
+            "ContentTypeBindings": [
+                {
+                    "ContentTypeID": "0x01080043D9F98BB9C01749B6B49CC23F1EC8FA"
+                }
+            ],
+            "Views": [
+                {
+                    "Title": "Alle oppgaver",
+                    "ViewFields": [
+                        "LinkTitle",
+                        "URL",
+                        "StartDate",
+                        "DueDate"
+                    ],
+                    "AdditionalSettings": {
+                        "RowLimit": 100,
+                        "Paged": true,
+                        "ViewQuery": ""
+                    }
+                }
+            ]
+        }
+    ],
+    "Files": [
+        {
+            "Folder": "SitePages",
+            "Src": "{sitecollection}/Resources/SitePage.txt",
+            "Url": "Tidslinje.aspx",
+            "Overwrite": true,
+            "RemoveExistingWebParts": true,
+            "WebParts": [
+                {
+                    "Title": "Prosjekttidslinje",
+                    "Zone": "LeftColumn",
+                    "Order": 0,
+                    "PropertyOverrides": [
+                        {
+                            "name": "Title",
+                            "type": "string",
+                            "value": "Prosjekttidslinje"
+                        },
+                        {
+                            "name": "ListUrl",
+                            "type": "string",
+                            "value": "{site}/Lists/Prosjekttidslinje"
+                        },
+                        {
+                            "name": "TitleUrl",
+                            "type": "string",
+                            "value": "{site}/Lists/Prosjekttidslinje/AllItems.aspx"
+                        }
+                    ],
+                    "Contents": {
+                        "FileSrc": "{sitecollection}/Resources/ListViewWebPart.txt"
+                    },
+                    "ListView": {
+                        "List": "Prosjekttidslinje",
+                        "View": {
+                            "Title": "",
+                            "ViewFields": [
+                                "LinkTitle",
+                                "StartDate",
+                                "DueDate"
+                            ],
+                            "AdditionalSettings": {
+                                "RowLimit": 10,
+                                "Paged": true,
+                                "ViewQuery": "",
+                                "Scope": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "Title": "ProgramProjectsTimelineSync",
+                    "Zone": "LeftColumn",
+                    "Order": 1,
+                    "Contents": {
+                        "FileSrc": "{wpgallery}/ProgramProjectsTimelineSync.webpart"
+                    }
+                }
+            ]
+        }
+    ]
+}

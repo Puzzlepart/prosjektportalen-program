@@ -1,0 +1,10 @@
+{
+    "PropertyBagEntries": [
+        {
+            "Key": "pp_template_name",
+            "Value": "Program",
+            "Overwrite": true,
+            "Indexed": true
+        }
+    ]
+}

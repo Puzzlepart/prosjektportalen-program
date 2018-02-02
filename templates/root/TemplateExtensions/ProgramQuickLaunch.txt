@@ -1,0 +1,87 @@
+{
+    "Navigation": {
+        "QuickLaunch": [
+            {
+                "Url": "SitePages/ProjectHome.aspx",
+                "Title": "Hjem",
+                "IgnoreExisting": true
+            },
+            {
+                "Url": "SitePages/ProjectStatus.aspx",
+                "Title": "Programstatus"
+            },
+            {
+                "Url": "Lists/Programmets prosjekter/AllItems.aspx",
+                "Title": "Programmets prosjekter",
+                "Children": [
+                    {
+                        "Url": "SitePages/Legg til prosjekt.aspx",
+                        "Title": "Legg til prosjekt"
+                    },
+                    {
+                        "Url": "SitePages/Programportefolje.aspx",
+                        "Title": "Programportefølje"
+                    },
+                    {
+                        "Url": "SitePages/Program-gevinstoversikt.aspx",
+                        "Title": "Program-gevinstoversikt"
+                    },
+                    {
+                        "Url": "SitePages/Tidslinje.aspx",
+                        "Title": "Tidslinje"
+                    },
+                    {
+                        "Url": "SitePages/ProgramProjectStatus.aspx",
+                        "Title": "Prosjektstatus",
+                        "IgnoreExisting": true
+                    }
+                ]
+            },
+            {
+                "Url": "Lists/Oppgaver/AllItems.aspx",
+                "Title": "Oppgaver",
+                "Children": [
+                    {
+                        "Url": "SitePages/Assigned.aspx",
+                        "Title": "Mine prosjektelementer"
+                    }
+                ]
+            },
+            {
+                "Url": "Delte%20dokumenter/Forms/AllItems.aspx",
+                "Title": "Dokumenter"
+            },
+            {
+                "Url": "Lists/Usikkerhet/AllItems.aspx",
+                "Title": "Usikkerhet"
+            },
+            {
+                "Url": "Lists/Programleveranser/AllItems.aspx",
+                "Title": "Programleveranser"
+            },
+            {
+                "Url": "SitePages/GainsOverview.aspx",
+                "Title": "Gevinstoversikt",
+                "Children": [
+                    {
+                        "Url": "Lists/Endringsanalyse/AllItems.aspx",
+                        "Title": "Endringsanalyse"
+                    },
+                    {
+                        "Url": "Lists/Gevinstanalyse%20og%20gevinstrealiseringsplan/AllItems.aspx",
+                        "Title": "Gevinstanalyse og gevinstrealiseringsplan"
+                    },
+                    {
+                        "Url": "Lists/Gevinstsoppflging/AllItems.aspx",
+                        "Title": "Gevinstsoppfølging"
+                    }
+                ]
+            },
+            {
+                "Url": "_layouts/15/viewlsts.aspx",
+                "Title": "Områdeinnhold",
+                "IgnoreExisting": true
+            }
+        ]
+    }
+}
