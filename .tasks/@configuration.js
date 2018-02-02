@@ -1,5 +1,6 @@
 'use strict';
-var path = require("path");
+var path = require("path"),
+    autoPrefixerStylus = require('autoprefixer-stylus');
 
 module.exports = {
     PATHS: {
@@ -26,6 +27,10 @@ module.exports = {
             'whatwg-fetch',
             'regenerator-runtime/runtime',
         ],
+    },
+    STYLUS: {
+        compress: false,
+        use: [autoPrefixerStylus('last 5 versions')],
     },
     VERSION_REPLACE_TOKEN: "{package-version}"
 }

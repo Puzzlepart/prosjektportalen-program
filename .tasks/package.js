@@ -5,7 +5,6 @@ var gulp = require("gulp"),
     wpDev = require('../src/webpack.config.development.js'),
     wpProd = require('../src/webpack.config.production.js'),
     pluginError = require('plugin-error'),
-    autoprefixer = require('autoprefixer-stylus'),
     stylus = require('gulp-stylus'),
     powershell = require("./utils/powershell.js"),
     settings = require('./@settings.js'),
@@ -13,13 +12,13 @@ var gulp = require("gulp"),
 
 gulp.task("packageStyles", (done) => {
     return gulp.src(configuration.PATHS.STYLES_MAIN)
-        .pipe(stylus({ compress: false, use: [autoprefixer('last 5 versions')] }))
+        .pipe(stylus(configuration.STYLUS))
         .pipe(gulp.dest(configuration.PATHS.dist));
 });
 
 gulp.task("packageStylesTemplate", (done) => {
     return gulp.src(configuration.PATHS.STYLES_MAIN)
-        .pipe(stylus({ compress: false, use: [autoprefixer('last 5 versions')] }))
+        .pipe(stylus(configuration.STYLUS))
         .pipe(gulp.dest(path.join(configuration.PATHS.ROOT_TEMPLATE, "SiteAssets")));
 });
 
@@ -38,7 +37,7 @@ gulp.task("packageCodeMinify", ["buildLib"], (done) => {
 });
 
 gulp.task("packageCodeTemplate", ["buildLib"], (done) => {
-    webpack(wpProd(configuration.PATHS.ROOT_TEMPLATE, "SiteAssets/js"), (err, stats) => {
+    webpack(wpProd(path.join(configuration.PATHS.ROOT_TEMPLATE, "SiteAssets/js")), (err, stats) => {
         if (err) throw new pluginError("packageCodeTemplate", err);
         done();
     });

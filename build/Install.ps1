@@ -28,7 +28,7 @@ Param(
     [Parameter(Mandatory = $false, HelpMessage = "PowerShell credential to authenticate with")]
     [System.Management.Automation.PSCredential]$PSCredential,
     [Parameter(Mandatory = $false, HelpMessage = "Installation Environment. If SkipLoadingBundle is set, this will be ignored")]
-    [ValidateSet('SharePointPnPPowerShell2013','SharePointPnPPowerShell2016','SharePointPnPPowerShellOnline')]
+    [ValidateSet('SharePointPnPPowerShell2013', 'SharePointPnPPowerShell2016', 'SharePointPnPPowerShellOnline')]
     [string]$Environment = "SharePointPnPPowerShellOnline",
     [Parameter(Mandatory = $false, HelpMessage = "Path to Project Portal release folder")]
     [string]$ProjectPortalReleasePath,
@@ -46,9 +46,11 @@ if (-not $SkipLoadingBundle.IsPresent) {
 # Handling credentials
 if ($PSCredential -ne $null) {
     $Credential = $PSCredential
-} elseif ($GenericCredential -ne $null -and $GenericCredential -ne "") {
+}
+elseif ($GenericCredential -ne $null -and $GenericCredential -ne "") {
     $Credential = Get-PnPStoredCredential -Name $GenericCredential -Type PSCredential 
-} elseif ($Credential -eq $null -and -not $UseWebLogin.IsPresent -and -not $CurrentCredentials.IsPresent) {
+}
+elseif ($Credential -eq $null -and -not $UseWebLogin.IsPresent -and -not $CurrentCredentials.IsPresent) {
     $Credential = (Get-Credential -Message "Please enter your username and password")
 }
 
@@ -64,10 +66,10 @@ if (-not $DataSourceSiteUrl) {
 function Start-Install() {
     Connect-SharePoint $Url 
     $CurrentPPVersion = ParseVersion -VersionString (Get-PnPPropertyBag -Key pp_version)
-    if(-not $CurrentPPVersion) {
+    if (-not $CurrentPPVersion) {
         $CurrentPPVersion = "N/A"
 
-        if(-not $ProjectPortalReleasePath.IsPresent) {
+        if (-not $ProjectPortalReleasePath.IsPresent) {
             Write-Host "Project Portal is not installed on the specified URL. You need to specify ProjectPortalReleasePath to install Project Portal first." -ForegroundColor Red
             exit 1 
         }
@@ -89,11 +91,11 @@ function Start-Install() {
     $ErrorActionPreference = "Stop"
 
     # Sets up PnP trace log
-    if($Logging -eq "File") {
+    if ($Logging -eq "File") {
         $execDateTime = Get-Date -Format "yyyyMMdd_HHmmss"
         Set-PnPTraceLog -On -Level Debug -LogFile "pplog-$execDateTime.txt"
     }
-    elseif($Logging -eq "Host") {
+    elseif ($Logging -eq "Host") {
         Set-PnPTraceLog -On -Level Debug
     }
     else {
@@ -107,9 +109,10 @@ function Start-Install() {
             Set-Location $ProjectPortalReleasePath
             Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green
             if ($CurrentCredentials.IsPresent) {
-                .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase="{e1487481-8088-4d5f-a5ca-91908db4feca}"}
-            } else {
-                .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase="{e1487481-8088-4d5f-a5ca-91908db4feca}"}
+                .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase = "{e1487481-8088-4d5f-a5ca-91908db4feca}"}
+            }
+            else {
+                .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase = "{e1487481-8088-4d5f-a5ca-91908db4feca}"}
             }
             
             Write-Host "DONE" -ForegroundColor Green
@@ -128,7 +131,7 @@ function Start-Install() {
     # Installing root
     try { 
         Write-Host "Deploying root-package with fields, content types, lists and pages..." -ForegroundColor Green -NoNewLine
-        Apply-Template -Template "root" -ExcludeHandlers TermGroups
+        Apply-Template -Template "root" -ExcludeHandlers PropertyBagEntries
         Write-Host "DONE" -ForegroundColor Green
     }
     catch {
@@ -152,12 +155,22 @@ function Start-Install() {
             Write-Host $error[0] -ForegroundColor Red
         }
     }
+
+    try {
+        Write-Host "Updating web property bag..." -ForegroundColor Green -NoNewLine
+        Apply-Template -Template "root" -Localized -Handlers PropertyBagEntries
+        Write-Host "DONE" -ForegroundColor Green
+    }
+    catch {
+        Write-Host
+        Write-Host "Error updating web property bag for $Url" -ForegroundColor Red
+        Write-Host $error[0] -ForegroundColor Red
+        exit 1 
+    }
         
     Disconnect-PnPOnline
     $sw.Stop()
-    if (-not $Upgrade.IsPresent) {
-        Write-Host "Installation completed in $($sw.Elapsed)" -ForegroundColor Green
-    }
+    Write-Host "Installation completed in $($sw.Elapsed)" -ForegroundColor Green
 }
 
 Start-Install
