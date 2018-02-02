@@ -10,7 +10,7 @@ Use the required -Url param to specify the target site collection. You can also 
 ./Install.ps1 -Url https://puzzlepart.sharepoint.com/sites/program
 
 .LINK
-https://github.com/Puzzlepart/prosjektportalen
+https://github.com/Puzzlepart/prosjektportalen-program
 
 #>
 
@@ -30,8 +30,10 @@ Param(
     [Parameter(Mandatory = $false, HelpMessage = "Installation Environment. If SkipLoadingBundle is set, this will be ignored")]
     [ValidateSet('SharePointPnPPowerShell2013','SharePointPnPPowerShell2016','SharePointPnPPowerShellOnline')]
     [string]$Environment = "SharePointPnPPowerShellOnline",
-    [Parameter(Mandatory = $true, HelpMessage = "Path to Project Portal release folder")]
-    [string]$ProjectPortalReleasePath
+    [Parameter(Mandatory = $false, HelpMessage = "Path to Project Portal release folder")]
+    [string]$ProjectPortalReleasePath,
+    [Parameter(Mandatory = $false, HelpMessage = "Do you want to skip default config?")]
+    [switch]$SkipDefaultConfig
 )
 
 . ./SharedFunctions.ps1
@@ -58,22 +60,29 @@ if (-not $DataSourceSiteUrl) {
     $DataSourceSiteUrl = $Url
 }
 
-$AssetsUrlParam = Get-SecondaryUrlAsParam -RootUrl $Url -SecondaryUrl $AssetsUrl
-$DataSourceUrlParam = Get-SecondaryUrlAsParam -RootUrl $Url -SecondaryUrl $DataSourceSiteUrl
-
 # Start installation
 function Start-Install() {
-    # Prints header
-    if (-not $Upgrade.IsPresent) {
-        Write-Host "############################################################################" -ForegroundColor Green
-        Write-Host "" -ForegroundColor Green
-        Write-Host "Installing Program" -ForegroundColor Green
-        Write-Host "" -ForegroundColor Green
-        Write-Host "Installation URL:`t`t$Url" -ForegroundColor Green
-        Write-Host "Environment:`t`t`t$Environment" -ForegroundColor Green
-        Write-Host "" -ForegroundColor Green
-        Write-Host "############################################################################" -ForegroundColor Green
+    Connect-SharePoint $Url 
+    $CurrentPPVersion = ParseVersion -VersionString (Get-PnPPropertyBag -Key pp_version)
+    if(-not $CurrentPPVersion) {
+        $CurrentPPVersion = "N/A"
+
+        if(-not $ProjectPortalReleasePath.IsPresent) {
+            Write-Host "Project Portal is not installed on the specified URL. You need to specify ProjectPortalReleasePath to install Project Portal first." -ForegroundColor Red
+            exit 1 
+        }
     }
+
+    # Prints header
+    Write-Host "############################################################################" -ForegroundColor Green
+    Write-Host "" -ForegroundColor Green
+    Write-Host "Installing Program" -ForegroundColor Green
+    Write-Host "" -ForegroundColor Green
+    Write-Host "Installation URL:`t`t$Url" -ForegroundColor Green
+    Write-Host "Environment:`t`t`t$Environment" -ForegroundColor Green
+    Write-Host "Project Portal Version:`t`t$CurrentPPVersion" -ForegroundColor Green
+    Write-Host "" -ForegroundColor Green
+    Write-Host "############################################################################" -ForegroundColor Green
 
     # Starts stop watch
     $sw = [Diagnostics.Stopwatch]::StartNew()
@@ -93,11 +102,9 @@ function Start-Install() {
   
     # Installing taxonomy
     try {
-        Connect-SharePoint $Url  
         Write-Host "Installing taxonomy (term sets and initial terms)..." -ForegroundColor Green -NoNewLine
         Apply-Template -Template "root" -Handlers TermGroups
         Write-Host "DONE" -ForegroundColor Green
-        Disconnect-PnPOnline
     }
     catch {
         Write-Host
@@ -105,38 +112,37 @@ function Start-Install() {
         Write-Host $error[0] -ForegroundColor Red
         exit 1 
     }
-    
-    $OriginalPSScriptRoot = $PSScriptRoot
 
-    # Installing project portal base
-    try {
-        cd $ProjectPortalReleasePath
-        Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green
-        if ($CurrentCredentials.IsPresent) {
-            .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase="{e1487481-8088-4d5f-a5ca-91908db4feca}"}
-        } else {
-            .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase="{e1487481-8088-4d5f-a5ca-91908db4feca}"}
+    if ($ProjectPortalReleasePath.IsPresent) {    
+        # Installing project portal base
+        $OriginalPSScriptRoot = $PSScriptRoot
+        try {
+            cd $ProjectPortalReleasePath
+            Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green
+            if ($CurrentCredentials.IsPresent) {
+                .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase="{e1487481-8088-4d5f-a5ca-91908db4feca}"}
+            } else {
+                .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase="{e1487481-8088-4d5f-a5ca-91908db4feca}"}
+            }
+            
+            Write-Host "DONE" -ForegroundColor Green
+            cd $OriginalPSScriptRoot
         }
-        
-        Write-Host "DONE" -ForegroundColor Green
-        cd $OriginalPSScriptRoot
-    }
-    catch {
-        cd $OriginalPSScriptRoot
-        Write-Host
-        Write-Host "Error installing project portal" -ForegroundColor Red
-        Write-Host $error[0] -ForegroundColor Red
-        exit 1 
+        catch {
+            cd $OriginalPSScriptRoot
+            Write-Host
+            Write-Host "Error installing project portal" -ForegroundColor Red
+            Write-Host $error[0] -ForegroundColor Red
+            exit 1 
+        }
     }
 
     
     # Installing root
-    try {
-        Connect-SharePoint $Url    
+    try { 
         Write-Host "Deploying root-package with fields, content types, lists and pages..." -ForegroundColor Green -NoNewLine
         Apply-Template -Template "root" -ExcludeHandlers TermGroups
         Write-Host "DONE" -ForegroundColor Green
-        Disconnect-PnPOnline
     }
     catch {
         Write-Host
@@ -145,20 +151,22 @@ function Start-Install() {
         exit 1 
     }
     
-    # Installing config
-    try {
-        Connect-SharePoint $Url
-        Write-Host "Deploying default config.." -ForegroundColor Green -NoNewLine
-        Apply-Template -Template "config"
-        Write-Host "DONE" -ForegroundColor Green
-        Disconnect-PnPOnline
+    
+    if (-not $SkipDefaultConfig.IsPresent) {
+        # Installing config
+        try {
+            Write-Host "Deploying default config.." -ForegroundColor Green -NoNewLine
+            Apply-Template -Template "config"
+            Write-Host "DONE" -ForegroundColor Green
+        }
+        catch {
+            Write-Host
+            Write-Host "Error installing default config to $Url" -ForegroundColor Red
+            Write-Host $error[0] -ForegroundColor Red
+        }
     }
-    catch {
-        Write-Host
-        Write-Host "Error installing default config to $Url" -ForegroundColor Red
-        Write-Host $error[0] -ForegroundColor Red
-    }
-
+        
+    Disconnect-PnPOnline
     $sw.Stop()
     if (-not $Upgrade.IsPresent) {
         Write-Host "Installation completed in $($sw.Elapsed)" -ForegroundColor Green
