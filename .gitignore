@@ -5,3 +5,4 @@ lib/
 @settings.js
 templates/root/SiteAssets/js/pp.program.js
 build/bundle
+npm-debug.log
