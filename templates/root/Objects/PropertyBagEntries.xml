@@ -1,0 +1,4 @@
+<pnp:PropertyBagEntries 
+  xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <pnp:PropertyBagEntry Key="pp_program_version" Value="{parameter:Version}" Overwrite="true" />
+</pnp:PropertyBagEntries>

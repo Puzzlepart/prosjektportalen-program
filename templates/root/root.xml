@@ -5,7 +5,7 @@
         <pnp:Parameters>
             <pnp:Parameter Key="AssetsSiteUrl">{sitecollection}</pnp:Parameter>
             <pnp:Parameter Key="DataSourceSiteUrl">{sitecollection}</pnp:Parameter>
-            <pnp:Parameter Key="ScriptRevision">3ED762EC0DF8</pnp:Parameter>
+            <pnp:Parameter Key="Version">{package-version}</pnp:Parameter>
             <pnp:Parameter Key="ScriptLoadTimeout">1000</pnp:Parameter>
         </pnp:Parameters>
     </pnp:Preferences>
@@ -23,6 +23,8 @@
                 xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Navigation.xml" />
             <xi:include 
                 xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/CustomActions.xml" />
+            <xi:include 
+                xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/PropertyBagEntries.xml" />
         </pnp:ProvisioningTemplate>
     </pnp:Templates>
 </pnp:Provisioning>
