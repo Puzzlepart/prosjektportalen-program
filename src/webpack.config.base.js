@@ -1,11 +1,11 @@
 var path = require("path"),
     webpack = require('webpack'),
     pkg = require("../package.json"),
-    config = require("../.tasks/@configuration.js"),
+    configuration = require("../.tasks/@configuration.js"),
     BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = (devtool, exclude, env, output = path.join(config.paths.dist, "js")) => ({
-    entry: { program: [...config.js.polyfills, './lib/js/index.js'] },
+module.exports = (devtool, exclude, env, output = path.join(configuration.PATHS.DIST, "js")) => ({
+    entry: { program: [...configuration.JS.POLYFILLS, './lib/js/index.js'] },
     output: { path: output, filename: "pp.[name].js", libraryTarget: "umd" },
     resolve: { extensions: ['.jsx', '.js', '.json', '.txt'], alias: {} },
     module: {
@@ -37,5 +37,5 @@ module.exports = (devtool, exclude, env, output = path.join(config.paths.dist, "
             }),
             new webpack.optimize.AggressiveMergingPlugin()
         ] : [])
-        .concat(config.useBundleAnalyzer ? [new BundleAnalyzerPlugin({ analyzerMode: 'static' })] : [])
+        .concat(configuration.USE_BUNDLE_ANALYZER ? [new BundleAnalyzerPlugin({ analyzerMode: 'static' })] : [])
 });

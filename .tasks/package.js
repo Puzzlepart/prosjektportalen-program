@@ -9,18 +9,18 @@ var gulp = require("gulp"),
     stylus = require('gulp-stylus'),
     powershell = require("./utils/powershell.js"),
     settings = require('./@settings.js'),
-    config = require('./@configuration.js');
+    configuration = require('./@configuration.js');
 
 gulp.task("packageStyles", (done) => {
-    return gulp.src(config.paths.stylesMain)
+    return gulp.src(configuration.PATHS.STYLES_MAIN)
         .pipe(stylus({ compress: false, use: [autoprefixer('last 5 versions')] }))
-        .pipe(gulp.dest(config.paths.dist));
+        .pipe(gulp.dest(configuration.PATHS.dist));
 });
 
 gulp.task("packageStylesTemplate", (done) => {
-    return gulp.src(config.paths.stylesMain)
+    return gulp.src(configuration.PATHS.STYLES_MAIN)
         .pipe(stylus({ compress: false, use: [autoprefixer('last 5 versions')] }))
-        .pipe(gulp.dest(path.join(config.paths.rootTemplate, "SiteAssets")));
+        .pipe(gulp.dest(path.join(configuration.PATHS.ROOT_TEMPLATE, "SiteAssets")));
 });
 
 gulp.task("packageCode", ["buildLib"], (done) => {

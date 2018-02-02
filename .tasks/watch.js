@@ -6,28 +6,26 @@ var gulp = require("gulp"),
     spsave = require("gulp-spsave"),
     runSequence = require("run-sequence"),
     livereload = require('gulp-livereload'),
-    config = require('./@configuration.js'),
+    configuration = require('./@configuration.js'),
     settings = require('./@settings.js');
 
 let buildTimeout;
 
 function __startWatch(packageCodeFunc) {
-    livereload.listen({
-        start: true,
-    });
-    watch(config.paths.sourceGlob).on("change", () => {
+    livereload.listen({ start: true });
+    watch(configuration.PATHS.sourceGlob).on("change", () => {
         if (buildTimeout) {
             clearTimeout(buildTimeout);
         }
         buildTimeout = setTimeout(() => {
             runSequence("clean", packageCodeFunc, () => {
-                uploadFile(format("{0}/js/*.js", config.paths.dist), settings.siteUrl, "siteassets/pp/js")
+                uploadFile(format("{0}/js/*.js", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/js")
             })
         }, 100);
     });
-    watch(config.paths.stylesGlob).on("change", () => {
+    watch(configuration.PATHS.stylesGlob).on("change", () => {
         runSequence("packageStyles", () => {
-            uploadFile(format("{0}/css/*.css", config.paths.dist), settings.siteUrl, "siteassets/pp/css")
+            uploadFile(format("{0}/css/*.css", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/css")
         })
     });
 }
@@ -47,9 +45,6 @@ function uploadFile(glob, url, folder) {
                 this.emit("end");
             }
         }))
-        .pipe(spsave({ folder: folder, siteUrl: url }, {
-            username: settings.username,
-            password: settings.password
-        }))
+        .pipe(spsave({ folder: folder, siteUrl: url }, { username: settings.username, password: settings.password }))
         .pipe(livereload());
 }

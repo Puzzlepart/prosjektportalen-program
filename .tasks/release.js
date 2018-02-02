@@ -6,18 +6,18 @@ var gulp = require("gulp"),
     runSequence = require("run-sequence"),
     git = require("./utils/git.js"),
     pkg = require("../package.json"),
-    config = require('./@configuration.js');
+    configuration = require('./@configuration.js');
 
 gulp.task("copyBuild", () => {
-    return gulp.src(config.paths.buildGlob)
-        .pipe(gulp.dest(config.paths.dist))
+    return gulp.src(configuration.PATHS.BUILD_GLOB)
+        .pipe(gulp.dest(configuration.PATHS.DIST))
 });
 
 gulp.task("zipDist", (done) => {
     git.hash(hash => {
-        gulp.src(format("{0}/**/*", config.paths.dist))
+        gulp.src(format("{0}/**/*", configuration.PATHS.DIST))
             .pipe(zip(format("{0}-{1}.{2}.zip", pkg.name, pkg.version, hash)))
-            .pipe(gulp.dest(config.paths.release))
+            .pipe(gulp.dest(configuration.PATHS.RELEASE))
             .on('end', () => done());
     });
 });
