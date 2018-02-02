@@ -74,15 +74,20 @@ function Start-Install() {
             exit 1 
         }
     }
+    $CurrentProgramVersion = ParseVersion -VersionString (Get-PnPPropertyBag -Key pp_program_version)
+    if (-not $CurrentPPVersion) {
+        $CurrentProgramVersion = "N/A"
+    }
 
     # Prints header
     Write-Host "############################################################################" -ForegroundColor Green
     Write-Host "" -ForegroundColor Green
     Write-Host "Installing Program" -ForegroundColor Green
     Write-Host "" -ForegroundColor Green
-    Write-Host "Installation URL:`t`t$Url" -ForegroundColor Green
-    Write-Host "Environment:`t`t`t$Environment" -ForegroundColor Green
-    Write-Host "Project Portal Version:`t`t$CurrentPPVersion" -ForegroundColor Green
+    Write-Host "Installation URL:`t`t[$Url]" -ForegroundColor Green
+    Write-Host "Environment:`t`t`t[$Environment]" -ForegroundColor Green
+    Write-Host "Project Portal Version:`t`t[$CurrentPPVersion]" -ForegroundColor Green
+    Write-Host "Program Version:`t`t[$CurrentProgramVersion]" -ForegroundColor Green
     Write-Host "" -ForegroundColor Green
     Write-Host "############################################################################" -ForegroundColor Green
 
@@ -115,7 +120,7 @@ function Start-Install() {
                 .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase = "{e1487481-8088-4d5f-a5ca-91908db4feca}"}
             }
             
-            Write-Host "DONE" -ForegroundColor Green
+            Write-Host "`tDONE" -ForegroundColor Green
             Set-Location $OriginalPSScriptRoot
         }
         catch {
@@ -131,8 +136,8 @@ function Start-Install() {
     # Installing root
     try { 
         Write-Host "Deploying root-package with fields, content types, lists and pages..." -ForegroundColor Green -NoNewLine
-        Apply-Template -Template "root" -ExcludeHandlers PropertyBagEntries
-        Write-Host "DONE" -ForegroundColor Green
+        Apply-Template -Template root -ExcludeHandlers PropertyBagEntries
+        Write-Host "`tDONE" -ForegroundColor Green
     }
     catch {
         Write-Host
@@ -146,8 +151,8 @@ function Start-Install() {
         # Installing config
         try {
             Write-Host "Deploying default config.." -ForegroundColor Green -NoNewLine
-            Apply-Template -Template "config"
-            Write-Host "DONE" -ForegroundColor Green
+            Apply-Template -Template config
+            Write-Host "`t`t`t`t`t`tDONE" -ForegroundColor Green
         }
         catch {
             Write-Host
@@ -159,7 +164,7 @@ function Start-Install() {
     try {
         Write-Host "Updating web property bag..." -ForegroundColor Green -NoNewLine
         Apply-Template -Template "root" -Localized -Handlers PropertyBagEntries
-        Write-Host "DONE" -ForegroundColor Green
+        Write-Host "`t`t`t`t`t`tDONE" -ForegroundColor Green
     }
     catch {
         Write-Host
@@ -170,7 +175,7 @@ function Start-Install() {
         
     Disconnect-PnPOnline
     $sw.Stop()
-    Write-Host "Installation completed in $($sw.Elapsed)" -ForegroundColor Green
+    Write-Host "Installation completed in [$($sw.Elapsed)]" -ForegroundColor Green
 }
 
 Start-Install
