@@ -3,7 +3,11 @@
   "version": "1.1.1",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "release": "gulp release",
+    "release:patch": "npm version patch && gulp release",
+    "release:minor": "npm version minor && gulp release"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Puzzlepart/prosjektportalen-program"
