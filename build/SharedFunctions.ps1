@@ -73,3 +73,17 @@ function LoadBundle($Environment) {
     Add-Type -Path "$BundlePath\Newtonsoft.Json.dll" -ErrorAction SilentlyContinue
     Import-Module "$BundlePath\$Environment.psd1" -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
 }
+
+function ParseVersion($VersionString) {
+    if($VersionString  -like "*.*.*#*") {
+        $vs = $VersionString.Split("#")[0]
+        return [Version]($vs)
+    }
+    if($VersionString  -like "*.*.*.*") {
+        $vs = $VersionString.Split(".")[0..2] -join "."
+        return [Version]($vs)
+    }
+    if($VersionString  -like "*.*.*") {
+        return [Version]($VersionString)
+    }
+}
