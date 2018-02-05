@@ -1,7 +1,6 @@
 'use strict';
 var gulp = require("gulp"),
     path = require("path"),
-    log = require('fancy-log'),
     es = require('event-stream'),
     flatmap = require("gulp-flatmap"),
     replace = require('gulp-replace'),
