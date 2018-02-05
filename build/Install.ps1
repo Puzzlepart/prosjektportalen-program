@@ -75,7 +75,7 @@ function Start-Install() {
         }
     }
     $CurrentProgramVersion = ParseVersion -VersionString (Get-PnPPropertyBag -Key pp_program_version)
-    if (-not $CurrentPPVersion) {
+    if (-not $CurrentProgramVersion) {
         $CurrentProgramVersion = "N/A"
     }
 
