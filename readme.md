@@ -2,7 +2,7 @@ Programtilpasninger for Prosjektportalen
 =================
 
 
-## Hva er prosjektportal for SharePoint? ##
+## Hva er Programtilpasninger for Prosjektportalen? ##
 
 TODO
 
