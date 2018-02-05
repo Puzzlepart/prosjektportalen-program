@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "release": "gulp release",
-    "release:patch": "npm version patch && gulp release",
-    "release:minor": "npm version minor && gulp release"
+    "postversion": "gulp release"
   },
   "repository": {
     "type": "git",
