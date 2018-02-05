@@ -2,7 +2,7 @@ Programtilpasninger for Prosjektportalen
 =================
 
 
-## Hva er Programtilpasninger for Prosjektportalen? ##
+## Hva er programtilpasninger for Prosjektportalen? ##
 
 TODO
 
