@@ -13,7 +13,7 @@ var gulp = require("gulp"),
 gulp.task("packageStyles", (done) => {
     return gulp.src(configuration.PATHS.STYLES_MAIN)
         .pipe(stylus(configuration.STYLUS))
-        .pipe(gulp.dest(configuration.PATHS.dist));
+        .pipe(gulp.dest(configuration.PATHS.DIST));
 });
 
 gulp.task("packageStylesTemplate", (done) => {

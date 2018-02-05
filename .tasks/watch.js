@@ -13,20 +13,24 @@ let buildTimeout;
 
 function __startWatch(packageCodeFunc) {
     livereload.listen({ start: true });
-    watch(configuration.PATHS.sourceGlob).on("change", () => {
+    runSequence("clean", packageCodeFunc, "packageStyles", () => {
+        uploadFile(format("{0}/js/*.js", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/js");
+        uploadFile(format("{0}/css/*.css", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/css");
+    });
+    watch(configuration.PATHS.SOURCE_GLOB).on("change", () => {
         if (buildTimeout) {
             clearTimeout(buildTimeout);
         }
         buildTimeout = setTimeout(() => {
             runSequence("clean", packageCodeFunc, () => {
-                uploadFile(format("{0}/js/*.js", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/js")
-            })
+                uploadFile(format("{0}/js/*.js", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/js");
+            });
         }, 100);
     });
-    watch(configuration.PATHS.stylesGlob).on("change", () => {
+    watch(configuration.PATHS.STYLES_GLOB).on("change", () => {
         runSequence("packageStyles", () => {
-            uploadFile(format("{0}/css/*.css", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/css")
-        })
+            uploadFile(format("{0}/css/*.css", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/css");
+        });
     });
 }
 

@@ -27,7 +27,9 @@ module.exports = (devtool, exclude, env, output = path.join(configuration.PATHS.
     },
     plugins: [
         new webpack.DefinePlugin({ '__VERSION': JSON.stringify(pkg.version) }),
-        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /nb/)
+        new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(env) }),
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /nb/),
+        new webpack.optimize.ModuleConcatenationPlugin()
     ]
         .concat(env === "production" ? [
             new webpack.optimize.UglifyJsPlugin({

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postversion": "gulp release"
+    "postversion": "gulp release",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,10 @@
     "office-ui-fabric-core": "^9.0.0",
     "office-ui-fabric-react": "^5.10.0",
     "prop-types": "^15.5.10",
-    "prosjektportalen": "^2.1.18",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-scroll": "^1.6.1",
+    "prosjektportalen": "^2.1.26",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scroll": "^1.7.6",
     "regenerator-runtime": "^0.11.0",
     "sp-pnp-js": "^2.0.8",
     "truncate-html": "^0.1.4",
@@ -30,7 +31,7 @@
   },
   "devDependencies": {
     "@types/react": "^16.0.5",
-    "@types/sharepoint": "^2013.1.9",
+    "@types/sharepoint": "^2016.1.0",
     "autoprefixer-stylus": "^0.14.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

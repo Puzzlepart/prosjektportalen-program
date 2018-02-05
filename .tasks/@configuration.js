@@ -19,9 +19,11 @@ module.exports = {
         TEMPLATES_GLOB: "./templates/**/*",
         ROOT_TEMPLATE: path.join(__dirname, "../templates/root"),
     },
-    USE_BUNDLE_ANALYZER: false,
+    USE_BUNDLE_ANALYZER: true,
     JS: {
-        POLYFILLS: [
+        POLYFILLS: [            
+            'core-js/es6/map',
+            'core-js/es6/set',
             'core-js/fn/object/assign',
             'core-js/es6/promise',
             'whatwg-fetch',
