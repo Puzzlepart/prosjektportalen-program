@@ -82,7 +82,7 @@ function Start-Install() {
     # Prints header
     Write-Host "############################################################################" -ForegroundColor Green
     Write-Host "" -ForegroundColor Green
-    Write-Host "Installing Program" -ForegroundColor Green
+    Write-Host "Installing Program ({package-version})" -ForegroundColor Green
     Write-Host "" -ForegroundColor Green
     Write-Host "Installation URL:`t`t[$Url]" -ForegroundColor Green
     Write-Host "Environment:`t`t`t[$Environment]" -ForegroundColor Green
