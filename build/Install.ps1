@@ -114,10 +114,10 @@ function Start-Install() {
             Set-Location $ProjectPortalReleasePath
             Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green
             if ($CurrentCredentials.IsPresent) {
-                .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase = "{e1487481-8088-4d5f-a5ca-91908db4feca}"}
+                .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment
             }
             else {
-                .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase = "{e1487481-8088-4d5f-a5ca-91908db4feca}"}
+                .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment
             }
             Set-Location $OriginalPSScriptRoot
         }
