@@ -19,7 +19,7 @@ module.exports = {
         TEMPLATES_GLOB: "./templates/**/*",
         ROOT_TEMPLATE: path.join(__dirname, "../templates/root"),
     },
-    USE_BUNDLE_ANALYZER: true,
+    USE_BUNDLE_ANALYZER: false,
     JS: {
         POLYFILLS: [            
             'core-js/es6/map',
