@@ -8,7 +8,7 @@ TODO
 
 ## Installering ##
 
-TODO
+Programtilpasninger for Prosjektportalen installeres med Powershell. Se [Installation](https://github.com/Puzzlepart/prosjektportalen-program/wiki/Installation) (dokumentert på engelsk)
 
 ## Siste versjon av Prosjektportalen ##
 
