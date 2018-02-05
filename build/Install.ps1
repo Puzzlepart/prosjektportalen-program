@@ -15,7 +15,7 @@ https://github.com/Puzzlepart/prosjektportalen-program
 #>
 
 Param(
-    [Parameter(Mandatory = $true, HelpMessage = "Where do you want to install the Project Portal?")]
+    [Parameter(Mandatory = $true, HelpMessage = "Where do you want to install the Program customizations?")]
     [string]$Url,
     [Parameter(Mandatory = $false, HelpMessage = "Do you want to handle PnP libraries and PnP PowerShell without using bundled files?")]
     [switch]$SkipLoadingBundle,
@@ -33,7 +33,10 @@ Param(
     [Parameter(Mandatory = $false, HelpMessage = "Path to Project Portal release folder")]
     [string]$ProjectPortalReleasePath,
     [Parameter(Mandatory = $false, HelpMessage = "Do you want to skip default config?")]
-    [switch]$SkipDefaultConfig
+    [switch]$SkipDefaultConfig,
+    [Parameter(Mandatory = $false)]
+    [ValidateSet('None', 'File', 'Host')]
+    [string]$Logging = "File"
 )
 
 . ./SharedFunctions.ps1
