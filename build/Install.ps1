@@ -69,7 +69,7 @@ function Start-Install() {
     if (-not $CurrentPPVersion) {
         $CurrentPPVersion = "N/A"
 
-        if (-not $ProjectPortalReleasePath.IsPresent) {
+        if ($ProjectPortalReleasePath -eq $null) {
             Write-Host "Project Portal is not installed on the specified URL. You need to specify ProjectPortalReleasePath to install Project Portal first." -ForegroundColor Red
             exit 1 
         }
@@ -82,7 +82,7 @@ function Start-Install() {
     # Prints header
     Write-Host "############################################################################" -ForegroundColor Green
     Write-Host "" -ForegroundColor Green
-    Write-Host "Installing Program ({package-version})" -ForegroundColor Green
+    Write-Host "Installing Program v{package-version}" -ForegroundColor Green
     Write-Host "" -ForegroundColor Green
     Write-Host "Installation URL:`t`t[$Url]" -ForegroundColor Green
     Write-Host "Environment:`t`t`t[$Environment]" -ForegroundColor Green
@@ -107,7 +107,7 @@ function Start-Install() {
         Set-PnPTraceLog -Off
     }
 
-    if ($ProjectPortalReleasePath.IsPresent) {    
+    if ($ProjectPortalReleasePath) {    
         # Installing project portal base
         $OriginalPSScriptRoot = $PSScriptRoot
         try {
@@ -119,8 +119,6 @@ function Start-Install() {
             else {
                 .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -Parameters @{TermSetIdProjectPhase = "{e1487481-8088-4d5f-a5ca-91908db4feca}"}
             }
-            
-            Write-Host "`tDONE" -ForegroundColor Green
             Set-Location $OriginalPSScriptRoot
         }
         catch {
