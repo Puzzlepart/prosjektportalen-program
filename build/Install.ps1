@@ -131,7 +131,8 @@ function Start-Install() {
             exit 1 
         }
     }
-
+    
+    Connect-SharePoint $Url 
     
     # Installing root
     try { 
