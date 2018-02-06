@@ -191,8 +191,7 @@ function Start-Install() {
         Write-Host $error[0] -ForegroundColor Red
         exit 1 
     }
-        
-    Disconnect-PnPOnline
+    
     $sw.Stop()
     Write-Host "Installation completed in [$($sw.Elapsed)]" -ForegroundColor Green
 }
