@@ -13,13 +13,9 @@ pnp.log.subscribe(new ConsoleListener());
 
 /** PnP setup */
 pnp.setup({
-    headers: {
-        "Accept": "application/json; odata=verbose",
-    },
+    sp: { headers: { Accept: "application/json; odata=verbose" } },
     defaultCachingStore: "session",
     defaultCachingTimeoutSeconds: 60,
 });
 
-ExecuteOrDelayUntilBodyLoaded(() => {
-    WebParts.Render();
-});
+ExecuteOrDelayUntilBodyLoaded(WebParts.Render);
