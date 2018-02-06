@@ -29,26 +29,27 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
             const view = await this.buildViewFromStoredProjects();
             this.setState({ view, isLoading: false });
         } catch (errorMessage) {
-            this.setState({
-                errorMessage,
-                isLoading: false,
-            });
+            this.setState({ errorMessage, isLoading: false });
         }
     }
 
-    public render() {
-        if (this.state.isLoading) {
+    /**
+     * Renders the <ProgramPortfolio /> component
+     */
+    public render(): React.ReactElement<IProgramPortfolioProps> {
+        const { isLoading, errorMessage, view } = this.state;
+        if (isLoading) {
             return null;
         }
-        if (this.state.errorMessage) {
+        if (errorMessage) {
             return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
         }
-        if (this.state.view === null) {
+        if (view === null) {
             return <NoStoredProjectsMessage />;
         }
         return (
             <DynamicPortfolio
-                defaultView={this.state.view}
+                defaultView={view}
                 viewSelectorEnabled={false}
                 searchBoxLabelText={strings.ProgramPortfolio_SearchBoxLabelText}
                 showCountText={strings.ProgramPortfolio_ShowCountText}
@@ -61,16 +62,14 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
      */
     private async buildViewFromStoredProjects(): Promise<IDynamicPortfolioViewConfig> {
         try {
+            const { fields, refiners } = this.props;
             const { items } = await common.getStoredProjectsListContext();
             if (items.length === 0) {
                 return null;
             }
             const searchQuery = items.map(({ URL }) => `Path:${URL}`).join(" OR ");
-            return {
-                fields: this.props.fields,
-                refiners: this.props.refiners,
-                queryTemplate: String.format(this.props.queryTemplate, searchQuery),
-            };
+            const queryTemplate = String.format(this.props.queryTemplate, searchQuery);
+            return { fields, refiners, queryTemplate };
         } catch (err) {
             throw err;
         }
