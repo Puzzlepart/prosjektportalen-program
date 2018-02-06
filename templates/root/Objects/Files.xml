@@ -121,6 +121,4 @@
             <pnp:Property Key="Group" Value="Program" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:Directory Src="SiteAssets\js\" Folder="SiteAssets/pp/js" Overwrite="true" Recursive="false" IncludedExtensions="*.js,*.map" />
-    <pnp:Directory Src="SiteAssets\css\" Folder="SiteAssets/pp/css" Overwrite="true" Recursive="false" IncludedExtensions="*.css" />
 </pnp:Files>

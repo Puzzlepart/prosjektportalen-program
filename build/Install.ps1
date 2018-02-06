@@ -17,6 +17,8 @@ https://github.com/Puzzlepart/prosjektportalen-program
 Param(
     [Parameter(Mandatory = $true, HelpMessage = "Where do you want to install the Program customizations?")]
     [string]$Url,
+    [Parameter(Mandatory = $false, HelpMessage = "Where do you want to install the required resources?")]
+    [string]$AssetsUrl,
     [Parameter(Mandatory = $false, HelpMessage = "Do you want to handle PnP libraries and PnP PowerShell without using bundled files?")]
     [switch]$SkipLoadingBundle,
     [Parameter(Mandatory = $false, HelpMessage = "Stored credential from Windows Credential Manager")]
@@ -59,10 +61,6 @@ elseif ($Credential -eq $null -and -not $UseWebLogin.IsPresent -and -not $Curren
 
 if (-not $AssetsUrl) {
     $AssetsUrl = $Url
-}
-
-if (-not $DataSourceSiteUrl) {
-    $DataSourceSiteUrl = $Url
 }
 
 # Start installation
@@ -132,14 +130,29 @@ function Start-Install() {
             exit 1 
         }
     }
-    
-    Connect-SharePoint $Url 
+
+    # Applies assets template
+    try {
+        Connect-SharePoint $AssetsUrl -UseWeb
+        Write-Host "Deploying required scripts and styling.. " -ForegroundColor Green -NoNewLine
+        Apply-Template -Template "assets" -Localized
+        Write-Host "DONE" -ForegroundColor Green
+        Disconnect-PnPOnline
+    }
+    catch {
+        Write-Host
+        Write-Host "Error installing assets template to $AssetsUrl" -ForegroundColor Red 
+        Write-Host $error[0] -ForegroundColor Red
+        exit 1 
+    }
     
     # Installing root
-    try { 
+    try {     
+        Connect-SharePoint $Url 
         Write-Host "Deploying root-package with fields, content types, lists and pages..." -ForegroundColor Green -NoNewLine
         Apply-Template -Template root -ExcludeHandlers PropertyBagEntries
         Write-Host "`tDONE" -ForegroundColor Green
+        Disconnect-PnPOnline
     }
     catch {
         Write-Host
@@ -152,9 +165,11 @@ function Start-Install() {
     if (-not $SkipDefaultConfig.IsPresent) {
         # Installing config
         try {
+            Connect-SharePoint $Url 
             Write-Host "Deploying default config.." -ForegroundColor Green -NoNewLine
             Apply-Template -Template config
             Write-Host "`t`t`t`t`t`tDONE" -ForegroundColor Green
+            Disconnect-PnPOnline
         }
         catch {
             Write-Host
@@ -164,9 +179,11 @@ function Start-Install() {
     }
 
     try {
+        Connect-SharePoint $Url 
         Write-Host "Updating web property bag..." -ForegroundColor Green -NoNewLine
         Apply-Template -Template "root" -Localized -Handlers PropertyBagEntries
         Write-Host "`t`t`t`t`t`tDONE" -ForegroundColor Green
+        Disconnect-PnPOnline
     }
     catch {
         Write-Host
