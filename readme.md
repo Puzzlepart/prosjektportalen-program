@@ -1,10 +1,16 @@
 Programtilpasninger for Prosjektportalen
 =================
 
-
 ## Hva er programtilpasninger for Prosjektportalen? ##
 
-TODO
+Programtilpasninger for Prosjektportalen er en valgfri tilleggspakke som installeres oppå en Prosjektportalen-installasjon. Etter at tilpasningen er installert kan du opprette programområder i områdesamlingen. Hvert programområde er et eget område ganske likt som et standard prosjektområde, men det har noen ulikheter
+
+* Programområder har litt andre faser
+* Programområder har et litt forenklet uttrykk
+* Programområder kan velge prosjekter som skal vises i programområdet
+* Etter at prosjekter er lagt til i programmet kan en få visualisert en portefølje over alle prosjekter, en tidslinje med alle prosjekter samt aggregerte statusrapporter fra prosjektene
+
+Prosjektene opprettes og lever i vanlige Prosjektportalen porteføljer, og er sånn senn helt frikoblet og uvitende om programtilpasningene.
 
 ## Installering ##
 
