@@ -90,7 +90,7 @@ function Start-Install() {
     Write-Host "Installation URL:`t`t[$Url]" -ForegroundColor Green
     Write-Host "Environment:`t`t`t[$Environment]" -ForegroundColor Green
     Write-Host "Project Portal Version:`t`t[$CurrentPPVersion]" -ForegroundColor Green
-    Write-Host "Program Version:`t`t[$CurrentProgramVersion]" -ForegroundColor Green
+    Write-Host "Current Program Version:`t`t[$CurrentProgramVersion]" -ForegroundColor Green
     Write-Host "" -ForegroundColor Green
     Write-Host "############################################################################" -ForegroundColor Green
 
