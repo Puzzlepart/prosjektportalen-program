@@ -7,15 +7,21 @@ var gulp = require("gulp"),
     runSequence = require("run-sequence"),
     livereload = require('gulp-livereload'),
     configuration = require('./@configuration.js'),
-    settings = require('./@settings.js');
+    defaultSettings = require('./@settings.js');
 
 let buildTimeout;
 
-function __startWatch(packageCodeFunc) {
+function __startWatch(packageCodeFunc) {   
+    const argv = require('yargs').argv;
     livereload.listen({ start: true });
+    const settings = {
+        siteUrl: argv.siteUrl || defaultSettings.siteUrl,
+        username: argv.username || defaultSettings.username,
+        password: argv.password || defaultSettings.password,
+    };
     runSequence("clean", packageCodeFunc, "packageStyles", () => {
-        uploadFile(format("{0}/js/*.js", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/js");
-        uploadFile(format("{0}/css/*.css", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/css");
+        uploadFile(format("{0}/js/*.js", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/js", settings);
+        uploadFile(format("{0}/css/*.css", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/css", settings);
     });
     watch(configuration.PATHS.SOURCE_GLOB).on("change", () => {
         if (buildTimeout) {
@@ -23,13 +29,13 @@ function __startWatch(packageCodeFunc) {
         }
         buildTimeout = setTimeout(() => {
             runSequence("clean", packageCodeFunc, () => {
-                uploadFile(format("{0}/js/*.js", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/js");
+                uploadFile(format("{0}/js/*.js", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/js", settings);
             });
         }, 100);
     });
     watch(configuration.PATHS.STYLES_GLOB).on("change", () => {
         runSequence("packageStyles", () => {
-            uploadFile(format("{0}/css/*.css", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/css");
+            uploadFile(format("{0}/css/*.css", configuration.PATHS.DIST), settings.siteUrl, "siteassets/pp/css", settings);
         });
     });
 }
@@ -42,7 +48,7 @@ gulp.task("watchProd", () => {
     __startWatch("packageCodeMinify");
 });
 
-function uploadFile(glob, url, folder) {
+function uploadFile(glob, url, folder, settings) {
     gulp.src(glob)
         .pipe(plumber({
             errorHandler: function (err) {
