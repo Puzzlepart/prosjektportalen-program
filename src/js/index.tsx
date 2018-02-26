@@ -6,7 +6,6 @@ if (window["_v_dictSod"]) {
     window["_v_dictSod"]["pp.program.js"].loaded = true;
 }
 
-
 /** Set up pnp logging */
 pnp.log.activeLogLevel = LogLevel.Info;
 pnp.log.subscribe(new ConsoleListener());
