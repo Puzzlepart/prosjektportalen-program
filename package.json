@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postversion": "gulp release",
+    "release": "gulp release",
+    "postversion": "npm run release",
     "watch": "gulp watch"
   },
   "repository": {
