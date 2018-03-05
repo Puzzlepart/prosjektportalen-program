@@ -7,10 +7,10 @@ Programtilpasninger for Prosjektportalen er en valgfri tilleggspakke som install
 
 * Programområder kan velge prosjekter som skal vises i programområdet
 * Etter at prosjekter er lagt til i programmet kan en se nærmere på
-** en portefølje over alle prosjektene i programmet
-** en tidslinje med alle prosjektene i programmet
-** aggregerte statusrapporter fra prosjektene
-** oversikt over gevinstene fra prosjektene i programmet
+  * en portefølje over alle prosjektene i programmet
+  * en tidslinje med alle prosjektene i programmet
+  * aggregerte statusrapporter fra prosjektene
+  * oversikt over gevinstene fra prosjektene i programmet
 
 Prosjektene opprettes og lever i vanlige Prosjektportalen porteføljer, og er sånn senn helt frikoblet og uvitende om programtilpasningene.
 
