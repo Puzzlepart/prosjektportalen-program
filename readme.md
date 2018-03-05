@@ -5,14 +5,18 @@ Programtilpasninger for Prosjektportalen
 
 Programtilpasninger for Prosjektportalen er en valgfri tilleggspakke som installeres oppå en Prosjektportalen-installasjon. Etter at tilpasningen er installert kan du opprette programområder i områdesamlingen. Hvert programområde er et eget område ganske likt som et standard prosjektområde, men det har noen ulikheter
 
-* Programområder har litt andre faser
-* Programområder har et litt forenklet uttrykk
 * Programområder kan velge prosjekter som skal vises i programområdet
-* Etter at prosjekter er lagt til i programmet kan en få visualisert en portefølje over alle prosjekter, en tidslinje med alle prosjekter samt aggregerte statusrapporter fra prosjektene
+* Etter at prosjekter er lagt til i programmet kan en se nærmere på
+** en portefølje over alle prosjektene i programmet
+** en tidslinje med alle prosjektene i programmet
+** aggregerte statusrapporter fra prosjektene
+** oversikt over gevinstene fra prosjektene i programmet
 
 Prosjektene opprettes og lever i vanlige Prosjektportalen porteføljer, og er sånn senn helt frikoblet og uvitende om programtilpasningene.
 
 ## Installering ##
+
+Programtilpasningene installeres på en egen områdesamling over en Prosjektportalen-installasjon. Den enkleste metoden er å laste ned siste versjon av Prosjektportalen og siste versjon av program, og så kjøre installasjonen fra program-relasen med en peker til prosjektportalen-releasen.
 
 Programtilpasninger for Prosjektportalen installeres med Powershell. Se [Installation](https://github.com/Puzzlepart/prosjektportalen-program/wiki/Installation) (dokumentert på engelsk)
 
