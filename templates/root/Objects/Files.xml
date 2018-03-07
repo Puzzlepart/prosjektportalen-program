@@ -2,125 +2,123 @@
     xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
     <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Files/ProgramHome.xml" />
-    <pnp:File Src="TemplateExtensions\ProgramProjectsList.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramProjectsList.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Programmets prosjekter" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="10" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="TemplateExtensions\ProgramProjectsTimeline.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramProjectsTimeline.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Prosjekttidslinje" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="20" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="TemplateExtensions\ProgramAddProject.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramAddProject.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Legg til prosjekt-side" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="30" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="TemplateExtensions\ProgramProjectStatus.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramProjectStatus.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Prosjektstatus for prosjekter i programmet" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="40" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="TemplateExtensions\ProgramPortfolio.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramPortfolio.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Programportefølje" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="50" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="TemplateExtensions\ProgramFrontpage.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramFrontpage.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Programforside" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="60" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="TemplateExtensions\ProgramProjectPropertyBag.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramProjectPropertyBag.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Stempler property bag for området" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="70" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="TemplateExtensions\ProgramDeliveries.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramDeliveries.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Programleveranser" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="80" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="TemplateExtensions\ProgramProjectsTimelineFields.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramProjectsTimelineFields.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Visningsnavn for felter (Prosjekttidslinje)" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="90" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="TemplateExtensions\ProgramBenefitsOverview.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramBenefitsOverview.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Program-gevinstoversikt" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="100" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="TemplateExtensions\ProgramQuickLaunch.txt" Folder="Extensions" Overwrite="true">
+    <pnp:File Src="TemplateExtensions\ProgramQuickLaunch.txt" Folder="Extensions" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Venstrenavigasjon" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="110" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="WebPartGallery\ProgramInfo.webpart" Folder="_catalogs/wp" Overwrite="true">
+    <pnp:File Src="WebPartGallery\ProgramInfo.webpart" Folder="_catalogs/wp" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Om programmet" />
             <pnp:Property Key="WebPartDescription" Value="" />
             <pnp:Property Key="Group" Value="Program" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="WebPartGallery\ProgramAddProject.webpart" Folder="_catalogs/wp" Overwrite="true">
+    <pnp:File Src="WebPartGallery\ProgramAddProject.webpart" Folder="_catalogs/wp" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Legg til prosjekt" />
             <pnp:Property Key="WebPartDescription" Value="" />
             <pnp:Property Key="Group" Value="Program" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="WebPartGallery\ProgramProjectsTimelineSync.webpart" Folder="_catalogs/wp" Overwrite="true">
+    <pnp:File Src="WebPartGallery\ProgramProjectsTimelineSync.webpart" Folder="_catalogs/wp" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Synkroniser prosjekttidslinje" />
             <pnp:Property Key="WebPartDescription" Value="" />
             <pnp:Property Key="Group" Value="Program" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="WebPartGallery\ProgramProjectStatus.webpart" Folder="_catalogs/wp" Overwrite="true">
+    <pnp:File Src="WebPartGallery\ProgramProjectStatus.webpart" Folder="_catalogs/wp" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Status for programmets prosjekter" />
             <pnp:Property Key="WebPartDescription" Value="" />
             <pnp:Property Key="Group" Value="Program" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="WebPartGallery\ProgramPortfolio.webpart" Folder="_catalogs/wp" Overwrite="true">
+    <pnp:File Src="WebPartGallery\ProgramPortfolio.webpart" Folder="_catalogs/wp" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Programportefølje" />
             <pnp:Property Key="WebPartDescription" Value="" />
             <pnp:Property Key="Group" Value="Program" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:File Src="WebPartGallery\ProgramBenefitsOverview.webpart" Folder="_catalogs/wp" Overwrite="true">
+    <pnp:File Src="WebPartGallery\ProgramBenefitsOverview.webpart" Folder="_catalogs/wp" Overwrite="false">
         <pnp:Properties>
             <pnp:Property Key="Title" Value="Program-gevinstoversikt" />
             <pnp:Property Key="WebPartDescription" Value="" />
             <pnp:Property Key="Group" Value="Program" />
         </pnp:Properties>
     </pnp:File>
-    <pnp:Directory Src="SiteAssets\js\" Folder="SiteAssets/pp/js" Overwrite="true" Recursive="false" IncludedExtensions="*.js,*.map" />
-    <pnp:Directory Src="SiteAssets\css\" Folder="SiteAssets/pp/css" Overwrite="true" Recursive="false" IncludedExtensions="*.css" />
 </pnp:Files>

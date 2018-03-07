@@ -55,17 +55,21 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
         }
     }
 
-    public render() {
-        if (this.state.isLoading) {
+    /**
+     * Renders the <ProgramAddProject /> component
+     */
+    public render(): React.ReactElement<IProgramAddProjectProps> {
+        const { isLoading, errorMessage, projects } = this.state;
+        if (isLoading) {
             return null;
         }
-        if (this.state.errorMessage) {
-            return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
+        if (errorMessage) {
+            return <MessageBar messageBarType={MessageBarType.error}>{errorMessage}</MessageBar>;
         }
         return (
             <div>
                 {this.renderSearchBox()}
-                {this.state.projects.length === 0
+                {projects.length === 0
                     ? <MessageBar>{strings.ProgramAddProject_EmptyMessage}</MessageBar>
                     :
                     <div>

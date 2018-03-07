@@ -17,7 +17,9 @@ module.exports = {
         TEMPLATES: "./templates",
         TEMPLATES_TEMP: "./_templates",
         TEMPLATES_GLOB: "./templates/**/*",
-        ROOT_TEMPLATE: path.join(__dirname, "../templates/root"),
+        ROOT_TEMPLATE: path.join(__dirname, "../_templates/root"),
+        ASSETS_TEMPLATE: path.join(__dirname, "../_templates/assets"),
+        CONFIG_TEMPLATE: path.join(__dirname, "../_templates/config"),
     },
     USE_BUNDLE_ANALYZER: false,
     JS: {

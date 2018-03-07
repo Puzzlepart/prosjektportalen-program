@@ -17,6 +17,4 @@ pnp.setup({
     defaultCachingTimeoutSeconds: 60,
 });
 
-ExecuteOrDelayUntilBodyLoaded(() => {
-    WebParts.Render();
-});
+ExecuteOrDelayUntilBodyLoaded(WebParts.Render);

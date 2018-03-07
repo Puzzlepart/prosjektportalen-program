@@ -70,7 +70,6 @@ export default class ProgramProjectStatus extends React.Component<IProgramProjec
      */
     private renderSummarySections() {
         const { enrichedProjects, failedProjects } = this.state;
-        console.log(failedProjects);
         return (
             <div>
                 <div>

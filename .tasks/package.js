@@ -19,7 +19,7 @@ gulp.task("packageStyles", (done) => {
 gulp.task("packageStylesTemplate", (done) => {
     return gulp.src(configuration.PATHS.STYLES_MAIN)
         .pipe(stylus(configuration.STYLUS))
-        .pipe(gulp.dest(path.join(configuration.PATHS.ROOT_TEMPLATE, "SiteAssets")));
+        .pipe(gulp.dest(path.join(configuration.PATHS.ASSETS_TEMPLATE, "SiteAssets")));
 });
 
 gulp.task("packageCode", ["buildLib"], (done) => {
@@ -37,7 +37,7 @@ gulp.task("packageCodeMinify", ["buildLib"], (done) => {
 });
 
 gulp.task("packageCodeTemplate", ["buildLib"], (done) => {
-    webpack(wpProd(path.join(configuration.PATHS.ROOT_TEMPLATE, "SiteAssets/js")), (err, stats) => {
+    webpack(wpProd(path.join(configuration.PATHS.ASSETS_TEMPLATE, "SiteAssets/js")), (err, stats) => {
         if (err) throw new pluginError("packageCodeTemplate", err);
         done();
     });

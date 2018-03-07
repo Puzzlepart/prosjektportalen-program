@@ -17,6 +17,8 @@ https://github.com/Puzzlepart/prosjektportalen-program
 Param(
     [Parameter(Mandatory = $true, HelpMessage = "Where do you want to install the Program customizations?")]
     [string]$Url,
+    [Parameter(Mandatory = $false, HelpMessage = "Where do you want to install the required resources?")]
+    [string]$AssetsUrl,
     [Parameter(Mandatory = $false, HelpMessage = "Do you want to handle PnP libraries and PnP PowerShell without using bundled files?")]
     [switch]$SkipLoadingBundle,
     [Parameter(Mandatory = $false, HelpMessage = "Stored credential from Windows Credential Manager")]
@@ -25,6 +27,8 @@ Param(
     [switch]$UseWebLogin,
     [Parameter(Mandatory = $false, HelpMessage = "Use the credentials of the current user to connect to SharePoint. Useful e.g. if you install directly from the server.")]
     [switch]$CurrentCredentials,
+    [Parameter(Mandatory = $false, HelpMessage = "Use this flag if you're upgrading an installation (will try to upgrade both PP and PP Program).")]
+    [switch]$Upgrade,
     [Parameter(Mandatory = $false, HelpMessage = "PowerShell credential to authenticate with")]
     [System.Management.Automation.PSCredential]$PSCredential,
     [Parameter(Mandatory = $false, HelpMessage = "Installation Environment. If SkipLoadingBundle is set, this will be ignored")]
@@ -59,10 +63,6 @@ elseif ($Credential -eq $null -and -not $UseWebLogin.IsPresent -and -not $Curren
 
 if (-not $AssetsUrl) {
     $AssetsUrl = $Url
-}
-
-if (-not $DataSourceSiteUrl) {
-    $DataSourceSiteUrl = $Url
 }
 
 # Start installation
@@ -115,12 +115,22 @@ function Start-Install() {
         $OriginalPSScriptRoot = $PSScriptRoot
         try {
             Set-Location $ProjectPortalReleasePath
-            Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green
-            if ($CurrentCredentials.IsPresent) {
-                .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment
-            }
-            else {
-                .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment
+            if ($Upgrade.IsPresent) {
+                Write-Host "Upgrading Project Portal (estimated approx. 15 minutes)..." -ForegroundColor Green
+                if ($CurrentCredentials.IsPresent) {
+                    .\Upgrade.ps1 -Url $Url -CurrentCredentials -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl
+                }
+                else {
+                    .\Upgrade.ps1 -Url $Url -PSCredential $Credential -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl
+                }
+            } else {
+                Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green
+                if ($CurrentCredentials.IsPresent) {
+                    .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl
+                }
+                else {
+                    .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl
+                }
             }
             Set-Location $OriginalPSScriptRoot
         }
@@ -132,14 +142,29 @@ function Start-Install() {
             exit 1 
         }
     }
-    
-    Connect-SharePoint $Url 
+
+    # Applies assets template
+    try {
+        Connect-SharePoint $AssetsUrl
+        Write-Host "Deploying required scripts and styling.. " -ForegroundColor Green -NoNewLine
+        Apply-Template -Template "assets" -Localized
+        Write-Host "DONE" -ForegroundColor Green
+        Disconnect-PnPOnline
+    }
+    catch {
+        Write-Host
+        Write-Host "Error installing assets template to $AssetsUrl" -ForegroundColor Red 
+        Write-Host $error[0] -ForegroundColor Red
+        exit 1 
+    }
     
     # Installing root
-    try { 
+    try {     
+        Connect-SharePoint $Url 
         Write-Host "Deploying root-package with fields, content types, lists and pages..." -ForegroundColor Green -NoNewLine
         Apply-Template -Template root -ExcludeHandlers PropertyBagEntries
         Write-Host "`tDONE" -ForegroundColor Green
+        Disconnect-PnPOnline
     }
     catch {
         Write-Host
@@ -149,12 +174,14 @@ function Start-Install() {
     }
     
     
-    if (-not $SkipDefaultConfig.IsPresent) {
+    if (-not $SkipDefaultConfig.IsPresent -and -not $Upgrade.IsPresent) {
         # Installing config
         try {
+            Connect-SharePoint $Url 
             Write-Host "Deploying default config.." -ForegroundColor Green -NoNewLine
             Apply-Template -Template config
             Write-Host "`t`t`t`t`t`tDONE" -ForegroundColor Green
+            Disconnect-PnPOnline
         }
         catch {
             Write-Host
@@ -164,9 +191,11 @@ function Start-Install() {
     }
 
     try {
+        Connect-SharePoint $Url 
         Write-Host "Updating web property bag..." -ForegroundColor Green -NoNewLine
         Apply-Template -Template "root" -Localized -Handlers PropertyBagEntries
         Write-Host "`t`t`t`t`t`tDONE" -ForegroundColor Green
+        Disconnect-PnPOnline
     }
     catch {
         Write-Host
@@ -174,8 +203,7 @@ function Start-Install() {
         Write-Host $error[0] -ForegroundColor Red
         exit 1 
     }
-        
-    Disconnect-PnPOnline
+    
     $sw.Stop()
     Write-Host "Installation completed in [$($sw.Elapsed)]" -ForegroundColor Green
 }
