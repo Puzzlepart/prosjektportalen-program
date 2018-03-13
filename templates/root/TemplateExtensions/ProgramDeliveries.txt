@@ -9,6 +9,13 @@
             }
         },
         {
+            "Title": "Oppgaver",
+            "Description": "",
+            "Fields": [
+                "<Field Type=\"Lookup\" DisplayName=\"Relevant leveranse\" List=\"{listid:Programleveranser}\" ShowField=\"Title\" ID=\"{a3ab9d99-78da-436d-a299-5854340a504f}\" StaticName=\"GtProjectTaskProduct\" InternalName=\"GtProjectTaskProduct\" />"
+            ]
+        },
+        {
             "Title": "Programleveranser",
             "Description": "",
             "Template": 100,
