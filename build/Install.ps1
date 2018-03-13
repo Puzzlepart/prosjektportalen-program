@@ -27,6 +27,8 @@ Param(
     [switch]$UseWebLogin,
     [Parameter(Mandatory = $false, HelpMessage = "Use the credentials of the current user to connect to SharePoint. Useful e.g. if you install directly from the server.")]
     [switch]$CurrentCredentials,
+    [Parameter(Mandatory = $false, HelpMessage = "Use this flag if you're upgrading an installation (will try to upgrade both PP and PP Program).")]
+    [switch]$Upgrade,
     [Parameter(Mandatory = $false, HelpMessage = "PowerShell credential to authenticate with")]
     [System.Management.Automation.PSCredential]$PSCredential,
     [Parameter(Mandatory = $false, HelpMessage = "Installation Environment. If SkipLoadingBundle is set, this will be ignored")]
@@ -88,7 +90,7 @@ function Start-Install() {
     Write-Host "Installation URL:`t`t[$Url]" -ForegroundColor Green
     Write-Host "Environment:`t`t`t[$Environment]" -ForegroundColor Green
     Write-Host "Project Portal Version:`t`t[$CurrentPPVersion]" -ForegroundColor Green
-    Write-Host "Program Version:`t`t[$CurrentProgramVersion]" -ForegroundColor Green
+    Write-Host "Current Program Version:`t`t[$CurrentProgramVersion]" -ForegroundColor Green
     Write-Host "" -ForegroundColor Green
     Write-Host "############################################################################" -ForegroundColor Green
 
@@ -113,12 +115,22 @@ function Start-Install() {
         $OriginalPSScriptRoot = $PSScriptRoot
         try {
             Set-Location $ProjectPortalReleasePath
-            Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green
-            if ($CurrentCredentials.IsPresent) {
-                .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment
-            }
-            else {
-                .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment
+            if ($Upgrade.IsPresent) {
+                Write-Host "Upgrading Project Portal (estimated approx. 15 minutes)..." -ForegroundColor Green
+                if ($CurrentCredentials.IsPresent) {
+                    .\Upgrade.ps1 -Url $Url -CurrentCredentials -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging
+                }
+                else {
+                    .\Upgrade.ps1 -Url $Url -PSCredential $Credential -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging
+                }
+            } else {
+                Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green
+                if ($CurrentCredentials.IsPresent) {
+                    .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging
+                }
+                else {
+                    .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging
+                }
             }
             Set-Location $OriginalPSScriptRoot
         }
@@ -133,7 +145,7 @@ function Start-Install() {
 
     # Applies assets template
     try {
-        Connect-SharePoint $AssetsUrl -UseWeb
+        Connect-SharePoint $AssetsUrl
         Write-Host "Deploying required scripts and styling.. " -ForegroundColor Green -NoNewLine
         Apply-Template -Template "assets" -Localized
         Write-Host "DONE" -ForegroundColor Green
@@ -162,7 +174,7 @@ function Start-Install() {
     }
     
     
-    if (-not $SkipDefaultConfig.IsPresent) {
+    if (-not $SkipDefaultConfig.IsPresent -and -not $Upgrade.IsPresent) {
         # Installing config
         try {
             Connect-SharePoint $Url 
