@@ -12,7 +12,7 @@
             "Title": "Oppgaver",
             "Description": "",
             "Fields": [
-                "<Field Type=\"Lookup\" DisplayName=\"Relevant leveranse\" List=\"{listid:Programleveranser}\" ShowField=\"Title\" ID=\"{a3ab9d99-78da-436d-a299-5854340a504f}\" StaticName=\"GtProjectTaskProduct\" InternalName=\"GtProjectTaskProduct\" />"
+                "<Field Type=\"Lookup\" DisplayName=\"Relevant leveranse\" List=\"{listid:Programleveranser}\" ShowField=\"Title\" ID=\"{a3ab9d99-78da-436d-a299-5854340a504f}\" StaticName=\"GtProjectTaskProduct\" Name=\"GtProjectTaskProduct\" />"
             ]
         },
         {
@@ -30,7 +30,7 @@
                 "EnableVersioning": true
             },
             "Fields": [
-                "<Field Type=\"Lookup\" DisplayName=\"Interessent(er)\" List=\"{listid:Interessentregister}\" ShowField=\"Title\" ID=\"{6d90e0b6-73e6-48fb-aa1e-b897b214f934}\" StaticName=\"GtProductInteressent\" InternalName=\"GtProductInteressent\" />"
+                "<Field Type=\"Lookup\" DisplayName=\"Interessent(er)\" List=\"{listid:Interessentregister}\" ShowField=\"Title\" ID=\"{6d90e0b6-73e6-48fb-aa1e-b897b214f934}\" StaticName=\"GtProductInteressent\" Name=\"GtProductInteressent\" />"
             ],
             "Views": [
                 {
