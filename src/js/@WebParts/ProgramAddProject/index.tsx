@@ -307,7 +307,7 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
      * @param {string} searchTerm Search term
      * @param {number} minLength Search term min length before executing a search
      */
-    private async onSearch(searchTerm: string, minLength = 3): Promise<void> {
+    private async onSearch(searchTerm: string, minLength = 2): Promise<void> {
         if (searchTerm.length < minLength) {
             return;
         }
