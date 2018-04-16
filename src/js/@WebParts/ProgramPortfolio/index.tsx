@@ -67,7 +67,7 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
             if (items.length === 0) {
                 return null;
             }
-            const searchQuery = items.map(({ URL }) => `Path:${URL}`).join(" OR ");
+            const searchQuery = items.map(({ URL }) => `Path:"${URL}"`).join(" OR ");
             const queryTemplate = String.format(this.props.queryTemplate, searchQuery);
             return { fields, refiners, queryTemplate };
         } catch (err) {

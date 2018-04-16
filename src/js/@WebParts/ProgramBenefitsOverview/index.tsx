@@ -58,7 +58,7 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
             if (items.length === 0) {
                 return null;
             }
-            const searchQuery = items.map(({ URL }) => `Path:${URL}`).join(" OR ");
+            const searchQuery = items.map(({ URL }) => `Path:"${URL}"`).join(" OR ");
             return {
                 RowLimit: 500,
                 QueryTemplate: String.format(this.props.queryTemplate, searchQuery),
