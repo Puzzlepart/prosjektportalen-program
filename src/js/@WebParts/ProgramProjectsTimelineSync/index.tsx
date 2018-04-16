@@ -38,6 +38,7 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
         this.state = {
             isLoading: true,
             addToTimelineAutomatically: true,
+            includeExpiredProjects: true,
             storedProjectsCurrentPage: 0,
             syncMessages: [],
         };
@@ -115,22 +116,34 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
                                 {this.state.syncProgress
                                     ? (
                                         <div>
-                                            <ProgressIndicator { ...this.state.syncProgress} />
+                                            <ProgressIndicator {...this.state.syncProgress} />
                                         </div>
                                     )
                                     : (
                                         <div>
-                                            <ActionButton
-                                                text={strings.ProgramProjectsTimelineSync_SyncAllToTimeline}
-                                                iconProps={{ iconName: "Sync" }}
-                                                style={{ margin: 0 }}
-                                                onClick={this.syncAllToProjectsTimeline} />
-                                            <Toggle
-                                                label={strings.ProgramProjectsTimelineSync_AddToTimelineAutomatically}
-                                                onText={strings.Yes}
-                                                offText={strings.No}
-                                                defaultChecked={true}
-                                                onChanged={addToTimelineAutomatically => this.setState({ addToTimelineAutomatically })} />
+                                            <div>
+                                                <ActionButton
+                                                    text={strings.ProgramProjectsTimelineSync_SyncAllToTimeline}
+                                                    iconProps={{ iconName: "Sync" }}
+                                                    style={{ margin: 0 }}
+                                                    onClick={this.syncAllToProjectsTimeline} />
+                                            </div>
+                                            <div>
+                                                <Toggle
+                                                    label={strings.ProgramProjectsTimelineSync_AddToTimelineAutomatically}
+                                                    onText={strings.Yes}
+                                                    offText={strings.No}
+                                                    defaultChecked={this.state.addToTimelineAutomatically}
+                                                    onChanged={addToTimelineAutomatically => this.setState({ addToTimelineAutomatically })} />
+                                            </div>
+                                            <div hidden={!this.state.addToTimelineAutomatically}>
+                                                <Toggle
+                                                    label={strings.ProgramProjectsTimelineSync_IncludeExpiredProjects}
+                                                    onText={strings.Yes}
+                                                    offText={strings.No}
+                                                    defaultChecked={this.state.includeExpiredProjects}
+                                                    onChanged={includeExpiredProjects => this.setState({ includeExpiredProjects })} />
+                                            </div>
                                         </div>
                                     )}
                             </div>
@@ -162,6 +175,33 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
                             </div>
                         </div>
                     )}
+            </div>
+        );
+    }
+
+    /**
+     * Render log list
+     */
+    private renderLogList() {
+        return (
+            <div>
+                <h2 style={{ marginTop: 50, marginBottom: 20 }}>{strings.ProgramProjectsTimelineSync_LogListHeader}</h2>
+                {this.state.syncMessages.length === 0
+                    ? <MessageBar>{strings.ProgramProjectsTimelineSync_EmptyLog}</MessageBar>
+                    : <div>
+                        <ActionButton
+                            text={strings.ProgramProjectsTimelineSync_DeleteLog}
+                            iconProps={{ iconName: "Delete" }}
+                            style={{ margin: 0 }}
+                            onClick={this.clearSyncMessages} />
+                        <DetailsList
+                            items={this.state.syncMessages}
+                            columns={this.props.syncMessagesColumns}
+                            onRenderItemColumn={this.logListOnRenderItemColumn}
+                            layoutMode={DetailsListLayoutMode.justified}
+                            selectionMode={SelectionMode.none} />
+                    </div>
+                }
             </div>
         );
     }
@@ -206,33 +246,6 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
     }
 
     /**
-     * Render log list
-     */
-    private renderLogList() {
-        return (
-            <div>
-                <h2 style={{ marginTop: 50, marginBottom: 20 }}>{strings.ProgramProjectsTimelineSync_LogListHeader}</h2>
-                {this.state.syncMessages.length === 0
-                    ? <MessageBar>{strings.ProgramProjectsTimelineSync_EmptyLog}</MessageBar>
-                    : <div>
-                        <ActionButton
-                            text={strings.ProgramProjectsTimelineSync_DeleteLog}
-                            iconProps={{ iconName: "Delete" }}
-                            style={{ margin: 0 }}
-                            onClick={this.clearSyncMessages} />
-                        <DetailsList
-                            items={this.state.syncMessages}
-                            columns={this.props.syncMessagesColumns}
-                            onRenderItemColumn={this.logListOnRenderItemColumn}
-                            layoutMode={DetailsListLayoutMode.justified}
-                            selectionMode={SelectionMode.none} />
-                    </div>
-                }
-            </div>
-        );
-    }
-
-    /**
      * Render item column in log list
      *
      * @param {IProgramProjectsTimelineSyncMessage} syncMessage Sync message
@@ -266,6 +279,10 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
         if (this.state.addToTimelineAutomatically) {
             const canBeAddedToTimeline = timelineItem.StartDate || timelineItem.DueDate;
             if (canBeAddedToTimeline) {
+                const isExpired = (timelineItem.DueDate && new Date(timelineItem.DueDate).getTime() < new Date().getTime());
+                if (isExpired && !this.state.includeExpiredProjects) {
+                    return AddToTimelineResult.Expired;
+                }
                 const id = `${timelineItem.ID}`;
                 AddItemsToTimeline([{ id }], this.state.timelineList.properties.Id, "Timeline");
                 return AddToTimelineResult.Success;
@@ -381,6 +398,8 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
             const addToTimelineRsult = this.addToTimeline(timelineItem);
             switch (addToTimelineRsult) {
                 case AddToTimelineResult.Success: this.addSyncMessage(String.format(strings.ProgramProjectsTimelineSync_TimelineItemAddedToTimeline, timelineItem.Title), "Timeline");
+                    break;
+                case AddToTimelineResult.Expired: this.addSyncMessage(String.format(strings.ProgramProjectsTimelineSync_TimelineItemExpired, timelineItem.Title), "EventDate");
                     break;
                 case AddToTimelineResult.NoDates: this.addSyncMessage(String.format(strings.ProgramProjectsTimelineSync_TimelineItemNoDates, timelineItem.Title), "Warning");
                     break;

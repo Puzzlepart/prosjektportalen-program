@@ -16,5 +16,6 @@ export default interface IProgramProjectsTimelineSyncState {
     errorMessage?: string;
     syncProgress?: IProgressIndicatorProps;
     addToTimelineAutomatically?: boolean;
+    includeExpiredProjects?: boolean;
 }
 

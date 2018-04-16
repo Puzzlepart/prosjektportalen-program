@@ -1,5 +1,6 @@
 enum AddToTimelineResult {
     Success,
+    Expired,
     NoDates,
     NotEnabled,
 }
