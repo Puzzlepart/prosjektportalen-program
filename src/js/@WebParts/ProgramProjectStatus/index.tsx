@@ -111,7 +111,7 @@ export default class ProgramProjectStatus extends React.Component<IProgramProjec
             loadJsonConfiguration<any>("status-fields"),
         ]);
 
-        let enrichedProjects: EnrichedProjectItem[] = [];
+        let enrichedProjectsArray: EnrichedProjectItem[] = [];
         let failedProjects: ProjectItem[] = [];
 
         for (let i = 0; i < storedProjects.length; i++) {
@@ -127,12 +127,12 @@ export default class ProgramProjectStatus extends React.Component<IProgramProjec
                 let data: any = {};
                 data.project = await new Web(project.URL).lists.getByTitle(config.Lists_SitePages_Title).items.getById(3).fieldValuesAsHTML.usingCaching().get();
                 data.sections = statusSections.map(section => new SectionModel(section, data.project, statusFieldsConfig)).filter(s => s.isValid());
-                enrichedProjects.push(new EnrichedProjectItem(project, data));
+                enrichedProjectsArray.push(new EnrichedProjectItem(project, data));
             } catch (err) {
                 failedProjects.push(project);
             }
         }
-
+        let enrichedProjects: EnrichedProjectItem[] = enrichedProjectsArray.sort((p1, p2) => {return p1.Title.localeCompare(p2.Title); });
         return { enrichedProjects, failedProjects };
     }
 }
