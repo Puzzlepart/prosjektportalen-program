@@ -1,7 +1,6 @@
-Programtilpasninger for Prosjektportalen
-=================
+# Programtilpasninger for Prosjektportalen #
 
-## Hva er programtilpasninger for Prosjektportalen? ##
+## Hva er programtilpasninger for Prosjektportalen ##
 
 Programtilpasninger for Prosjektportalen er en valgfri tilleggspakke som installeres oppå en Prosjektportalen-installasjon. Etter at tilpasningen er installert kan du opprette programområder i områdesamlingen. Hvert programområde er et eget område ganske likt som et standard prosjektområde, men det har noen ulikheter
 
@@ -16,7 +15,7 @@ Prosjektene opprettes og lever i vanlige Prosjektportalen porteføljer, og er s�
 
 ## Installering ##
 
-Programtilpasningene installeres på en egen områdesamling over en Prosjektportalen-installasjon. Den enkleste metoden er å laste ned siste versjon av Prosjektportalen og siste versjon av program, og så kjøre installasjonen fra program-relasen med en peker til prosjektportalen-releasen.
+Programtilpasningene installeres på en egen områdesamling over en Prosjektportalen-installasjon. Den enkleste metoden er å laste ned siste versjon av Prosjektportalen og siste versjon av program, og så kjøre installasjonen fra program-releasen med en peker til prosjektportalen-releasen.
 
 Programtilpasninger for Prosjektportalen installeres med Powershell. Se [Installation](https://github.com/Puzzlepart/prosjektportalen-program/wiki/Installation) (dokumentert på engelsk)
 
