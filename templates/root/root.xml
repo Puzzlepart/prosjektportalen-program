@@ -20,8 +20,6 @@
             <xi:include 
                 xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/WebSettings.xml" />
             <xi:include 
-                xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Navigation.xml" />
-            <xi:include 
                 xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/CustomActions.xml" />
             <xi:include 
                 xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/PropertyBagEntries.xml" />
