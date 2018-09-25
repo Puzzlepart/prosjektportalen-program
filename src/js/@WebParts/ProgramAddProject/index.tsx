@@ -122,7 +122,7 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
         return (
             <div style={{ maxWidth: 750, paddingBottom: 10 }}>
                 {this.state.addProgress
-                    ? <ProgressIndicator { ...this.state.addProgress } />
+                    ? <ProgressIndicator {...this.state.addProgress} />
                     : (
                         <div hidden={this.state.projects.length < 2}>
                             <ActionButton
@@ -340,7 +340,4 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
     }
 }
 
-export {
-    IProgramAddProjectProps,
-    IProgramAddProjectState,
-};
+export { IProgramAddProjectProps, IProgramAddProjectState };

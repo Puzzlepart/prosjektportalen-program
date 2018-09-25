@@ -15,7 +15,11 @@
   "author": "@olemp",
   "license": "ISC",
   "homepage": "https://github.com/Puzzlepart/prosjektportalen-program",
-  "dependencies": {
+  "peerDependencies": {
+    "react": ">=15",
+    "react-dom": ">=15"
+  },
+  "devDependencies": {
     "core-js": "^2.5.1",
     "office-ui-fabric-core": "^9.0.0",
     "office-ui-fabric-react": "^5.10.0",
@@ -28,9 +32,7 @@
     "sp-pnp-js": "^3.0.4",
     "truncate-html": "^0.1.4",
     "uuid": "^3.1.0",
-    "whatwg-fetch": "^2.0.3"
-  },
-  "devDependencies": {
+    "whatwg-fetch": "^2.0.3",
     "@types/react": "^16.0.5",
     "@types/sharepoint": "^2016.1.0",
     "autoprefixer-stylus": "^0.14.0",
