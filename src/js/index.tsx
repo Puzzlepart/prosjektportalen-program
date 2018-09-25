@@ -1,10 +1,13 @@
 import pnp, { LogLevel, ConsoleListener } from "sp-pnp-js";
+import { initializeIcons } from "@uifabric/icons";
 import * as WebParts from "./@WebParts";
 
 /** If the script was loaded using SP.SOD, we'll set the SOD to loaded */
 if (window["_v_dictSod"]) {
     window["_v_dictSod"]["pp.program.js"].loaded = true;
 }
+
+initializeIcons();
 
 /** Set up pnp logging */
 pnp.log.activeLogLevel = LogLevel.Info;
