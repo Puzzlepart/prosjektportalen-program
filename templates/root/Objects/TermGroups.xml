@@ -1,0 +1,44 @@
+<pnp:TermGroups xmlns:pnp="http://schemas.dev.office.com/PnP/2018/01/ProvisioningSchema">
+    <pnp:TermGroup Name="Program" ID="35840366-7aaa-46d3-b39a-b96e601b8b2c" Description=" ">
+        <pnp:TermSets>
+            <pnp:TermSet Name="Fase" ID="eb9d651a-cf88-4c80-b1dd-212f244a6903" Description=" ">
+                <pnp:Terms>
+                    <pnp:Term Name="Ingen fase" ID="50166096-4518-4c45-97bc-0a30bf71064a" CustomSortOrder="1" SourceTermId="50166096-4518-4c45-97bc-0a30bf71064a">                      
+                        <pnp:LocalCustomProperties>
+                            <pnp:Property Key="ShowOnFrontpage" Value="false" />
+                        </pnp:LocalCustomProperties>
+                    </pnp:Term>
+                    <pnp:Term Name="Flere faser" ID="1e31b90e-db93-459c-8a4f-c02b35b61026" CustomSortOrder="2" SourceTermId="1e31b90e-db93-459c-8a4f-c02b35b61026">            
+                        <pnp:LocalCustomProperties>
+                            <pnp:Property Key="ShowOnFrontpage" Value="false" />
+                        </pnp:LocalCustomProperties>
+                    </pnp:Term>
+                    <pnp:Term Name="Identifisere" ID="191b3ff6-1ed5-4ce0-82bd-ee0b15382747" CustomSortOrder="3" SourceTermId="191b3ff6-1ed5-4ce0-82bd-ee0b15382747">                       
+                        <pnp:LocalCustomProperties>
+                            <pnp:Property Key="ShowOnFrontpage" Value="true" />
+                            <pnp:Property Key="PhaseLevel" Value="Portfolio" />
+                        </pnp:LocalCustomProperties>
+                    </pnp:Term>
+                    <pnp:Term Name="Definere" ID="f82b3993-4b48-4496-98a9-0a721511ffad" CustomSortOrder="4" SourceTermId="f82b3993-4b48-4496-98a9-0a721511ffad">                      
+                        <pnp:LocalCustomProperties>
+                            <pnp:Property Key="ShowOnFrontpage" Value="true" />
+                            <pnp:Property Key="PhaseLevel" Value="Project" />
+                        </pnp:LocalCustomProperties>
+                    </pnp:Term>
+                    <pnp:Term Name="Gjennomføre" ID="59b7f6d9-42e2-4792-9330-edbf45680358" CustomSortOrder="5" SourceTermId="59b7f6d9-42e2-4792-9330-edbf45680358">                     
+                        <pnp:LocalCustomProperties>
+                            <pnp:Property Key="ShowOnFrontpage" Value="true" />
+                            <pnp:Property Key="PhaseLevel" Value="Project" />
+                        </pnp:LocalCustomProperties>
+                    </pnp:Term>
+                    <pnp:Term Name="Avslutte" ID="b8db02a6-3cb5-4e71-8b51-41bd4d8822aa" CustomSortOrder="6" SourceTermId="b8db02a6-3cb5-4e71-8b51-41bd4d8822aa">                      
+                        <pnp:LocalCustomProperties>
+                            <pnp:Property Key="ShowOnFrontpage" Value="true" />
+                            <pnp:Property Key="PhaseLevel" Value="Portfolio" />
+                        </pnp:LocalCustomProperties>
+                    </pnp:Term>
+                </pnp:Terms>
+            </pnp:TermSet>
+        </pnp:TermSets>
+    </pnp:TermGroup>
+</pnp:TermGroups>

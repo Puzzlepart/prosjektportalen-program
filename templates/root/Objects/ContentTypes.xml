@@ -1,5 +1,5 @@
 <pnp:ContentTypes 
-    xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+    xmlns:pnp="http://schemas.dev.office.com/PnP/2018/01/ProvisioningSchema">
     <pnp:ContentType ID="0x01080043D9F98BB9C01749B6B49CC23F1EC8FA" Name="Prosjektelement for tidslinje" Description="" Group="Innholdstyper for program">
         <pnp:FieldRefs>
             <pnp:FieldRef ID="c042a256-787d-4a6f-8a8a-cf6ab767f12d" Name="ContentType" />

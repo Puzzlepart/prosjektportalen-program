@@ -1,5 +1,5 @@
 <pnp:Files 
-    xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+    xmlns:pnp="http://schemas.dev.office.com/PnP/2018/01/ProvisioningSchema">
     <pnp:Directory Src="SiteAssets\js\" Folder="SiteAssets/pp/js" Overwrite="true" Recursive="false" IncludedExtensions="*.js,*.map" />
     <pnp:Directory Src="SiteAssets\css\" Folder="SiteAssets/pp/css" Overwrite="true" Recursive="false" IncludedExtensions="*.css" />
 </pnp:Files>

@@ -1,5 +1,5 @@
 <pnp:Files 
-    xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+    xmlns:pnp="http://schemas.dev.office.com/PnP/2018/01/ProvisioningSchema">
     <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Files/ProgramHome.xml" />
     <pnp:File Src="TemplateExtensions\ProgramProjectsList.txt" Folder="Extensions" Overwrite="true">
