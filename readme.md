@@ -19,6 +19,14 @@ Programtilpasningene installeres på en egen områdesamling over en Prosjektport
 
 Programtilpasninger for Prosjektportalen installeres med Powershell. Se [Installation](https://github.com/Puzzlepart/prosjektportalen-program/wiki/Installation) (dokumentert på engelsk)
 
+## Etter installering - tilpassede faser ##
+
+Programtilpasningene kommer med et egen termsett for _Fase_. Dette finner du under termgruppen _Program_.
+
+For å bruke de tilpassede fasene, må det manuelt endres. 
+
+Det er feltene _Fase_ og _Produktfase_ som bruker dette termsettet, og disse må endres til å peke på _Fase_ under _Program_.
+
 ## Siste versjon av Prosjektportalen ##
 
 Siste versjon av Programtilpasninger for Prosjektportalen kan lastes ned [herfra](https://github.com/Puzzlepart/prosjektportalen-program/releases/latest).
