@@ -21,42 +21,6 @@
             <CHOICE>Utenfor programmmet</CHOICE>
         </CHOICES>
     </Field>
-    <Field ID="{325543a5-815d-485d-a9a5-e0773ad762e9}" Name="GtProjectPhase" DisplayName="Fase" Type="TaxonomyFieldType" WebId="{siteid}" Group="Prosjektportalenkolonner" Description="" Indexed="TRUE" StaticName="GtProjectPhase">
-        <Customization>
-            <ArrayOfProperty>
-                <Property>
-                    <Name>SspId</Name>
-                    <Value xmlns:q1="http://www.w3.org/2001/XMLSchema" p4:type="q1:string" 
-                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{sitecollectiontermstoreid}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-                    </Value>
-                </Property>
-                <Property>
-                    <Name>TermSetId</Name>
-                    <Value xmlns:q2="http://www.w3.org/2001/XMLSchema" p4:type="q2:string" 
-                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">eb9d651a-cf88-4c80-b1dd-212f244a6903                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                    </Value>
-                </Property>
-            </ArrayOfProperty>
-        </Customization>
-    </Field>
-    <Field ID="{5563056f-533f-4333-bd29-85a2f94a37d0}" Name="GtProductPhase" DisplayName="Produktfase" Type="TaxonomyFieldType" WebId="{siteid}" Group="Prosjektportalenkolonner" Description="" Indexed="TRUE" StaticName="GtProductPhase">
-        <Customization>
-            <ArrayOfProperty>
-                <Property>
-                    <Name>SspId</Name>
-                    <Value xmlns:q1="http://www.w3.org/2001/XMLSchema" p4:type="q1:string" 
-                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">{sitecollectiontermstoreid}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                    </Value>
-                </Property>
-                <Property>
-                    <Name>TermSetId</Name>
-                    <Value xmlns:q2="http://www.w3.org/2001/XMLSchema" p4:type="q2:string" 
-                        xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">eb9d651a-cf88-4c80-b1dd-212f244a6903                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                    </Value>
-                </Property>
-            </ArrayOfProperty>
-        </Customization>
-    </Field>
     <Field ID="{aa889e95-d364-4a65-9d18-5c62715f5e3b}" Name="GtProjectPhaseChoice" DisplayName="Programfase" Type="Choice" Group="Prosjektportalenkolonner" Description="Programmets fase fase, som valg-felt for å tillate integrasjon med enkelte tredjepartsverktøy" ShowInNewForm="FALSE" ShowInEditForm="FALSE" FillInChoice="TRUE" StaticName="GtProjectPhaseChoice" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE">
         <CHOICES>
             <CHOICE>Identifisere</CHOICE>

@@ -2,7 +2,6 @@
 import * as React from "react";
 import { IProgressIndicatorProps, ProgressIndicator } from "office-ui-fabric-react/lib/ProgressIndicator";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
-import { StickyContainer } from "react-sticky";
 import pnp, { Web } from "sp-pnp-js";
 import IProgramProjectStatusProps, { ProgramProjectStatusDefaultProps } from "./IProgramProjectStatusProps";
 import IProgramProjectStatusState from "./IProgramProjectStatusState";
@@ -21,6 +20,7 @@ import * as config from "../../config";
 export default class ProgramProjectStatus extends React.Component<IProgramProjectStatusProps, IProgramProjectStatusState> {
     public static displayName = "ProgramProjectStatus";
     public static defaultProps = ProgramProjectStatusDefaultProps;
+    private container: HTMLDivElement;
 
     /**
      * Constructor
@@ -52,15 +52,33 @@ export default class ProgramProjectStatus extends React.Component<IProgramProjec
 
 
     public render(): React.ReactElement<IProgramProjectStatusProps> {
-        const { isLoading, errorMessage, loadProgress, enrichedProjects } = this.state;
+        const {
+            isLoading,
+            errorMessage,
+            loadProgress,
+            enrichedProjects,
+        } = this.state;
+
         if (isLoading) {
-            return <ProgressIndicator { ...loadProgress } />;
+            return (
+                <div ref={ele => this.container = ele} >
+                    <ProgressIndicator {...loadProgress} />
+                </div>
+            );
         }
         if (errorMessage) {
-            return <MessageBar messageBarType={MessageBarType.error}>{errorMessage}</MessageBar>;
+            return (
+                <div ref={ele => this.container = ele} >
+                    <MessageBar messageBarType={MessageBarType.error}>{errorMessage}</MessageBar>
+                </div>
+            );
         }
         if (enrichedProjects.length === 0) {
-            return <NoStoredProjectsMessage />;
+            return (
+                <div ref={ele => this.container = ele} >
+                    <NoStoredProjectsMessage />
+                </div>
+            );
         }
         return this.renderSummarySections();
     }
@@ -70,8 +88,9 @@ export default class ProgramProjectStatus extends React.Component<IProgramProjec
      */
     private renderSummarySections() {
         const { enrichedProjects, failedProjects } = this.state;
+
         return (
-            <div>
+            <div ref={ele => this.container = ele} style={{ width: this.container.parentElement.clientWidth }}>
                 <div>
                     {failedProjects.map(p => (
                         <div style={{ marginBottom: 10 }}>
@@ -80,20 +99,18 @@ export default class ProgramProjectStatus extends React.Component<IProgramProjec
                     ))}
                 </div>
                 <div className="ms-Grid">
-                    <StickyContainer>
-                        {enrichedProjects.map(({ Title, URL, Data }, i) => {
-                            return (
-                                <SummarySection
-                                    key={`ProjectSummarySection_${i}`}
-                                    webUrl={URL}
-                                    title={Title}
-                                    titleUrl={`${URL}/SitePages/ProjectStatus.aspx`}
-                                    style={{ marginBottom: 20, paddingBottom: 20 }}
-                                    project={Data.project}
-                                    sections={Data.sections} />
-                            );
-                        })}
-                    </StickyContainer>
+                    {enrichedProjects.map(({ Title, URL, Data }, i) => {
+                        return (
+                            <SummarySection
+                                key={`ProjectSummarySection_${i}`}
+                                webUrl={URL}
+                                title={Title}
+                                titleUrl={`${URL}/SitePages/ProjectStatus.aspx`}
+                                style={{ marginBottom: 20, paddingBottom: 20 }}
+                                project={Data.project}
+                                sections={Data.sections} />
+                        );
+                    })}
                 </div>
             </div>
         );
@@ -132,7 +149,7 @@ export default class ProgramProjectStatus extends React.Component<IProgramProjec
                 failedProjects.push(project);
             }
         }
-        let enrichedProjects: EnrichedProjectItem[] = enrichedProjectsArray.sort((p1, p2) => {return p1.Title.localeCompare(p2.Title); });
+        let enrichedProjects: EnrichedProjectItem[] = enrichedProjectsArray.sort((p1, p2) => { return p1.Title.localeCompare(p2.Title); });
         return { enrichedProjects, failedProjects };
     }
 }
