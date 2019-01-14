@@ -117,20 +117,10 @@ function Start-Install() {
             Set-Location $ProjectPortalReleasePath
             if ($Upgrade.IsPresent) {
                 Write-Host "Upgrading Project Portal (estimated approx. 15 minutes)..." -ForegroundColor Green
-                if ($CurrentCredentials.IsPresent) {
-                    .\Upgrade.ps1 -Url $Url -CurrentCredentials -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging
-                }
-                else {
-                    .\Upgrade.ps1 -Url $Url -PSCredential $Credential -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging
-                }
+                .\Upgrade.ps1 -Url $Url -CurrentCredentials:$CurrentCredentials -UseWebLogin:$UseWebLogin -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging         
             } else {
-                Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green
-                if ($CurrentCredentials.IsPresent) {
-                    .\Install.ps1 -Url $Url -CurrentCredentials -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging
-                }
-                else {
-                    .\Install.ps1 -Url $Url -PSCredential $Credential -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging
-                }
+                Write-Host "Installing Project Portal (estimated approx. 20 minutes)..." -ForegroundColor Green        
+                .\Install.ps1 -Url $Url -CurrentCredentials:$CurrentCredentials -UseWebLogin:$UseWebLogin -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging               
             }
             Set-Location $OriginalPSScriptRoot
         }
