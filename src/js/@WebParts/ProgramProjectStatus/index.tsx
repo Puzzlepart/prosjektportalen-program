@@ -2,12 +2,12 @@
 import * as React from "react";
 import { IProgressIndicatorProps, ProgressIndicator } from "office-ui-fabric-react/lib/ProgressIndicator";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
-import pnp, { Web } from "sp-pnp-js";
+import { sp, Web } from "@pnp/sp";
 import IProgramProjectStatusProps, { ProgramProjectStatusDefaultProps } from "./IProgramProjectStatusProps";
 import IProgramProjectStatusState from "./IProgramProjectStatusState";
 import EnrichedProjectItem from "./EnrichedProjectItem";
 import { ProjectItem } from "../../@Common";
-import RESOURCE_MANAGER from "prosjektportalen/lib/@localization";
+import RESOURCE_MANAGER from "prosjektportalen/lib/Resources";
 import SectionModel from "prosjektportalen/lib/WebParts/ProjectStatus/Section/SectionModel";
 import SummarySection from "prosjektportalen/lib/WebParts/ProjectStatus/Section/SummarySection";
 import { loadJsonConfiguration } from "prosjektportalen/lib/Util";
@@ -107,7 +107,7 @@ export default class ProgramProjectStatus extends React.Component<IProgramProjec
                                 title={Title}
                                 titleUrl={`${URL}/SitePages/ProjectStatus.aspx`}
                                 style={{ marginBottom: 20, paddingBottom: 20 }}
-                                project={Data.project}
+                                propertiesLabel={RESOURCE_MANAGER.getResource("ProjectStatus_Heading_ProjectMetadata")}
                                 sections={Data.sections} />
                         );
                     })}
@@ -122,7 +122,7 @@ export default class ProgramProjectStatus extends React.Component<IProgramProjec
      * @param {ProjectItem[]} storedProjects Stored projects
      */
     private async getDataForStoredProjects(storedProjects: ProjectItem[]): Promise<{ enrichedProjects: EnrichedProjectItem[], failedProjects: ProjectItem[] }> {
-        const statusSectionsConfigList = pnp.sp.site.rootWeb.lists.getByTitle(RESOURCE_MANAGER.getResource("Lists_StatusSections_Title"));
+        const statusSectionsConfigList = sp.site.rootWeb.lists.getByTitle(RESOURCE_MANAGER.getResource("Lists_StatusSections_Title"));
         const [statusSections, statusFieldsConfig] = await Promise.all([
             statusSectionsConfigList.items.orderBy("GtStSecOrder").usingCaching().get(),
             loadJsonConfiguration<any>("status-fields"),

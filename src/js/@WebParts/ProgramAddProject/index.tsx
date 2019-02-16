@@ -1,9 +1,9 @@
 //#region Imports
 import * as React from "react";
-import pnp from "sp-pnp-js";
+import { sp } from "@pnp/sp";
 import { IProgressIndicatorProps, ProgressIndicator } from "office-ui-fabric-react/lib/ProgressIndicator";
 import { ActionButton } from "office-ui-fabric-react/lib/Button";
-import { IColumn, DetailsList, SelectionMode, DetailsListLayoutMode } from "office-ui-fabric-react/lib/DetailsList";
+import { IColumn, DetailsList, SelectionMode, DetailsListLayoutMode, DetailsListBase } from "office-ui-fabric-react/lib/DetailsList";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import { Spinner, SpinnerSize } from "office-ui-fabric-react/lib/Spinner";
 import { SearchBox } from "office-ui-fabric-react/lib/SearchBox";
@@ -19,7 +19,7 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
     public static displayName = "ProgramAddProject";
     public static defaultProps = ProgramAddProjectDefaultProps;
 
-    private projectsDetailsListRef: DetailsList;
+    private projectsDetailsListRef: DetailsListBase;
     private searchDelayTimer;
 
     /**
@@ -143,7 +143,6 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
         return (
             <div hidden={!!this.state.addProgress}>
                 <DetailsList
-                    ref={ele => this.projectsDetailsListRef = ele}
                     items={this.state.projects}
                     columns={this.props.columns}
                     onRenderItemColumn={this.onRenderItemColumn}
@@ -193,7 +192,7 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
      */
     private isProjectInList(project: common.ProjectItem): boolean {
         const { items } = this.state.storedProjectsList;
-        return items.filter(sp => sp.URL === project.URL).length > 0;
+        return items.filter(p => p.URL === project.URL).length > 0;
     }
 
     /**
@@ -326,7 +325,7 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
      */
     private async queryProjects(searchTerm: string): Promise<common.ProjectItem[]> {
         try {
-            const { PrimarySearchResults } = await pnp.sp.search({
+            const { PrimarySearchResults } = await sp.search({
                 Querytext: "*",
                 QueryTemplate: `${this.props.projectsSearchQuery} Title:${searchTerm}*`,
                 RowLimit: this.props.rowLimit,

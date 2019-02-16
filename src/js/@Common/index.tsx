@@ -1,4 +1,4 @@
-import pnp, { List } from "sp-pnp-js";
+import { sp, List } from "@pnp/sp";
 import * as strings from "../strings";
 import * as config from "../config";
 import ProjectItem from "./ProjectItem";
@@ -16,7 +16,7 @@ export interface IListContext<T> {
 
 export async function getStoredProjectsListContext(maxLimit = config.Lists_StoredProjects_ItemsMaxLimit): Promise<IListContext<ProjectItem>> {
     try {
-        const list = pnp.sp.web.lists.getByTitle(config.Lists_StoredProjects_Title);
+        const list = sp.web.lists.getByTitle(config.Lists_StoredProjects_Title);
         let properties;
         let items;
         try {

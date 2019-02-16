@@ -4,11 +4,11 @@ declare function AddItemsToTimeline(itemIds: Array<{ id: string }>, listId: stri
 
 //#region Imports
 import * as React from "react";
-import pnp, { Web } from "sp-pnp-js";
+import { sp, Web } from "@pnp/sp";
 import { Toggle } from "office-ui-fabric-react/lib/Toggle";
 import { Icon } from "office-ui-fabric-react/lib/Icon";
 import { ActionButton } from "office-ui-fabric-react/lib/Button";
-import { IColumn, DetailsList, SelectionMode, DetailsListLayoutMode } from "office-ui-fabric-react/lib/DetailsList";
+import { IColumn, DetailsList, SelectionMode, DetailsListLayoutMode, DetailsListBase } from "office-ui-fabric-react/lib/DetailsList";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import { Spinner, SpinnerSize } from "office-ui-fabric-react/lib/Spinner";
 import { IProgressIndicatorProps, ProgressIndicator } from "office-ui-fabric-react/lib/ProgressIndicator";
@@ -26,7 +26,7 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
     public static displayName = "ProgramProjectsTimelineSync";
     public static defaultProps = ProgramProjectsTimelineSyncDefaultProps;
 
-    private storedProjectsDetailsListRef: DetailsList;
+    private storedProjectsDetailsListRef: DetailsListBase;
 
     /**
      * Constructor
@@ -166,7 +166,6 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
                                     </div>
                                 </div>
                                 <DetailsList
-                                    ref={ele => this.storedProjectsDetailsListRef = ele}
                                     items={pagingState.items}
                                     columns={this.props.storedProjectsColumns}
                                     onRenderItemColumn={this.storedProjectsOnRenderItemColumn}
@@ -432,7 +431,7 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
      */
     private async getTimelineList(): Promise<common.IListContext<any>> {
         try {
-            const list = pnp.sp.web.lists.getByTitle(config.Lists_ProjectsTimeline_Title);
+            const list = sp.web.lists.getByTitle(config.Lists_ProjectsTimeline_Title);
             const [items, properties] = await Promise.all([
                 list.items.get(),
                 list.select("Id", "ListItemEntityTypeFullName").get(),
