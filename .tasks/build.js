@@ -38,7 +38,7 @@ gulp.task("stampVersionToDist", cb => {
 });
 
 gulp.task("buildLib", () => {
-    var project = typescript.createProject("src/tsconfig.json", { declaration: true });
+    var project = typescript.createProject("tsconfig.json", { declaration: true });
     var built = gulp.src(configuration.PATHS.SOURCE_GLOB).pipe(project(typescript.reporter.fullReporter()));
     return merge([
         built.dts.pipe(gulp.dest(configuration.PATHS.LIB)),

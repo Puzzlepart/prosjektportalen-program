@@ -1,7 +1,7 @@
 var path = require("path"),
     webpack = require('webpack'),
-    pkg = require("../package.json"),
-    configuration = require("../.tasks/@configuration.js")
+    pkg = require("./package.json"),
+    configuration = require("./.tasks/@configuration.js")
 
 module.exports = (devtool, exclude, env, output = path.join(configuration.PATHS.DIST, "js")) => ({
     entry: { program: [...configuration.JS.POLYFILLS, './lib/js/index.js'] },
