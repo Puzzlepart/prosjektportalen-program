@@ -17,14 +17,14 @@
         </pnp:DataRow>
         <pnp:DataRow>
             <pnp:DataValue FieldName="GtDpProperty">RefinableString50</pnp:DataValue>
-            <pnp:DataValue FieldName="GtDpDisplayName">Prosjekteier/programeier</pnp:DataValue>
+            <pnp:DataValue FieldName="GtDpDisplayName">Programeier</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpOrder">30</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpDefaultHidden">0</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpIcon">Contact</pnp:DataValue>
         </pnp:DataRow>
         <pnp:DataRow>
             <pnp:DataValue FieldName="GtDpProperty">RefinableString51</pnp:DataValue>
-            <pnp:DataValue FieldName="GtDpDisplayName">Prosjektleder/programleder</pnp:DataValue>
+            <pnp:DataValue FieldName="GtDpDisplayName">Programleder</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpOrder">40</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpDefaultHidden">0</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpIcon">Contact</pnp:DataValue>

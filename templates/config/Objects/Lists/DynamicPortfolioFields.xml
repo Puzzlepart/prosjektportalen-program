@@ -52,14 +52,14 @@
         </pnp:DataRow>
         <pnp:DataRow>
             <pnp:DataValue FieldName="GtDpProperty">RefinableString51</pnp:DataValue>
-            <pnp:DataValue FieldName="GtDpDisplayName">Prosjektleder/programleder</pnp:DataValue>
+            <pnp:DataValue FieldName="GtDpDisplayName">Programleder</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpOrder">70</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpMaxWidth">150</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpIsResizable">1</pnp:DataValue>
         </pnp:DataRow>
         <pnp:DataRow>
             <pnp:DataValue FieldName="GtDpProperty">RefinableString50</pnp:DataValue>
-            <pnp:DataValue FieldName="GtDpDisplayName">Prosjekteier/programeier</pnp:DataValue>
+            <pnp:DataValue FieldName="GtDpDisplayName">Programeier</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpOrder">80</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpMaxWidth">150</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpIsResizable">1</pnp:DataValue>
@@ -112,7 +112,7 @@
         </pnp:DataRow>
         <pnp:DataRow>
             <pnp:DataValue FieldName="GtDpProperty">GtProjectGoalsOWSMTXT</pnp:DataValue>
-            <pnp:DataValue FieldName="GtDpDisplayName">Målsetning</pnp:DataValue>
+            <pnp:DataValue FieldName="GtDpDisplayName">Målsetting</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpOrder">160</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpRender">Note</pnp:DataValue>
             <pnp:DataValue FieldName="GtDpIsResizable">1</pnp:DataValue>
