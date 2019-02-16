@@ -16,7 +16,7 @@
                         <data>
                             <properties>
                                 <property name="Description" type="string" null="true" />
-                                <property name="Content" type="string">&lt;div id=&#39;pp-projectlist&#39; data-props=&#39;{&quot;loadingText&quot;:&quot;Laster prosjekter og programmer...&quot;,&quot;searchBoxLabelText&quot;:&quot;S&#248;k i alle prosjekter og programmer...&quot;,&quot;emptyMessage&quot;:&quot;Ingen prosjekter/programmer funnet. Visningen bruker s&#248;k, s&#229; det kan ta noen minutter fra prosjekter/programmer er lagt til eller oppdatert til de vises her.&quot;,&quot;propertyClassNames&quot;:[&quot;RefinableString01&quot;]}&#39;&gt;&lt;/div&gt;</property>
+                                <property name="Content" type="string">&lt;div id=&#39;pp-projectlist&#39; data-props=&#39;{&quot;loadingText&quot;:&quot;Laster programmer...&quot;,&quot;searchBoxLabelText&quot;:&quot;S&#248;k i alle programmer...&quot;,&quot;emptyMessage&quot;:&quot;Ingen prosjekter/programmer funnet. Visningen bruker s&#248;k, s&#229; det kan ta noen minutter fra programmer er opprettet eller oppdatert til de vises her.&quot;,&quot;propertyClassNames&quot;:[&quot;RefinableString01&quot;]}&#39;&gt;&lt;/div&gt;</property>
                                 <property name="Title" type="string">ProjectList</property>
                                 <property name="TitleUrl" type="string" null="true" />
                                 <property name="ChromeType" type="chrometype">None</property>

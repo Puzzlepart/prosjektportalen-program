@@ -321,8 +321,8 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
     private async getProjectProperties(project: common.ProjectItem) {
         try {
             const projectWeb = new Web(project.URL);
-            const projectWebSitePages = await projectWeb.lists.getByTitle("Områdesider").getItemsByCAMLQuery({ ViewXml: "<View></View>" });
-            const [projectProperties] = projectWebSitePages.filter(page => page.ContentTypeId.indexOf("0x010109010058561F86D956412B9DD7957BBCD67AAE01") !== -1);
+            const projectWebSitePages = await projectWeb.lists.getByTitle("Properties").getItemsByCAMLQuery({ ViewXml: "<View></View>" });
+            const [projectProperties] = projectWebSitePages.filter(page => page.ContentTypeId.indexOf("0x010088578E7470CC4AA68D5663464831070211") !== -1);
             return projectProperties;
         } catch {
             throw String.format(strings.ProgramProjectsTimelineSync_ProjectDoesNotExist, project.Title);

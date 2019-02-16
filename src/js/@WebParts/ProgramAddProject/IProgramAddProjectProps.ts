@@ -7,7 +7,7 @@ export default interface IProgramAddProjectProps {
 }
 
 export const ProgramAddProjectDefaultProps: Partial<IProgramAddProjectProps> = {
-    projectsSearchQuery: `ContentTypeId:0x010109010058561f86d956412b9dd7957bbcd67aae0100* contentclass:STS_Web -Path:${_spPageContextInfo.webAbsoluteUrl}`,
+    projectsSearchQuery: `ContentTypeId:0x010088578E7470CC4AA68D5663464831070211* -Path:${_spPageContextInfo.webAbsoluteUrl}`,
     columns: [
         {
             key: "Title",
