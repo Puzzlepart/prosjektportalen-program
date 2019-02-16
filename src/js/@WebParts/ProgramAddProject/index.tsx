@@ -327,12 +327,12 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
         try {
             const { PrimarySearchResults } = await sp.search({
                 Querytext: "*",
-                QueryTemplate: `${this.props.projectsSearchQuery} Title:${searchTerm}*`,
+                QueryTemplate: `${this.props.projectsSearchQuery} SiteTitle:${searchTerm}*`,
                 RowLimit: this.props.rowLimit,
                 TrimDuplicates: false,
-                SelectProperties: ["Title", "Path"],
+                SelectProperties: ["Title", "Path", "SiteTitle", "SPWebUrl"],
             });
-            return PrimarySearchResults.map(sr => new common.ProjectItem(-1, sr.Title, sr.Path));
+            return PrimarySearchResults.map(sr => new common.ProjectItem(-1, sr["SiteTitle"], sr["SPWebUrl"]));
         } catch (err) {
             throw err;
         }

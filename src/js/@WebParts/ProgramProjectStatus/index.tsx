@@ -142,7 +142,7 @@ export default class ProgramProjectStatus extends React.Component<IProgramProjec
             this.setState({ loadProgress });
             try {
                 let data: any = {};
-                data.project = await new Web(project.URL).lists.getByTitle(config.Lists_SitePages_Title).items.getById(3).fieldValuesAsHTML.usingCaching().get();
+                data.project = await new Web(project.URL).lists.getByTitle(config.Lists_ProjectProperties_Title).items.getById(1).fieldValuesAsHTML.usingCaching().get();
                 data.sections = statusSections.map(section => new SectionModel(section, data.project, statusFieldsConfig)).filter(s => s.isValid());
                 enrichedProjectsArray.push(new EnrichedProjectItem(project, data));
             } catch (err) {

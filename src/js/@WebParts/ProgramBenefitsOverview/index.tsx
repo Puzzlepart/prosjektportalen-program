@@ -44,6 +44,7 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
         }
         return (
             <BenefitsOverview
+                excelExportEnabled={this.props.excelExportEnabled}
                 dataSource={DataSource.SearchCustom}
                 customSearchSettings={this.state.searchSettings} />
         );
