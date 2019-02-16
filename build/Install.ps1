@@ -45,11 +45,6 @@ Param(
 
 . ./SharedFunctions.ps1
 
-# Loads bundle if switch SkipLoadingBundle is not present
-if (-not $SkipLoadingBundle.IsPresent) {
-    LoadBundle -Environment $Environment
-}
-
 # Handling credentials
 if ($PSCredential -ne $null) {
     $Credential = $PSCredential

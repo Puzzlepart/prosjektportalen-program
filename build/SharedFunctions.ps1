@@ -59,16 +59,6 @@ function Get-WebLanguage($ctx) {
     return $web.Language
 }
 
-function LoadBundle($Environment) {
-    $BundlePath = "$PSScriptRoot\bundle\$Environment"
-    Add-Type -Path "$BundlePath\Microsoft.SharePoint.Client.Taxonomy.dll" -ErrorAction SilentlyContinue
-    Add-Type -Path "$BundlePath\Microsoft.SharePoint.Client.DocumentManagement.dll" -ErrorAction SilentlyContinue
-    Add-Type -Path "$BundlePath\Microsoft.SharePoint.Client.WorkflowServices.dll" -ErrorAction SilentlyContinue
-    Add-Type -Path "$BundlePath\Microsoft.SharePoint.Client.Search.dll" -ErrorAction SilentlyContinue
-    Add-Type -Path "$BundlePath\Newtonsoft.Json.dll" -ErrorAction SilentlyContinue
-    Import-Module "$BundlePath\$Environment.psd1" -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
-}
-
 function ParseVersion($VersionString) {
     if($VersionString  -like "*.*.*#*") {
         $vs = $VersionString.Split("#")[0]
