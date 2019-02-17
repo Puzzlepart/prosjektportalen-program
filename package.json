@@ -1,6 +1,6 @@
 {
     "name": "prosjektportalen-program",
-    "version": "1.3.2",
+    "version": "1.4.0",
     "description": "",
     "homepage": "https://github.com/Puzzlepart/prosjektportalen-program",
     "repository": {
@@ -16,11 +16,11 @@
         "watch": "gulp watch"
     },
     "dependencies": {
-        "@pnp/common": "^1.2.8",
-        "@pnp/logging": "^1.2.8",
-        "@pnp/odata": "^1.2.8",
-        "@pnp/polyfill-ie11": "^1.0.1",
-        "@pnp/sp": "^1.2.8"
+        "@pnp/common": "^1.2.9",
+        "@pnp/logging": "^1.2.9",
+        "@pnp/odata": "^1.2.9",
+        "@pnp/sp": "^1.2.9",
+        "@pnp/polyfill-ie11": "^1.0.1"
     },
     "devDependencies": {
         "@types/es6-promise": "0.0.33",
@@ -68,7 +68,7 @@
         "object-assign": "^4.1.1",
         "object.omit": "^3.0.0",
         "office-ui-fabric-core": "^9.6.1",
-        "office-ui-fabric-react": "^6.136.0",
+        "office-ui-fabric-react": "^6.140.0",
         "path": "^0.12.7",
         "plugin-error": "^1.0.1",
         "prop-types": "^15.6.2",
@@ -82,7 +82,6 @@
         "react-truncate-markup": "^3.0.1",
         "regenerator-runtime": "^0.11.1",
         "run-sequence": "^2.2.1",
-        "sp-js-provisioning": "git+https://github.com/Puzzlepart/sp-js-provisioning.git",
         "string-format": "^2.0.0",
         "tslint": "^5.12.1",
         "typescript": "^3.3.3",
