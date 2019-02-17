@@ -1,5 +1,5 @@
 <pnp:SiteFields xmlns:pnp="http://schemas.dev.office.com/PnP/2018/01/ProvisioningSchema">
-    <Field ID="{7838332a-cf7f-47d5-924f-8c6d134935ea}" Name="GtProjectLogResponsible" DisplayName="Ansvarlig" Type="Choice" Group="Prosjektportalenkolonner" Description="Hvem er ansvarlig for dette?" FillInChoice="TRUE" StaticName="GtProjectLogResponsible" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE">
+    <Field ID="{7838332a-cf7f-47d5-924f-8c6d134935ea}" Name="GtProjectLogResponsible" DisplayName="Ansvarlig" Type="Choice" Group="Prosjektportalenkolonner" Description="Hvem er ansvarlig for dette?" FillInChoice="TRUE" StaticName="GtProjectLogResponsible" >
         <CHOICES>
             <CHOICE>Programeier</CHOICE>
             <CHOICE>Linjeorganisasjon</CHOICE>
@@ -10,10 +10,10 @@
             <CHOICE>Andre</CHOICE>
         </CHOICES>
     </Field>
-    <Field ID="{64d45745-0dd0-4c21-979b-67fb13748bb1}" Name="GtProjectNumber" DisplayName="Programnummer" Type="Text" Group="Prosjektportalenkolonner" Description="" StaticName="GtProjectNumber" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE" />
-    <Field ID="{3121ac55-d68e-4fcb-8fc8-3d8ed8a601b2}" Name="GtProjectOwner" DisplayName="Programeier" Type="User" Group="Prosjektportalenkolonner" Description="" StaticName="GtProjectOwner" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE" />
-    <Field ID="{d46bed8f-0fb6-4684-8221-632fdb12598f}" Name="GtProjectManager" DisplayName="Programleder" Type="User" Group="Prosjektportalenkolonner" Description="" StaticName="GtProjectManager" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE" />
-    <Field ID="{c755525b-3716-4ee8-a4f4-f9684808c009}" Name="GtRiskProximity" DisplayName="Nærhet" Type="Choice" Group="Prosjektportalenkolonner" Description="" StaticName="GtRiskProximity" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE">
+    <Field ID="{64d45745-0dd0-4c21-979b-67fb13748bb1}" Name="GtProjectNumber" DisplayName="Programnummer" Type="Text" Group="Prosjektportalenkolonner" Description="" StaticName="GtProjectNumber" />
+    <Field ID="{3121ac55-d68e-4fcb-8fc8-3d8ed8a601b2}" Name="GtProjectOwner" DisplayName="Programeier" Type="User" Group="Prosjektportalenkolonner" Description="" StaticName="GtProjectOwner" />
+    <Field ID="{d46bed8f-0fb6-4684-8221-632fdb12598f}" Name="GtProjectManager" DisplayName="Programleder" Type="User" Group="Prosjektportalenkolonner" Description="" StaticName="GtProjectManager" />
+    <Field ID="{c755525b-3716-4ee8-a4f4-f9684808c009}" Name="GtRiskProximity" DisplayName="Nærhet" Type="Choice" Group="Prosjektportalenkolonner" Description="" StaticName="GtRiskProximity" >
         <CHOICES>
             <CHOICE>Umiddelbart</CHOICE>
             <CHOICE>I denne fasen</CHOICE>
@@ -21,7 +21,7 @@
             <CHOICE>Utenfor programmmet</CHOICE>
         </CHOICES>
     </Field>
-    <Field ID="{aa889e95-d364-4a65-9d18-5c62715f5e3b}" Name="GtProjectPhaseChoice" DisplayName="Programfase" Type="Choice" Group="Prosjektportalenkolonner" Description="Programmets fase fase, som valg-felt for å tillate integrasjon med enkelte tredjepartsverktøy" ShowInNewForm="FALSE" ShowInEditForm="FALSE" FillInChoice="TRUE" StaticName="GtProjectPhaseChoice" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE">
+    <Field ID="{aa889e95-d364-4a65-9d18-5c62715f5e3b}" Name="GtProjectPhaseChoice" DisplayName="Programfase" Type="Choice" Group="Prosjektportalenkolonner" Description="Programmets fase fase, som valg-felt for å tillate integrasjon med enkelte tredjepartsverktøy" ShowInNewForm="FALSE" ShowInEditForm="FALSE" FillInChoice="TRUE" StaticName="GtProjectPhaseChoice" >
         <CHOICES>
             <CHOICE>Identifisere</CHOICE>
             <CHOICE>Definere</CHOICE>
@@ -31,8 +31,8 @@
             <CHOICE>Flere faser</CHOICE>
         </CHOICES>
     </Field>
-    <Field Type="Boolean" DisplayName="Vis på programstatus-siden" Description="" ID="{1e99fca0-3e0f-4632-9dd1-901bd09a13bc}" StaticName="GtPcProjectStatus" Name="GtPcProjectStatus" Group="Prosjektportalenkolonner" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE" />
-    <Field ID="{475d2ca1-5b8e-4479-96ae-81c0a89354f3}" Name="GtStakeholderInfluence" DisplayName="Påvirkes i hvilken grad" Type="Choice" Group="Prosjektportalenkolonner" Description="" StaticName="GtStakeholderInfluence" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE">
+    <Field Type="Boolean" DisplayName="Vis på programstatus-siden" Description="" ID="{1e99fca0-3e0f-4632-9dd1-901bd09a13bc}" StaticName="GtPcProjectStatus" Name="GtPcProjectStatus" Group="Prosjektportalenkolonner" />
+    <Field ID="{475d2ca1-5b8e-4479-96ae-81c0a89354f3}" Name="GtStakeholderInfluence" DisplayName="Påvirkes i hvilken grad" Type="Choice" Group="Prosjektportalenkolonner" Description="" StaticName="GtStakeholderInfluence" >
         <CHOICES>
             <CHOICE>Stor</CHOICE>
             <CHOICE>Middels</CHOICE>
@@ -40,10 +40,10 @@
             <CHOICE>Ingen</CHOICE>
         </CHOICES>
     </Field>
-    <Field ID="{983d5ab3-0a6c-4f6a-a7b5-d34d52d73676}" Name="GtProjectFinanceName" DisplayName="Programnavn i økonomisystemet" Type="Text" Group="Prosjektportalenkolonner" Description="" StaticName="GtProjectFinanceName" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE" />
-    <Field ID="{733a47e1-4465-41c0-89e3-037f9a65c403}" Name="GtStatusQualityComment" DisplayName="Kommentar, kvalitet" Type="Note" Group="Prosjektportalenkolonner" Description="Kommentar til status kvalitet angitt over. Hva er kvaliteten på leveransene til programmmet og om det må gjøres endringer i spesifikasjoner for å nå programmmets fremdrifts- eller økonomimål" NumLines="3" UnlimitedLengthInDocumentLibrary="TRUE" AppendOnly="FALSE" StaticName="GtStatusQualityComment" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE" />
-    <Field ID="{cb1fc0b7-cbb8-40af-a782-c6b9ad4ee40f}" Name="GtStatusTimeComment" DisplayName="Kommentar, fremdrift" Type="Note" Group="Prosjektportalenkolonner" Description="Kommentar til status fremdrift angitt over. Hva er fremdriften på leveransene i programmmet?" NumLines="3" UnlimitedLengthInDocumentLibrary="TRUE" AppendOnly="FALSE" StaticName="GtStatusTimeComment" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE" />
-    <Field ID="{018f09b8-4954-41bb-a8f6-fa531b90b79f}" Name="GtProjectGoals" DisplayName="Målsetning" Type="Note" Group="Prosjektportalenkolonner" Description="Beskriv hva programmet skal levere" UnlimitedLengthInDocumentLibrary="TRUE" AppendOnly="FALSE" StaticName="GtProjectGoals" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE" />
-    <Field ID="{1150d6bd-c9ba-4014-bd74-7d559110841d}" Name="GtStakeholderStrategy" DisplayName="Plan/strategi/program" Type="Text" Group="Prosjektportalenkolonner" Description="" StaticName="GtStakeholderStrategy" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE" />
-    <Field Type="Currency" DisplayName="Totalbudsjett for programmet" Description="" Min="0" Decimals="0" LCID="1044" Group="Prosjektportalenkolonner" ID="{28be4cc9-bc5e-4a55-a557-f652b564ca75}" StaticName="GtBudgetTotal" Name="GtBudgetTotal" SourceID="{497fcfa4-6b52-4f2f-931a-a18f7b96c7ca}" AllowDeletion="TRUE" />
+    <Field ID="{983d5ab3-0a6c-4f6a-a7b5-d34d52d73676}" Name="GtProjectFinanceName" DisplayName="Programnavn i økonomisystemet" Type="Text" Group="Prosjektportalenkolonner" Description="" StaticName="GtProjectFinanceName" />
+    <Field ID="{733a47e1-4465-41c0-89e3-037f9a65c403}" Name="GtStatusQualityComment" DisplayName="Kommentar, kvalitet" Type="Note" Group="Prosjektportalenkolonner" Description="Kommentar til status kvalitet angitt over. Hva er kvaliteten på leveransene til programmmet og om det må gjøres endringer i spesifikasjoner for å nå programmmets fremdrifts- eller økonomimål" NumLines="3" UnlimitedLengthInDocumentLibrary="TRUE" AppendOnly="FALSE" StaticName="GtStatusQualityComment" />
+    <Field ID="{cb1fc0b7-cbb8-40af-a782-c6b9ad4ee40f}" Name="GtStatusTimeComment" DisplayName="Kommentar, fremdrift" Type="Note" Group="Prosjektportalenkolonner" Description="Kommentar til status fremdrift angitt over. Hva er fremdriften på leveransene i programmmet?" NumLines="3" UnlimitedLengthInDocumentLibrary="TRUE" AppendOnly="FALSE" StaticName="GtStatusTimeComment" />
+    <Field ID="{018f09b8-4954-41bb-a8f6-fa531b90b79f}" Name="GtProjectGoals" DisplayName="Målsetting" Type="Note" Group="Prosjektportalenkolonner" Description="Beskriv hva programmet skal levere" UnlimitedLengthInDocumentLibrary="TRUE" AppendOnly="FALSE" StaticName="GtProjectGoals" />
+    <Field ID="{1150d6bd-c9ba-4014-bd74-7d559110841d}" Name="GtStakeholderStrategy" DisplayName="Plan/strategi/program" Type="Text" Group="Prosjektportalenkolonner" Description="" StaticName="GtStakeholderStrategy" />
+    <Field Type="Currency" DisplayName="Totalbudsjett for programmet" Description="" Min="0" Decimals="0" LCID="1044" Group="Prosjektportalenkolonner" ID="{28be4cc9-bc5e-4a55-a557-f652b564ca75}" StaticName="GtBudgetTotal" Name="GtBudgetTotal" />
 </pnp:SiteFields>
