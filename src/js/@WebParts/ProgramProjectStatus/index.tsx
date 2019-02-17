@@ -1,4 +1,3 @@
-//#region Imports
 import * as React from "react";
 import { IProgressIndicatorProps, ProgressIndicator } from "office-ui-fabric-react/lib/ProgressIndicator";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
@@ -15,7 +14,6 @@ import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 import * as common from "../../@Common";
 import * as strings from "../../strings";
 import * as config from "../../config";
-//#endregion
 
 export default class ProgramProjectStatus extends React.Component<IProgramProjectStatusProps, IProgramProjectStatusState> {
     public static displayName = "ProgramProjectStatus";
