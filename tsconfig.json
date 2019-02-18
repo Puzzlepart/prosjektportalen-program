@@ -13,7 +13,6 @@
         ],
         "types": [
             "sharepoint",
-            "node",
             "react"
         ],
         "noImplicitAny": false,

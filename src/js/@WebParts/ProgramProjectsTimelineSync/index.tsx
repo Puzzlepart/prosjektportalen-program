@@ -8,7 +8,7 @@ import { sp, Web } from "@pnp/sp";
 import { Toggle } from "office-ui-fabric-react/lib/Toggle";
 import { Icon } from "office-ui-fabric-react/lib/Icon";
 import { ActionButton } from "office-ui-fabric-react/lib/Button";
-import { IColumn, DetailsList, SelectionMode, DetailsListLayoutMode, DetailsListBase } from "office-ui-fabric-react/lib/DetailsList";
+import { IColumn, DetailsList, SelectionMode, DetailsListLayoutMode } from "office-ui-fabric-react/lib/DetailsList";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import { Spinner, SpinnerSize } from "office-ui-fabric-react/lib/Spinner";
 import { IProgressIndicatorProps, ProgressIndicator } from "office-ui-fabric-react/lib/ProgressIndicator";
@@ -26,7 +26,7 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
     public static displayName = "ProgramProjectsTimelineSync";
     public static defaultProps = ProgramProjectsTimelineSyncDefaultProps;
 
-    private storedProjectsDetailsListRef: DetailsListBase;
+    private detailsList: DetailsList;
 
     /**
      * Constructor
@@ -166,6 +166,7 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
                                     </div>
                                 </div>
                                 <DetailsList
+                                    ref={ele => this.detailsList = ele}
                                     items={pagingState.items}
                                     columns={this.props.storedProjectsColumns}
                                     onRenderItemColumn={this.storedProjectsOnRenderItemColumn}
@@ -412,7 +413,7 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
      * Sync all projects to timeline
      */
     private async syncAllToProjectsTimeline(): Promise<void> {
-        this.storedProjectsDetailsListRef.forceUpdate();
+        this.detailsList.forceUpdate();
         const { items } = this.state.storedProjectsList;
         for (let i = 0; i < items.length; i++) {
             const syncProgress: IProgressIndicatorProps = {};
@@ -423,7 +424,7 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
             await this.syncToProjectsTimelineList(items[i]);
         }
         this.setState({ syncProgress: null });
-        this.storedProjectsDetailsListRef.forceUpdate();
+        this.detailsList.forceUpdate();
     }
 
     /**
