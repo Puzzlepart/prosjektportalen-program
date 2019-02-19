@@ -44,7 +44,7 @@
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-react": "^6.24.1",
         "core-js": "^2.6.3",
-        "event-stream": "^3.3.4",
+        "event-stream": "3.3.4",
         "graceful-fs": "^4.1.11",
         "gulp": "^3.9.1",
         "gulp-clean": "^0.4.0",
