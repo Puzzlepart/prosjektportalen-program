@@ -1,6 +1,10 @@
 <pnp:Lists 
     xmlns:pnp="http://schemas.dev.office.com/PnP/2018/01/ProvisioningSchema">
     <xi:include 
+        xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/ChartsConfig.xml" />
+    <xi:include 
+        xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/DataSources.xml" />
+    <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/ListContentConfig.xml" />
     <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/DynamicPortfolioFields.xml" />
@@ -10,6 +14,8 @@
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/DynamicPortfolioViews.xml" />
     <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/ProjectConfig.xml" />
+    <xi:include 
+        xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/StatsFieldsConfig.xml" />
     <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/StatusSections.xml" />
 </pnp:Lists>
