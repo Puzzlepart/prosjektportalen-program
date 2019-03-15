@@ -30,7 +30,7 @@ export async function getStoredProjectsListContext(maxLimit = config.Lists_Store
         if (items.length > maxLimit) {
             throw String.format(strings.Lists_StoredProjects_MaxLimitError, items.length, config.Lists_StoredProjects_ItemsMaxLimit);
         }
-        items = items.map(({ ID, URL }) => new ProjectItem(ID, URL.Description, URL.Url));
+        items = items.filter(i => i.URL !== null && i.URL.Url !== "").map(({ ID, URL }) => new ProjectItem(ID, URL.Description, URL.Url));
         return { list, properties, items };
     } catch (err) {
         throw err;
