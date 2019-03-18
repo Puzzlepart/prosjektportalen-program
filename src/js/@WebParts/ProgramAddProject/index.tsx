@@ -334,7 +334,7 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
                 TrimDuplicates: false,
                 SelectProperties: ["Title", "Path", "SiteTitle", "SPWebUrl"],
             });
-            return PrimarySearchResults.map(sr => new common.ProjectItem(-1, sr["SiteTitle"], sr["SPWebUrl"]));
+            return PrimarySearchResults.map(sr => new common.ProjectItem(-1, sr["SiteTitle"], sr["Path"].split("/Lists/Properties")[0]));
         } catch (err) {
             throw err;
         }

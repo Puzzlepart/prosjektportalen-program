@@ -46,3 +46,7 @@ gulp.task("packageCodeTemplate", ["buildLib"], (done) => {
 gulp.task("packagePnpTemplates", ["packageCodeTemplate", "packageStylesTemplate"], (done) => {
     powershell.execute("Generate-PnP-Files.ps1", "", done);
 });
+
+gulp.task("packagePnpTemplatesDev", ["packageCode", "packageStylesTemplate"], (done) => {
+    powershell.execute("Generate-PnP-Files.ps1", "", done);
+});

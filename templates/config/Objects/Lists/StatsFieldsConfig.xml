@@ -1,0 +1,55 @@
+<pnp:ListInstance Title="Statistikkfelter" Description="" DocumentTemplate="" TemplateType="100" Url="Lists/StatsFieldsConfig" EnableAttachments="false" EnableFolderCreation="false" Hidden="true" ContentTypesEnabled="false" RemoveExistingContentTypes="true" 
+    xmlns:pnp="http://schemas.dev.office.com/PnP/2018/01/ProvisioningSchema">
+    <pnp:DataRows UpdateBehavior="Overwrite" KeyColumn="Title">
+        <pnp:DataRow>
+            <pnp:DataValue FieldName="Title">Fase</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrManagedPropertyName">RefinableString52</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrDataType">String</pnp:DataValue>
+        </pnp:DataRow>
+        <pnp:DataRow>
+            <pnp:DataValue FieldName="Title">Tjenesteområde</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrManagedPropertyName">RefinableString53</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrDataType">String</pnp:DataValue>
+        </pnp:DataRow>
+        <pnp:DataRow>
+            <pnp:DataValue FieldName="Title">Totalbudsjett</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrManagedPropertyName">GtBudgetTotalOWSCURR</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrDataType">Number</pnp:DataValue>
+        </pnp:DataRow>
+        <pnp:DataRow>
+            <pnp:DataValue FieldName="Title">Prognose</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrManagedPropertyName">GtProjectForecastOWSCURR</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrDataType">Number</pnp:DataValue>
+        </pnp:DataRow>
+        <pnp:DataRow>
+            <pnp:DataValue FieldName="Title">Kostnader påløpt totalt</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrManagedPropertyName">GtCostsTotalOWSCURR</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrDataType">Number</pnp:DataValue>
+        </pnp:DataRow>
+        <pnp:DataRow>
+            <pnp:DataValue FieldName="Title">Status fremdrift</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrManagedPropertyName">GtStatusTimeOWSCHCS</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrDataType">String</pnp:DataValue>
+        </pnp:DataRow>
+        <pnp:DataRow>
+            <pnp:DataValue FieldName="Title">Status økonomi</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrManagedPropertyName">GtStatusBudgetOWSCHCS</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrDataType">String</pnp:DataValue>
+        </pnp:DataRow>
+        <pnp:DataRow>
+            <pnp:DataValue FieldName="Title">Status risiko</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrManagedPropertyName">GtStatusRiskOWSCHCS</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrDataType">String</pnp:DataValue>
+        </pnp:DataRow>
+        <pnp:DataRow>
+            <pnp:DataValue FieldName="Title">Status kvalitet</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrManagedPropertyName">GtStatusBudgetOWSCHCS</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrDataType">String</pnp:DataValue>
+        </pnp:DataRow>
+        <pnp:DataRow>
+            <pnp:DataValue FieldName="Title">Status gevinstoppnåelse</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrManagedPropertyName">GtStatusGainAchievementOWSCHCS</pnp:DataValue>
+            <pnp:DataValue FieldName="GtChrDataType">String</pnp:DataValue>
+        </pnp:DataRow>
+    </pnp:DataRows>
+</pnp:ListInstance>
