@@ -1,5 +1,5 @@
 //#region Imports
-import "@babel/polyfill";
+// import "@babel/polyfill";
 import * as React from "react";
 import { sp } from "@pnp/sp";
 import { IProgressIndicatorProps, ProgressIndicator } from "office-ui-fabric-react/lib/ProgressIndicator";
