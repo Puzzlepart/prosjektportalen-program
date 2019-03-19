@@ -23,6 +23,14 @@
                         "Title": "Programportefølje"
                     },
                     {
+                        "Url": "SitePages/ProgramProjectStats.aspx",
+                        "Title": "Porteføljeinnsikt"
+                    },
+                    {
+                        "Url": "SitePages/Program-leveranseoversikt.aspx",
+                        "Title": "Leveranseoversikt"
+                    },
+                    {
                         "Url": "SitePages/Program-gevinstoversikt.aspx",
                         "Title": "Program-gevinstoversikt"
                     },
