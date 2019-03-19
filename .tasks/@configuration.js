@@ -30,6 +30,7 @@ module.exports = {
             'core-js/es6/promise',
             'whatwg-fetch',
             'regenerator-runtime/runtime',
+            '@babel/polyfill',
         ],
     },
     STYLUS: {
