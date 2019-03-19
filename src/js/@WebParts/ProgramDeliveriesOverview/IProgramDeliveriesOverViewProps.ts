@@ -1,3 +1,3 @@
-export interface IProgramDeliveriesOverViewProps {
+export interface IProgramDeliveriesOverviewProps {
 
 }

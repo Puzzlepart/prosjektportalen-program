@@ -1,9 +1,9 @@
 import * as React from "react";
-import { IProgramDeliveriesOverViewProps } from "./IProgramDeliveriesOverViewProps";
-import { IProgramDeliveriesOverViewState } from "./IProgramDeliveriesOverViewState";
+import { IProgramDeliveriesOverviewProps } from "./IProgramDeliveriesOverviewProps";
+import { IProgramDeliveriesOverviewState } from "./IProgramDeliveriesOverviewState";
 
-export default class ProgramDeliveriesOverView extends React.Component<IProgramDeliveriesOverViewProps, IProgramDeliveriesOverViewState> {
-  public render(): React.ReactElement<IProgramDeliveriesOverViewProps> {
+export default class ProgramDeliveriesOverView extends React.Component<IProgramDeliveriesOverviewProps, IProgramDeliveriesOverviewState> {
+  public render(): React.ReactElement<IProgramDeliveriesOverviewProps> {
     return (
       <div>
         <h1>Leveranseoversikt</h1>
@@ -12,4 +12,4 @@ export default class ProgramDeliveriesOverView extends React.Component<IProgramD
   }
 }
 
-export { IProgramDeliveriesOverViewProps, IProgramDeliveriesOverViewState };
+export { IProgramDeliveriesOverviewProps, IProgramDeliveriesOverviewState };

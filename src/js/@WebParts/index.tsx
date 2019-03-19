@@ -4,6 +4,7 @@ import ProgramProjectsTimelineSync, { IProgramProjectsTimelineSyncProps } from "
 import ProgramProjectStatus, { IProgramProjectStatusProps } from "./ProgramProjectStatus";
 import ProgramProjectStats, { IProgramProjectStatsProps } from "./ProgramProjectStats";
 import ProgramPortfolio, { IProgramPortfolioProps } from "./ProgramPortfolio";
+import ProgramDeliveriesOverview, { IProgramDeliveriesOverviewProps } from "./ProgramDeliveriesOverview";
 import ProgramBenefitsOverview, { IProgramBenefitsOverviewProps } from "./ProgramBenefitsOverview";
 
 /**
@@ -13,7 +14,7 @@ const WebPartComponents: WebPartComponent<any>[] = [
     new WebPartComponent<IProgramAddProjectProps>(ProgramAddProject, "pp-program-findproject", {}),
     new WebPartComponent<IProgramProjectsTimelineSyncProps>(ProgramProjectsTimelineSync, "pp-program-projectstimelinesync", {}),
     new WebPartComponent<IProgramProjectStatsProps>(ProgramProjectStats, "pp-program-projectstats", {}),
-    new WebPartComponent<IProgramProjectStatsProps>(ProgramProjectStats, "pp-program-deliveriesoverview", {}),
+    new WebPartComponent<IProgramDeliveriesOverviewProps>(ProgramDeliveriesOverview, "pp-program-deliveriesoverview", {}),
     new WebPartComponent<IProgramProjectStatusProps>(ProgramProjectStatus, "pp-program-projectstatus", {}),
     new WebPartComponent<IProgramPortfolioProps>(ProgramPortfolio, "pp-program-portfolio", {}),
     new WebPartComponent<IProgramBenefitsOverviewProps>(ProgramBenefitsOverview, "pp-program-benefitsoverview", {}),
