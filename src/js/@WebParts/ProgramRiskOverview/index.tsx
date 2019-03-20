@@ -8,7 +8,7 @@ export default class ProgramRiskOverview extends React.Component<IProgramRiskOve
     return (
       <div>
         <h1>Risikooversikt</h1>
-        <RiskMatrix />
+        <RiskMatrix dataSource="RISKOVERVIEW" />
       </div>
     );
   }
