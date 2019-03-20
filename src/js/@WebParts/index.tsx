@@ -6,6 +6,7 @@ import ProgramProjectStats, { IProgramProjectStatsProps } from "./ProgramProject
 import ProgramPortfolio, { IProgramPortfolioProps } from "./ProgramPortfolio";
 import ProgramDeliveriesOverview, { IProgramDeliveriesOverviewProps } from "./ProgramDeliveriesOverview";
 import ProgramBenefitsOverview, { IProgramBenefitsOverviewProps } from "./ProgramBenefitsOverview";
+import ProgramRiskOverview, { IProgramRiskOverviewProps } from "./ProgramRiskOverview";
 
 /**
  * An array containing WebPartComponents
@@ -15,6 +16,7 @@ const WebPartComponents: WebPartComponent<any>[] = [
     new WebPartComponent<IProgramProjectsTimelineSyncProps>(ProgramProjectsTimelineSync, "pp-program-projectstimelinesync", {}),
     new WebPartComponent<IProgramProjectStatsProps>(ProgramProjectStats, "pp-program-projectstats", {}),
     new WebPartComponent<IProgramDeliveriesOverviewProps>(ProgramDeliveriesOverview, "pp-program-deliveriesoverview", {}),
+    new WebPartComponent<IProgramRiskOverviewProps>(ProgramRiskOverview, "pp-program-riskoverview", {}),
     new WebPartComponent<IProgramProjectStatusProps>(ProgramProjectStatus, "pp-program-projectstatus", {}),
     new WebPartComponent<IProgramPortfolioProps>(ProgramPortfolio, "pp-program-portfolio", {}),
     new WebPartComponent<IProgramBenefitsOverviewProps>(ProgramBenefitsOverview, "pp-program-benefitsoverview", {}),

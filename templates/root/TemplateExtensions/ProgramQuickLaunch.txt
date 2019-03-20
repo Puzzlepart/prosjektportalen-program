@@ -35,6 +35,10 @@
                         "Title": "Program-gevinstoversikt"
                     },
                     {
+                        "Url": "SitePages/ProgramRiskOverview.aspx",
+                        "Title": "Risikooversikt"
+                    },
+                    {
                         "Url": "SitePages/Tidslinje.aspx",
                         "Title": "Tidslinje"
                     },
