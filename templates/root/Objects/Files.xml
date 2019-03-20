@@ -79,7 +79,7 @@
     </pnp:File>
     <pnp:File Src="TemplateExtensions\ProgramBenefitsOverview.txt" Folder="Extensions" Overwrite="true">
         <pnp:Properties>
-            <pnp:Property Key="Title" Value="Program-gevinstoversikt" />
+            <pnp:Property Key="Title" Value="Gevinstoversikt" />
             <pnp:Property Key="GtIsEnabled" Value="true" />
             <pnp:Property Key="GtOrder" Value="120" />
         </pnp:Properties>
@@ -149,7 +149,7 @@
     </pnp:File>
     <pnp:File Src="WebPartGallery\ProgramBenefitsOverview.webpart" Folder="_catalogs/wp" Overwrite="false">
         <pnp:Properties>
-            <pnp:Property Key="Title" Value="Program-gevinstoversikt" />
+            <pnp:Property Key="Title" Value="Gevinstoversikt" />
             <pnp:Property Key="WebPartDescription" Value="" />
             <pnp:Property Key="Group" Value="Program" />
         </pnp:Properties>
