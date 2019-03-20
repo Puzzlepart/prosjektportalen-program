@@ -39,6 +39,10 @@
                         "Title": "Risikooversikt"
                     },
                     {
+                        "Url": "SitePages/ProgramResourceAllocation.aspx",
+                        "Title": "Ressursallokering"
+                    },
+                    {
                         "Url": "SitePages/Tidslinje.aspx",
                         "Title": "Tidslinje"
                     },

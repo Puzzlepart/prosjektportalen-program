@@ -7,6 +7,7 @@ import ProgramPortfolio, { IProgramPortfolioProps } from "./ProgramPortfolio";
 import ProgramDeliveriesOverview, { IProgramDeliveriesOverviewProps } from "./ProgramDeliveriesOverview";
 import ProgramBenefitsOverview, { IProgramBenefitsOverviewProps } from "./ProgramBenefitsOverview";
 import ProgramRiskOverview, { IProgramRiskOverviewProps } from "./ProgramRiskOverview";
+import ProgramResourceAllocation, { IProgramResourceAllocationProps } from "./ProgramResourceAllocation";
 
 /**
  * An array containing WebPartComponents
@@ -18,6 +19,7 @@ const WebPartComponents: WebPartComponent<any>[] = [
     new WebPartComponent<IProgramDeliveriesOverviewProps>(ProgramDeliveriesOverview, "pp-program-deliveriesoverview", {}),
     new WebPartComponent<IProgramRiskOverviewProps>(ProgramRiskOverview, "pp-program-riskoverview", {}),
     new WebPartComponent<IProgramProjectStatusProps>(ProgramProjectStatus, "pp-program-projectstatus", {}),
+    new WebPartComponent<IProgramResourceAllocationProps>(ProgramResourceAllocation, "pp-program-resourceAllocation", {}),
     new WebPartComponent<IProgramPortfolioProps>(ProgramPortfolio, "pp-program-portfolio", {}),
     new WebPartComponent<IProgramBenefitsOverviewProps>(ProgramBenefitsOverview, "pp-program-benefitsoverview", {}),
 ];
