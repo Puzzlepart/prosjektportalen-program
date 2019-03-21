@@ -10,11 +10,7 @@
     "license": "ISC",
     "author": "@olemp",
     "main": "index.js",
-    "scripts": {
-        "release": "gulp release",
-        "postversion": "npm run release",
-        "watch": "gulp watch"
-    },
+    "scripts": {},
     "devDependencies": {
         "@babel/polyfill": "^7.2.5",
         "@pnp/common": "^1.3.0",
