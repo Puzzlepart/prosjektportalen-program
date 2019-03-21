@@ -4,7 +4,7 @@ import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBa
 import IProgramBenefitsOverviewProps, { ProgramBenefitsOverviewDefaultProps } from "./IProgramBenefitsOverviewProps";
 import IProgramBenefitsOverviewState, { } from "./IProgramBenefitsOverviewState";
 import BenefitsOverview from "prosjektportalen/lib/WebParts/BenefitsOverview";
-import DataSource, { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
+import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 import * as common from "../../@Common";
 //#endregion
@@ -44,9 +44,7 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
         }
         return (
             <BenefitsOverview
-                excelExportEnabled={this.props.excelExportEnabled}
-                dataSource={DataSource.SearchCustom}
-                customSearchSettings={this.state.searchSettings} />
+                queryTemplate={this.state.searchSettings.QueryTemplate} />
         );
     }
 
