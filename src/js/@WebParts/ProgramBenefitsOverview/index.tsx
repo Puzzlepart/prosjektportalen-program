@@ -4,7 +4,6 @@ import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBa
 import IProgramBenefitsOverviewProps, { ProgramBenefitsOverviewDefaultProps } from "./IProgramBenefitsOverviewProps";
 import IProgramBenefitsOverviewState, { } from "./IProgramBenefitsOverviewState";
 import BenefitsOverview from "prosjektportalen/lib/WebParts/BenefitsOverview";
-import DataSource, { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 import * as common from "../../@Common";
 //#endregion
@@ -25,10 +24,10 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
 
     public async componentDidMount() {
         try {
-            const searchSettings = await this.buildSearchSettingsFromStoredProjects();
-            this.setState({ searchSettings, isLoading: false });
+            const queryTemplate = await this.buildQueryTemplateStoredProjects();
+            this.setState({ queryTemplate, isLoading: false });
         } catch (errorMessage) {
-            this.setState({ errorMessage, isLoading: false  });
+            this.setState({ errorMessage, isLoading: false });
         }
     }
 
@@ -39,38 +38,29 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
         if (this.state.errorMessage) {
             return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
         }
-        if (this.state.searchSettings === null) {
+        if (this.state.queryTemplate === null) {
             return <NoStoredProjectsMessage />;
         }
         return (
-            <BenefitsOverview
-                excelExportEnabled={this.props.excelExportEnabled}
-                dataSource={DataSource.SearchCustom}
-                customSearchSettings={this.state.searchSettings} />
+            <BenefitsOverview queryTemplate={this.state.queryTemplate} excelExportEnabled={this.props.excelExportEnabled} />
         );
     }
 
     /**
-     * Build search settings from items in stored projects list
+     * Build search query from items in stored projects list
      */
-    private async buildSearchSettingsFromStoredProjects(): Promise<IDataSourceSearchCustom> {
+    private async buildQueryTemplateStoredProjects(): Promise<string> {
         try {
             const { items } = await common.getStoredProjectsListContext();
             if (items.length === 0) {
                 return null;
             }
             const searchQuery = items.map(({ URL }) => `Path:"${URL}"`).join(" OR ");
-            return {
-                RowLimit: 500,
-                QueryTemplate: String.format(this.props.queryTemplate, searchQuery),
-            };
+            return String.format(this.props.queryTemplate, searchQuery);
         } catch (err) {
             throw err;
         }
     }
 }
 
-export {
-    IProgramBenefitsOverviewProps,
-    IProgramBenefitsOverviewState,
-};
+export { IProgramBenefitsOverviewProps, IProgramBenefitsOverviewState };
