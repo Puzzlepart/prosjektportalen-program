@@ -1,6 +1,6 @@
 import * as React from "react";
 import IProgramDeliveriesOverviewProps, { ProgramDeliveriesOverviewDefaultProps } from "./IProgramDeliveriesOverviewProps";
-import { IProgramDeliveriesOverviewState } from "./IProgramDeliveriesOverviewState";
+import IProgramDeliveriesOverviewState, {} from "./IProgramDeliveriesOverviewState";
 import DeliveriesOverview from "prosjektportalen/lib/WebParts/DeliveriesOverview";
 import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
 import * as common from "../../@Common";

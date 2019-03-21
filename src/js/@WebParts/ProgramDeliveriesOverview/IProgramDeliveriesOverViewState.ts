@@ -1,6 +1,6 @@
 import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
 
-export interface IProgramDeliveriesOverviewState {
+export default interface IProgramDeliveriesOverviewState {
     isLoading: boolean;
     errorMessage?: string;
     searchSettings?: IDataSourceSearchCustom;
