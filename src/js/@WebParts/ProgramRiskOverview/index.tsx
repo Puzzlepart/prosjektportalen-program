@@ -28,10 +28,20 @@ export default class ProgramRiskOverview extends React.Component<IProgramRiskOve
 
   public render(): React.ReactElement<IProgramRiskOverviewProps> {
     if (this.state.errorMessage) {
-      return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
+      return (
+        <>
+          <h1>Risikooversikt</h1>
+          <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
+        </>
+      );
     }
     if (this.state.searchSettings === null) {
-      return <NoStoredProjectsMessage />;
+      return (
+        <>
+          <h1>Risikooversikt</h1>
+          <NoStoredProjectsMessage />
+        </>
+      );
     }
     return (
       <div>

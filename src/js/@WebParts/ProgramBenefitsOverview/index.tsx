@@ -28,23 +28,35 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
             const searchSettings = await this.buildSearchSettingsFromStoredProjects();
             this.setState({ searchSettings, isLoading: false });
         } catch (errorMessage) {
-            this.setState({ errorMessage, isLoading: false  });
+            this.setState({ errorMessage, isLoading: false });
         }
     }
 
     public render() {
-        if (this.state.isLoading) {
-            return null;
-        }
         if (this.state.errorMessage) {
-            return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
+            return (
+                <>
+                    <h1>Gevinstoversikt</h1>
+                    <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
+                </>
+            );
         }
         if (this.state.searchSettings === null) {
-            return <NoStoredProjectsMessage />;
+            return (
+                <>
+                    <h1>Gevinstoversikt</h1>
+                    <NoStoredProjectsMessage />
+                </>
+            );
         }
         return (
-            <BenefitsOverview
-                queryTemplate={this.state.searchSettings.QueryTemplate} />
+            <div>
+                <h1>Gevinstoversikt</h1>
+                {(!this.state.isLoading) &&
+                    <BenefitsOverview
+                        queryTemplate={this.state.searchSettings.QueryTemplate}
+                    />}
+            </div>
         );
     }
 

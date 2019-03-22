@@ -27,10 +27,20 @@ export default class ProgramExperienceLog extends React.Component<IProgramExperi
 
     public render(): React.ReactElement<IProgramExperienceLogProps> {
         if (this.state.errorMessage) {
-            return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
+            return (
+                <>
+                    <h1>Erfaringslogg</h1>
+                    <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
+                </>
+            );
         }
         if (this.state.searchSettings === null) {
-            return <NoStoredProjectsMessage />;
+            return (
+                <>
+                    <h1>Erfaringslogg</h1>
+                    <NoStoredProjectsMessage />
+                </>
+            );
         }
         return (
             <div>

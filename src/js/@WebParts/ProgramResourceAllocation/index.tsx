@@ -31,10 +31,20 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
 
   public render(): React.ReactElement<IProgramResourceAllocationProps> {
     if (this.state.errorMessage) {
-      return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
+      return (
+        <>
+          <h1>Ressursallokering</h1>
+          <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
+        </>
+      );
     }
     if (this.state.searchSettings === null) {
-      return <NoStoredProjectsMessage />;
+      return (
+        <>
+          <h1>Ressursallokering</h1>
+          <NoStoredProjectsMessage />
+        </>
+      );
     }
     return (
       <div>
@@ -68,6 +78,11 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
     }
   }
 
+  /**
+   * Get the root URL of the projects
+   *
+   * @param items ProjectItem
+   */
   private async getProjectRoot(items: common.ProjectItem[]) {
     if (items.length === 0) {
       return null;

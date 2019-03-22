@@ -28,10 +28,20 @@ export default class ProgramDeliveriesOverView extends React.Component<IProgramD
 
   public render(): React.ReactElement<IProgramDeliveriesOverviewProps> {
     if (this.state.errorMessage) {
-      return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
+      return (
+        <>
+          <h1>Leveranseoversikt</h1>
+          <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
+        </>
+      );
     }
     if (this.state.searchSettings === null) {
-      return <NoStoredProjectsMessage />;
+      return (
+        <>
+          <h1>Leveranseoversikt</h1>
+          <NoStoredProjectsMessage />
+        </>
+      );
     }
     return (
       <div>
