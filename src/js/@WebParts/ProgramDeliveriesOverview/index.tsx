@@ -44,13 +44,13 @@ export default class ProgramDeliveriesOverView extends React.Component<IProgramD
       );
     }
     return (
-      <div>
+      <>
         <h1>Leveranseoversikt</h1>
         {(!this.state.isLoading && this.state.searchSettings) &&
           <DeliveriesOverview
             dataSource={DataSource.SearchCustom}
             queryTemplate={this.state.searchSettings.QueryTemplate} />}
-      </div>
+      </>
     );
   }
 

@@ -50,13 +50,13 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
             );
         }
         return (
-            <div>
+            <>
                 <h1>Gevinstoversikt</h1>
                 {(!this.state.isLoading) &&
                     <BenefitsOverview
                         queryTemplate={this.state.searchSettings.QueryTemplate}
                     />}
-            </div>
+            </>
         );
     }
 

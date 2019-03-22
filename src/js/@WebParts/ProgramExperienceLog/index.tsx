@@ -43,12 +43,12 @@ export default class ProgramExperienceLog extends React.Component<IProgramExperi
             );
         }
         return (
-            <div>
+            <>
                 <h1>Erfaringslogg</h1>
                 {(!this.state.isLoading && this.state.searchSettings) &&
                     <ExperienceLog
                         queryTemplate={this.state.searchSettings.QueryTemplate} />}
-            </div>
+            </>
         );
     }
 

@@ -46,7 +46,7 @@ export default class ProgramProjectStats extends React.Component<{}, IProgramPro
             );
         }
         return (
-            <div>
+            <>
                 <h1>Porteføljeinnsikt</h1>
                 {(!this.state.isLoading) &&
                     <ProjectStats
@@ -55,7 +55,7 @@ export default class ProgramProjectStats extends React.Component<{}, IProgramPro
                         chartsConfigListName=""
                         projectRoot={this.state.rootUrl}
                     />}
-            </div>
+            </>
         );
     }
 

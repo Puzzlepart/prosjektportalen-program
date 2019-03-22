@@ -44,13 +44,13 @@ export default class ProgramRiskOverview extends React.Component<IProgramRiskOve
       );
     }
     return (
-      <div>
+      <>
         <h1>Risikooversikt</h1>
         {(!this.state.isLoading && this.state.searchSettings) &&
           <RiskMatrix
             dataSource={DataSource.SearchCustom}
             queryTemplate={this.state.searchSettings.QueryTemplate} />}
-      </div>
+      </>
     );
   }
 

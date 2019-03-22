@@ -47,7 +47,7 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
       );
     }
     return (
-      <div>
+      <>
         <h1>Ressursallokering</h1>
         {(!this.state.isLoading && this.state.searchSettings) &&
           <ResourceAllocation
@@ -56,7 +56,7 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
             queryTemplate={this.state.searchSettings.QueryTemplate}
             projectRoot={this.state.rootUrl}
           />}
-      </div>
+      </>
     );
   }
 
