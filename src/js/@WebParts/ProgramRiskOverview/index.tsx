@@ -5,6 +5,8 @@ import RiskMatrix from "prosjektportalen/lib/WebParts/RiskMatrix";
 import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
 import * as common from "../../@Common";
 import DataSource from "prosjektportalen/lib/WebParts/DataSource";
+import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
+import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 
 export default class ProgramRiskOverview extends React.Component<IProgramRiskOverviewProps, IProgramRiskOverviewState> {
   public static defaultProps = ProgramRiskOverviewDefaultProps;
@@ -25,10 +27,16 @@ export default class ProgramRiskOverview extends React.Component<IProgramRiskOve
   }
 
   public render(): React.ReactElement<IProgramRiskOverviewProps> {
+    if (this.state.errorMessage) {
+      return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
+    }
+    if (this.state.searchSettings === null) {
+      return <NoStoredProjectsMessage />;
+    }
     return (
       <div>
         <h1>Risikooversikt</h1>
-        {(!this.state.isLoading) &&
+        {(!this.state.isLoading && this.state.searchSettings) &&
           <RiskMatrix
             dataSource={DataSource.SearchCustom}
             queryTemplate={this.state.searchSettings.QueryTemplate} />}

@@ -27,12 +27,16 @@
                         "Title": "Porteføljeinnsikt"
                     },
                     {
-                        "Url": "SitePages/Program-leveranseoversikt.aspx",
-                        "Title": "Leveranseoversikt"
-                    },
-                    {
                         "Url": "SitePages/Program-gevinstoversikt.aspx",
                         "Title": "Gevinstoversikt"
+                    },
+                    {
+                        "Url": "SitePages/ProgramExperienceLog.aspx",
+                        "Title": "Erfaringslogg"
+                    },
+                    {
+                        "Url": "SitePages/Program-leveranseoversikt.aspx",
+                        "Title": "Leveranseoversikt"
                     },
                     {
                         "Url": "SitePages/ProgramRiskOverview.aspx",

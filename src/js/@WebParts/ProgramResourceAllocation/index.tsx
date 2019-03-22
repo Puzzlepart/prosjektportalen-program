@@ -6,6 +6,8 @@ import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSourc
 import * as common from "../../@Common";
 import { Site } from "@pnp/sp";
 import DataSource from "prosjektportalen/lib/WebParts/DataSource";
+import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
+import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 
 export default class ProgramResourceAllocation extends React.Component<IProgramResourceAllocationProps, IProgramResourceAllocationState> {
   public static defaultProps = ProgramResourceAllocationDefaultProps;
@@ -28,16 +30,22 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
   }
 
   public render(): React.ReactElement<IProgramResourceAllocationProps> {
+    if (this.state.errorMessage) {
+      return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
+    }
+    if (this.state.searchSettings === null) {
+      return <NoStoredProjectsMessage />;
+    }
     return (
       <div>
         <h1>Ressursallokering</h1>
-        {(!this.state.isLoading) &&
-        <ResourceAllocation
-          searchConfiguration={this.props.searchConfiguration}
-          dataSource={DataSource.SearchCustom}
-          queryTemplate={this.state.searchSettings.QueryTemplate}
-          projectRoot={this.state.rootUrl}
-        />}
+        {(!this.state.isLoading && this.state.searchSettings) &&
+          <ResourceAllocation
+            searchConfiguration={this.props.searchConfiguration}
+            dataSource={DataSource.SearchCustom}
+            queryTemplate={this.state.searchSettings.QueryTemplate}
+            projectRoot={this.state.rootUrl}
+          />}
       </div>
     );
   }
@@ -61,6 +69,9 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
   }
 
   private async getProjectRoot(items: common.ProjectItem[]) {
+    if (items.length === 0) {
+      return null;
+    }
     let rootWeb = await new Site(items[0].URL).getRootWeb();
     return rootWeb["_parentUrl"];
   }
