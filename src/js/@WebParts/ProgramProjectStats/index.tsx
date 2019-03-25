@@ -52,8 +52,7 @@ export default class ProgramProjectStats extends React.Component<{}, IProgramPro
                     <ProjectStats
                         statsFieldsListName=""
                         viewSelectorEnabled={true}
-                        chartsConfigListName=""
-                        projectRoot={this.state.rootUrl}
+                        chartsConfigListName="Diagramkonfigurasjon for programmets prosjekter"
                     />}
             </>
         );

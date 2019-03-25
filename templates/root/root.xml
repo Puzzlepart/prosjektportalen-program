@@ -18,6 +18,8 @@
             <xi:include 
                 xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Files.xml" />
             <xi:include 
+                xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists.xml" />
+            <xi:include 
                 xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/WebSettings.xml" />
             <xi:include 
                 xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/CustomActions.xml" />
