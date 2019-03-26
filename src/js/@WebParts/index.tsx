@@ -9,6 +9,7 @@ import ProgramExperienceLog, { IProgramExperienceLogProps } from "./ProgramExper
 import ProgramBenefitsOverview, { IProgramBenefitsOverviewProps } from "./ProgramBenefitsOverview";
 import ProgramRiskOverview, { IProgramRiskOverviewProps } from "./ProgramRiskOverview";
 import ProgramResourceAllocation, { IProgramResourceAllocationProps } from "./ProgramResourceAllocation";
+import { IProgramProjectStatsProps } from "./ProgramProjectStats/IProgramProjectStatsProps";
 
 /**
  * An array containing WebPartComponents
@@ -16,7 +17,7 @@ import ProgramResourceAllocation, { IProgramResourceAllocationProps } from "./Pr
 const WebPartComponents: WebPartComponent<any>[] = [
     new WebPartComponent<IProgramAddProjectProps>(ProgramAddProject, "pp-program-findproject", {}),
     new WebPartComponent<IProgramProjectsTimelineSyncProps>(ProgramProjectsTimelineSync, "pp-program-projectstimelinesync", {}),
-    new WebPartComponent<{}>(ProgramProjectStats, "pp-program-projectstats", {}),
+    new WebPartComponent<IProgramProjectStatsProps>(ProgramProjectStats, "pp-program-projectstats", {}),
     new WebPartComponent<IProgramDeliveriesOverviewProps>(ProgramDeliveriesOverview, "pp-program-deliveriesoverview", {}),
     new WebPartComponent<IProgramExperienceLogProps>(ProgramExperienceLog, "pp-program-experiencelog", {}),
     new WebPartComponent<IProgramRiskOverviewProps>(ProgramRiskOverview, "pp-program-riskoverview", {}),
