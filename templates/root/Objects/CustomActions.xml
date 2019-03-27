@@ -1,5 +1,4 @@
-<pnp:CustomActions 
-    xmlns:pnp="http://schemas.dev.office.com/PnP/2018/01/ProvisioningSchema">
+<pnp:CustomActions xmlns:pnp="http://schemas.dev.office.com/PnP/2018/01/ProvisioningSchema">
     <pnp:SiteCustomActions>
         <pnp:CustomAction Name="pp.program.js" Location="ScriptLink" Sequence="1" ScriptBlock="
             SP.SOD.registerSod('pp.program.js', '{parameter:AssetsSiteUrl}/siteassets/pp/js/pp.program.js?v={parameter:Version}');
@@ -17,4 +16,7 @@
                 }, {parameter:ScriptLoadTimeout})
             });" />
     </pnp:SiteCustomActions>
+    <pnp:WebCustomActions>
+        <pnp:CustomAction Group="Customization" Location="Microsoft.SharePoint.SiteSettings" Name="SiteSettings_Link_ProgramChartsConfig" Title="Prosjektportalen - Diagramkonfigurasjon for programmets prosjekter" Url="Lists/ProgramChartsConfig/AllItems.aspx" Rights="ManageWeb" Sequence="2015" />
+    </pnp:WebCustomActions>
 </pnp:CustomActions>
