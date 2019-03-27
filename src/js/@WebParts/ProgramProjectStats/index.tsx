@@ -22,8 +22,6 @@ export default class ProgramProjectStats extends React.Component<IProgramProject
             const { items } = await common.getStoredProjectsListContext();
             const searchSettings = await this.buildSearchSettingsFromStoredProjects(items);
             const rootWeb = await new Web(_spPageContextInfo.siteAbsoluteUrl);
-            console.log(rootWeb);
-            console.log(items);
             this.setState({ items, searchSettings, rootWeb, isLoading: false });
         } catch (errorMessage) {
             this.setState({ errorMessage, isLoading: false });
@@ -32,7 +30,6 @@ export default class ProgramProjectStats extends React.Component<IProgramProject
 
     public render(): React.ReactElement<{}> {
         if (this.state.errorMessage) {
-            console.log(this.state.errorMessage);
             return (
                 <>
                     <h1>Porteføljeinnsikt</h1>
