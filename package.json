@@ -80,7 +80,7 @@
         "path": "^0.12.7",
         "plugin-error": "^1.0.1",
         "prop-types": "^15.6.2",
-        "prosjektportalen": "git+https://github.com/stigre/prosjektportalen.git#ASSIST-2156",
+        "prosjektportalen": "^2.4.5",
         "querystring": "^0.2.0",
         "raw-loader": "^1.0.0",
         "react": "16.3.2",
