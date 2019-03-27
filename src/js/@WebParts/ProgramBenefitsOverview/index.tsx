@@ -4,7 +4,6 @@ import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBa
 import IProgramBenefitsOverviewProps, { ProgramBenefitsOverviewDefaultProps } from "./IProgramBenefitsOverviewProps";
 import IProgramBenefitsOverviewState, { } from "./IProgramBenefitsOverviewState";
 import BenefitsOverview from "prosjektportalen/lib/WebParts/BenefitsOverview";
-import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 import * as common from "../../@Common";
 //#endregion
@@ -25,8 +24,8 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
 
     public async componentDidMount() {
         try {
-            const searchSettings = await this.buildSearchSettingsFromStoredProjects();
-            this.setState({ searchSettings, isLoading: false });
+            const queryTemplate = await this.buildQueryTemplateStoredProjects();
+            this.setState({ queryTemplate, isLoading: false });
         } catch (errorMessage) {
             this.setState({ errorMessage, isLoading: false });
         }
@@ -55,32 +54,27 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
                 {(!this.state.isLoading) &&
                     <BenefitsOverview
                         queryTemplate={this.state.searchSettings.QueryTemplate}
+                        excelExportEnabled={this.props.excelExportEnabled}
                     />}
             </>
         );
     }
 
     /**
-     * Build search settings from items in stored projects list
+     * Build search query from items in stored projects list
      */
-    private async buildSearchSettingsFromStoredProjects(): Promise<IDataSourceSearchCustom> {
+    private async buildQueryTemplateStoredProjects(): Promise<string> {
         try {
             const { items } = await common.getStoredProjectsListContext();
             if (items.length === 0) {
                 return null;
             }
             const searchQuery = items.map(({ URL }) => `Path:"${URL}"`).join(" OR ");
-            return {
-                RowLimit: 500,
-                QueryTemplate: String.format(this.props.queryTemplate, searchQuery),
-            };
+            return String.format(this.props.queryTemplate, searchQuery);
         } catch (err) {
             throw err;
         }
     }
 }
 
-export {
-    IProgramBenefitsOverviewProps,
-    IProgramBenefitsOverviewState,
-};
+export { IProgramBenefitsOverviewProps, IProgramBenefitsOverviewState };
