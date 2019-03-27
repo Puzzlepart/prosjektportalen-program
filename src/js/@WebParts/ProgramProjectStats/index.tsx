@@ -55,7 +55,6 @@ export default class ProgramProjectStats extends React.Component<IProgramProject
                     <ProjectStats
                         viewSelectorEnabled={false}
                         renderCommandBar={false}
-                        useProgramEditForm={true}
                         chartsConfigListName="Diagramkonfigurasjon for programmets prosjekter"
                         rootWeb={this.state.rootWeb}
                         queryTemplate={this.state.searchSettings.QueryTemplate}
