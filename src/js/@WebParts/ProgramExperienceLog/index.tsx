@@ -2,10 +2,10 @@ import * as React from "react";
 import IProgramExperienceLogProps, { ProgramExperienceLogDefaultProps } from "./ProgramExperienceLogProps";
 import IProgramExperienceLogState from "./IProgramExperienceLogState";
 import { ExperienceLog } from "prosjektportalen/lib/WebParts";
-import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
 import * as common from "../../@Common";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
+import DataSource from "prosjektportalen/src/js/WebParts/DataSource";
 
 export default class ProgramExperienceLog extends React.Component<IProgramExperienceLogProps, IProgramExperienceLogState> {
     public static defaultProps = ProgramExperienceLogDefaultProps;
@@ -48,7 +48,9 @@ export default class ProgramExperienceLog extends React.Component<IProgramExperi
                 <h1>Erfaringslogg</h1>
                 {(!this.state.isLoading && this.state.searchSettings) &&
                     <ExperienceLog
-                        queryTemplate={this.state.searchSettings.QueryTemplate} />}
+                        queryTemplate={this.state.searchSettings.QueryTemplate}
+                        dataSource={DataSource.SearchCustom}
+                    />}
             </>
         );
     }
