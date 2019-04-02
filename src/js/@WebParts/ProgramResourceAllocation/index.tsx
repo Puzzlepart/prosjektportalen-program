@@ -4,7 +4,6 @@ import { IProgramResourceAllocationState } from "./IProgramResourceAllocationSta
 import ResourceAllocation from "prosjektportalen/lib/WebParts/ResourceAllocation";
 import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
 import * as common from "../../@Common";
-import { Web } from "@pnp/sp";
 import DataSource from "prosjektportalen/lib/WebParts/DataSource";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
@@ -21,9 +20,8 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
   public async componentDidMount() {
     try {
       const { items } = await common.getStoredProjectsListContext();
-      const rootWeb = await new Web(_spPageContextInfo.siteAbsoluteUrl);
       const searchSettings = await this.buildSearchSettingsFromStoredProjects(items);
-      this.setState({ rootWeb, searchSettings, isLoading: false });
+      this.setState({ searchSettings, isLoading: false });
     } catch (errorMessage) {
       this.setState({ errorMessage, isLoading: false });
     }
@@ -54,7 +52,6 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
             searchConfiguration={this.props.searchConfiguration}
             dataSource={DataSource.SearchCustom}
             queryTemplate={this.state.searchSettings.QueryTemplate}
-            rootWeb={this.state.rootWeb}
           />}
       </>
     );
