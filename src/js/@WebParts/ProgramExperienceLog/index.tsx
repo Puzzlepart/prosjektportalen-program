@@ -18,7 +18,8 @@ export default class ProgramExperienceLog extends React.Component<IProgramExperi
 
     public async componentDidMount() {
         try {
-            const searchSettings = await this.buildSearchSettingsFromStoredProjects();
+            const { items } = await common.getStoredProjectsListContext();
+            const searchSettings = await common.buildSearchSettingsFromStoredProjects(items, this.props.queryTemplate);
             this.setState({ searchSettings, isLoading: false });
         } catch (errorMessage) {
             this.setState({ errorMessage, isLoading: false });
@@ -50,25 +51,6 @@ export default class ProgramExperienceLog extends React.Component<IProgramExperi
                         queryTemplate={this.state.searchSettings.QueryTemplate} />}
             </>
         );
-    }
-
-    /**
-     * Build search settings from items in stored projects list
-     */
-    private async buildSearchSettingsFromStoredProjects(): Promise<IDataSourceSearchCustom> {
-        try {
-            const { items } = await common.getStoredProjectsListContext();
-            if (items.length === 0) {
-                return null;
-            }
-            const searchQuery = items.map(({ URL }) => `Path:"${URL}"`).join(" OR ");
-            return {
-                RowLimit: 500,
-                QueryTemplate: String.format(this.props.queryTemplate, searchQuery),
-            };
-        } catch (err) {
-            throw err;
-        }
     }
 
 }

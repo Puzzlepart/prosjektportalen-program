@@ -3,10 +3,8 @@ import { IProgramProjectStatsState } from "./IProgramProjectStatsState";
 import { IProgramProjectStatsProps, ProgramProjectStatsDefaultProps } from "./IProgramProjectStatsProps";
 import ProjectStats from "prosjektportalen/lib/WebParts/ProjectStats";
 import * as common from "../../@Common";
-import { Web } from "@pnp/sp";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
-import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
 
 export default class ProgramProjectStats extends React.Component<IProgramProjectStatsProps, IProgramProjectStatsState> {
     public static defaultProps = ProgramProjectStatsDefaultProps;
@@ -20,9 +18,8 @@ export default class ProgramProjectStats extends React.Component<IProgramProject
     public async componentDidMount() {
         try {
             const { items } = await common.getStoredProjectsListContext();
-            const searchSettings = await this.buildSearchSettingsFromStoredProjects(items);
-            const rootWeb = await new Web(_spPageContextInfo.siteAbsoluteUrl);
-            this.setState({ items, searchSettings, rootWeb, isLoading: false });
+            const searchSettings = await common.buildSearchSettingsFromStoredProjects(items, this.props.queryTemplate);
+            this.setState({ items, searchSettings, isLoading: false });
         } catch (errorMessage) {
             this.setState({ errorMessage, isLoading: false });
         }
@@ -53,29 +50,10 @@ export default class ProgramProjectStats extends React.Component<IProgramProject
                         viewSelectorEnabled={false}
                         renderCommandBar={false}
                         chartsConfigListName="Diagramkonfigurasjon for programmets prosjekter"
-                        rootWeb={this.state.rootWeb}
                         queryTemplate={this.state.searchSettings.QueryTemplate}
                     />}
             </>
         );
-    }
-
-    /**
- * Build search settings from items in stored projects list
- */
-    private async buildSearchSettingsFromStoredProjects(items: common.ProjectItem[]): Promise<IDataSourceSearchCustom> {
-        try {
-            if (items.length === 0) {
-                return null;
-            }
-            const searchQuery = items.map(({ URL }) => `Path:"${URL}"`).join(" OR ");
-            return {
-                RowLimit: 500,
-                QueryTemplate: String.format(this.props.queryTemplate, searchQuery),
-            };
-        } catch (err) {
-            throw err;
-        }
     }
 
 }
