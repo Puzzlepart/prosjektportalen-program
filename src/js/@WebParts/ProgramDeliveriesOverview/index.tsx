@@ -3,7 +3,6 @@ import IProgramDeliveriesOverviewProps, { ProgramDeliveriesOverviewDefaultProps 
 import IProgramDeliveriesOverviewState, { } from "./IProgramDeliveriesOverviewState";
 import DeliveriesOverview from "prosjektportalen/lib/WebParts/DeliveriesOverview";
 import * as common from "../../@Common";
-import DataSource from "prosjektportalen/lib/WebParts/DataSource";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 
@@ -48,7 +47,6 @@ export default class ProgramDeliveriesOverView extends React.Component<IProgramD
         <h1>Leveranseoversikt</h1>
         {(!this.state.isLoading && this.state.searchSettings) &&
           <DeliveriesOverview
-            dataSource={DataSource.SearchCustom}
             queryTemplate={this.state.searchSettings.QueryTemplate} />}
       </>
     );

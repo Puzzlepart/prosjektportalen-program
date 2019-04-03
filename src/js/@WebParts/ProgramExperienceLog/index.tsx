@@ -5,7 +5,6 @@ import { ExperienceLog } from "prosjektportalen/lib/WebParts";
 import * as common from "../../@Common";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
-import DataSource from "prosjektportalen/src/js/WebParts/DataSource";
 
 export default class ProgramExperienceLog extends React.Component<IProgramExperienceLogProps, IProgramExperienceLogState> {
     public static defaultProps = ProgramExperienceLogDefaultProps;
@@ -49,7 +48,6 @@ export default class ProgramExperienceLog extends React.Component<IProgramExperi
                 {(!this.state.isLoading && this.state.searchSettings) &&
                     <ExperienceLog
                         queryTemplate={this.state.searchSettings.QueryTemplate}
-                        dataSource={DataSource.SearchCustom}
                     />}
             </>
         );

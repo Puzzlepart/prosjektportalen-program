@@ -3,7 +3,6 @@ import IProgramResourceAllocationProps, { ProgramResourceAllocationDefaultProps 
 import { IProgramResourceAllocationState } from "./IProgramResourceAllocationState";
 import ResourceAllocation from "prosjektportalen/lib/WebParts/ResourceAllocation";
 import * as common from "../../@Common";
-import DataSource from "prosjektportalen/lib/WebParts/DataSource";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 
@@ -49,7 +48,6 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
         {(!this.state.isLoading && this.state.searchSettings) &&
           <ResourceAllocation
             searchConfiguration={this.props.searchConfiguration}
-            dataSource={DataSource.SearchCustom}
             queryTemplate={this.state.searchSettings.QueryTemplate}
           />}
       </>

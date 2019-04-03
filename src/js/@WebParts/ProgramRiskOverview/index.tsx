@@ -3,7 +3,6 @@ import IProgramRiskOverviewProps, { ProgramRiskOverviewDefaultProps } from "./IP
 import IProgramRiskOverviewState, { } from "./IProgramRiskOverviewState";
 import RiskMatrix from "prosjektportalen/lib/WebParts/RiskMatrix";
 import * as common from "../../@Common";
-import DataSource from "prosjektportalen/lib/WebParts/DataSource";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 
@@ -48,7 +47,6 @@ export default class ProgramRiskOverview extends React.Component<IProgramRiskOve
         <h1>Risikooversikt</h1>
         {(!this.state.isLoading && this.state.searchSettings) &&
           <RiskMatrix
-            dataSource={DataSource.SearchCustom}
             queryTemplate={this.state.searchSettings.QueryTemplate} />}
       </>
     );
