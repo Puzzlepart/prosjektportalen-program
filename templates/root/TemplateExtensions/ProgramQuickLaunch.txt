@@ -23,8 +23,28 @@
                         "Title": "Programportefølje"
                     },
                     {
+                        "Url": "SitePages/ProgramProjectStats.aspx",
+                        "Title": "Porteføljeinnsikt"
+                    },
+                    {
                         "Url": "SitePages/Program-gevinstoversikt.aspx",
-                        "Title": "Program-gevinstoversikt"
+                        "Title": "Gevinstoversikt"
+                    },
+                    {
+                        "Url": "SitePages/ProgramExperienceLog.aspx",
+                        "Title": "Erfaringslogg"
+                    },
+                    {
+                        "Url": "SitePages/Program-leveranseoversikt.aspx",
+                        "Title": "Leveranseoversikt"
+                    },
+                    {
+                        "Url": "SitePages/ProgramRiskOverview.aspx",
+                        "Title": "Risikooversikt"
+                    },
+                    {
+                        "Url": "SitePages/ProgramResourceAllocation.aspx",
+                        "Title": "Ressursallokering"
                     },
                     {
                         "Url": "SitePages/Tidslinje.aspx",
