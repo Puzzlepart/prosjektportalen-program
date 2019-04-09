@@ -7,60 +7,66 @@ Param(
     [switch]$UseWebLogin
 )
 
-if ($CurrentCredentials.IsPresent) {
-    Connect-PnPOnline -Url $Url -CurrentCredentials
-} elseif ($UseWebLogin.IsPresent) {
-    Connect-PnPOnline -Url $Url -UseWebLogin
-} else {
-    Connect-PnPOnline -Url $Url
+function Connect($Url) {
+    if ($CurrentCredentials.IsPresent) {
+        Connect-PnPOnline -Url $Url -CurrentCredentials
+    }
+    elseif ($UseWebLogin.IsPresent) {
+        Connect-PnPOnline -Url $Url -UseWebLogin
+    }
+    else {
+        Connect-PnPOnline -Url $Url
+    }
 }
-
-Set-PnPTraceLog -On -Level Debug
 
 <# Add ProgramProjectStats #>
-Get-PnPSubWebs | ForEach-Object {
-    Connect-PnPOnline -Url $_.Url
-    $serverRelativeUrl = $_.ServerRelativeUrl
-    $url = $serverRelativeUrl += "/SitePages/ProgramProjectStats.aspx"
-    Add-PnPWikiPage -PageUrl $url -Layout OneColumn
-    Add-PnPWebPartToWikiPage -ServerRelativePageUrl $url -Path ..\templates\root\WebPartGallery\ProgramProjectStats.webpart -Row 1 -Column 1
+function Add-MissingWebpart($Web, $WebpartName) {
+    if ($null -ne $WebpartName) {
+        Write-Host $WebpartName
+    }
+    else {
+        return $null
+    }
+    $serverRelativeUrl = $Web.ServerRelativeUrl
+    Connect -Url $Web.Url
+    if ($WebpartName -eq "DeliveriesOverview") {
+        $url = "$serverRelativeUrl/SitePages/Program-leveranseoversikt.aspx"
+    }
+    else {
+        $url = "$serverRelativeUrl/SitePages/Program$WebpartName.aspx"
+    }
+    Try {
+        Write-Host $url
+        Add-PnPWikiPage -PageUrl $url -Layout OneColumn
+        Add-PnPWebPartToWikiPage -ServerRelativePageUrl $url -Path "..\templates\root\WebPartGallery\Program$WebpartName.webpart" -Row 1 -Column 1
+    }
+    Catch {
+        Write-Host $_.Exception.Message
+    }
 }
 
-<# Add ProgramExperienceLog #>
-Get-PnPSubWebs | ForEach-Object {
-    Connect-PnPOnline -Url $_.Url
-    $serverRelativeUrl = $_.ServerRelativeUrl
-    $url = $serverRelativeUrl += "/SitePages/ProgramExperienceLog.aspx"
-    Add-PnPWikiPage -PageUrl $url -Layout OneColumn
-    Add-PnPWebPartToWikiPage -ServerRelativePageUrl $url -Path ..\templates\root\WebPartGallery\ProgramExperienceLog.webpart -Row 1 -Column 1
-}
+Connect -Url $Url
 
-<# Add ProgramDeliveriesOverview #>
-Get-PnPSubWebs | ForEach-Object {
-    Connect-PnPOnline -Url $_.Url
-    $serverRelativeUrl = $_.ServerRelativeUrl
-    $url = $serverRelativeUrl += "/SitePages/Program-leveranseoversikt.aspx"
-    Add-PnPWikiPage -PageUrl $url -Layout OneColumn
-    Add-PnPWebPartToWikiPage -ServerRelativePageUrl $url -Path ..\templates\root\WebPartGallery\ProgramDeliveriesOverview.webpart -Row 1 -Column 1
-}
+$missingWebParts = @("ProjectStats", "ExperienceLog", "DeliveriesOverview", "RiskOverview", "ResourceAllocation")
 
-<# Add ProgramRiskOverview #>
+<# Add Missing SitePages and web parts #>
 Get-PnPSubWebs | ForEach-Object {
-    Connect-PnPOnline -Url $_.Url
-    $serverRelativeUrl = $_.ServerRelativeUrl
-    $url = $serverRelativeUrl += "/SitePages/ProgramRiskOverview.aspx"
-    Add-PnPWikiPage -PageUrl $url -Layout OneColumn
-    Add-PnPWebPartToWikiPage -ServerRelativePageUrl $url -Path ..\templates\root\WebPartGallery\ProgramRiskOverview.webpart -Row 1 -Column 1
-}
+    $currentWeb = $_
+    Try {
 
-<# Add ProgramResourceAllocation #>
-Get-PnPSubWebs | ForEach-Object {
-    Connect-PnPOnline -Url $_.Url
-    $serverRelativeUrl = $_.ServerRelativeUrl
-    $url = $serverRelativeUrl += "/SitePages/ProgramResourceAllocation.aspx"
-    Add-PnPWikiPage -PageUrl $url -Layout OneColumn
-    Add-PnPWebPartToWikiPage -ServerRelativePageUrl $url -Path ..\templates\root\WebPartGallery\ProgramResourceAllocation.webpart -Row 1 -Column 1
+        $missingWebParts | ForEach-Object {
+            $webpartName = $_
+            Try {
+                Add-MissingWebpart -Web $currentWeb -WebpartName $webpartName
+            }
+            Catch {
+                Write-Host "Failed to add missing webpart"
+            }
+        }
+    }
+    Catch {
+        $_.Exception.Message
+    }
+    <# Update Navigation #>
+    Apply-PnPProvisioningTemplate -Path ./Navigation.xml
 }
-
-<# Update Navigation #>
-Apply-PnPProvisioningTemplate -Path ./Navigation.xml
