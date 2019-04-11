@@ -20,25 +20,31 @@ function Connect($Url) {
 }
 
 <# Add ProgramProjectStats #>
-function Add-MissingWebpart($Web, $WebpartName) {
-    if ($null -ne $WebpartName) {
-        Write-Host $WebpartName
-    }
-    else {
-        return $null
-    }
-    $serverRelativeUrl = $Web.ServerRelativeUrl
-    Connect -Url $Web.Url
+function Add-MissingWebpart($Web, $WebpartName, $RootWeb) {
+    $serverRelativeUrl = $RootWeb.ServerRelativeUrl
+    $subwebRelativeUrl = $Web.ServerRelativeUrl
+
     if ($WebpartName -eq "DeliveriesOverview") {
-        $url = "$serverRelativeUrl/SitePages/Program-leveranseoversikt.aspx"
+        $targetFileName = "Program-leveranseoversikt.aspx"
     }
     else {
-        $url = "$serverRelativeUrl/SitePages/Program$WebpartName.aspx"
+        $targetFileName = "Program$WebpartName.aspx"
     }
     Try {
-        Write-Host $url
-        Add-PnPWikiPage -PageUrl $url -Layout OneColumn
-        Add-PnPWebPartToWikiPage -ServerRelativePageUrl $url -Path "..\templates\root\WebPartGallery\Program$WebpartName.webpart" -Row 1 -Column 1
+        $file = Get-PnPFile -Url "$subwebRelativeUrl/SitePages/$targetFileName"
+        if ($null -eq $file) {   
+            Copy-PnPFile -SourceUrl "Resources/SitePage_OneColumn.txt" -TargetUrl "$subwebRelativeUrl/SitePages" -OverwriteIfAlreadyExists -Force
+            Rename-PnPFile -ServerRelativeUrl "$subwebRelativeUrl/SitePages/SitePage_OneColumn.txt" -TargetFileName $targetFileName -Force -Web $Web
+        }
+        $webparts = Get-PnPWebPart -ServerRelativePageUrl "$subwebRelativeUrl/SitePages/$targetFileName"
+        if ($null -ne $webparts) {
+            $webparts | ForEach-Object {
+                Remove-PnPWebPart -Identity $_.Id -ServerRelativePageUrl "$subwebRelativeUrl/SitePages/$targetFileName" -Web $Web
+            }
+        }
+        $xml = Get-PnPFile -Url "$serverRelativeUrl/_catalogs/wp/Program$WebpartName.webpart" -AsString
+        $url = "$subwebRelativeUrl/SitePages/$targetFileName"
+        Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $url -Xml $xml -ZoneId "Header" -ZoneIndex 1 -Web $Web
     }
     Catch {
         Write-Host $_.Exception.Message
@@ -49,6 +55,8 @@ Connect -Url $Url
 
 $missingWebParts = @("ProjectStats", "ExperienceLog", "DeliveriesOverview", "RiskOverview", "ResourceAllocation")
 
+$web = Get-PnPWeb
+
 <# Add Missing SitePages and web parts #>
 Get-PnPSubWebs | ForEach-Object {
     $currentWeb = $_
@@ -57,7 +65,7 @@ Get-PnPSubWebs | ForEach-Object {
         $missingWebParts | ForEach-Object {
             $webpartName = $_
             Try {
-                Add-MissingWebpart -Web $currentWeb -WebpartName $webpartName
+                Add-MissingWebpart -Web $currentWeb -WebpartName $webpartName -RootWeb $web
             }
             Catch {
                 Write-Host "Failed to add missing webpart"
@@ -68,5 +76,5 @@ Get-PnPSubWebs | ForEach-Object {
         $_.Exception.Message
     }
     <# Update Navigation #>
-    Apply-PnPProvisioningTemplate -Path ./Navigation.xml
+    Apply-PnPProvisioningTemplate -Path ./Navigation.xml -Web $currentWeb
 }
