@@ -35,7 +35,7 @@
                         "Title": "Erfaringslogg"
                     },
                     {
-                        "Url": "SitePages/Program-leveranseoversikt.aspx",
+                        "Url": "SitePages/ProgramDeliveriesOverview.aspx",
                         "Title": "Leveranseoversikt"
                     },
                     {
