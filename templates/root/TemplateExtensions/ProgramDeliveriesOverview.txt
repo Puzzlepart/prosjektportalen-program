@@ -3,12 +3,12 @@
         {
             "Folder": "SitePages",
             "Src": "{sitecollection}/Resources/SitePage_OneColumn.txt",
-            "Url": "Program-leveranseoversikt.aspx",
+            "Url": "ProgramDeliveriesOverview.aspx",
             "Overwrite": true,
             "RemoveExistingWebParts": true,
             "WebParts": [
                 {
-                    "Title": "Program-leveranseoversikt",
+                    "Title": "ProgramDeliveriesOverview,
                     "Zone": "LeftColumn",
                     "Order": 0,
                     "Contents": {
