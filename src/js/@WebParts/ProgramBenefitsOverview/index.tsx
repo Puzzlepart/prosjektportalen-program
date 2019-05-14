@@ -40,7 +40,7 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
                 </>
             );
         }
-        if (this.state.searchSettings === null) {
+        if (this.state.queryTemplate === null) {
             return (
                 <>
                     <h1>Gevinstoversikt</h1>
@@ -53,9 +53,8 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
                 <h1>Gevinstoversikt</h1>
                 {(!this.state.isLoading) &&
                     <BenefitsOverview
-                        queryTemplate={this.state.searchSettings.QueryTemplate}
-                        excelExportEnabled={this.props.excelExportEnabled}
-                    />}
+                        queryTemplate={this.state.queryTemplate}
+                        excelExportEnabled={this.props.excelExportEnabled} />}
             </>
         );
     }
