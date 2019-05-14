@@ -47,8 +47,8 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
         }
         return (
             <DynamicPortfolio
-                viewConfigList="Porteføljevisninger for programmets prosjekter"
-                viewSelectorEnabled={true}
+                defaultView={view}
+                viewSelectorEnabled={false}
                 searchBoxLabelText={strings.ProgramPortfolio_SearchBoxLabelText}
                 showCountText={strings.ProgramPortfolio_ShowCountText}
                 loadingText={strings.ProgramPortfolio_LoadingText} />
