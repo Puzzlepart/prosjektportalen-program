@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
-import IProgramPortfolioProps, { ProgramPortfolioDefaultProps } from "./IProgramPortfolioProps";
+import IProgramPortfolioProps from "./IProgramPortfolioProps";
 import IProgramPortfolioState, { } from "./IProgramPortfolioState";
 import DynamicPortfolio from "prosjektportalen/lib/WebParts/DynamicPortfolio";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
@@ -9,7 +9,6 @@ import * as strings from "../../strings";
 
 export default class ProgramPortfolio extends React.Component<IProgramPortfolioProps, IProgramPortfolioState> {
     public static displayName = "ProgramPortfolio";
-    public static defaultProps = ProgramPortfolioDefaultProps;
 
     /**
      * Constructor
