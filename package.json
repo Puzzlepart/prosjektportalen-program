@@ -74,7 +74,6 @@
         "path": "^0.12.7",
         "plugin-error": "^1.0.1",
         "prop-types": "^15.6.2",
-        "prosjektportalen": "link:C:/code/prosjektportalen/",
         "querystring": "^0.2.0",
         "raw-loader": "^1.0.0",
         "react": "16.3.2",
@@ -103,5 +102,8 @@
     "resolutions": {
         "@types/react": "^16.7.20",
         "@types/react-dom": "^16.0.11"
+    },
+    "dependencies": {
+        "prosjektportalen": "^2.5.5"
     }
 }
