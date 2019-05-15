@@ -3,7 +3,6 @@ import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBa
 import IProgramPortfolioProps, { ProgramPortfolioDefaultProps } from "./IProgramPortfolioProps";
 import IProgramPortfolioState, { } from "./IProgramPortfolioState";
 import DynamicPortfolio from "prosjektportalen/lib/WebParts/DynamicPortfolio";
-import { IDynamicPortfolioViewConfig } from "prosjektportalen/lib/WebParts/DynamicPortfolio/DynamicPortfolioConfiguration";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 import * as common from "../../@Common";
 import * as strings from "../../strings";
@@ -24,8 +23,8 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
 
     public async componentDidMount() {
         try {
-            const view = await this.buildViewFromStoredProjects();
-            this.setState({ view, isLoading: false });
+            const queryText = await this.buildQueryFromStoredProjects();
+            this.setState({ queryText, isLoading: false });
         } catch (errorMessage) {
             this.setState({ errorMessage, isLoading: false });
         }
@@ -35,20 +34,20 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
      * Renders the <ProgramPortfolio /> component
      */
     public render(): React.ReactElement<IProgramPortfolioProps> {
-        const { isLoading, errorMessage, view } = this.state;
+        const { isLoading, errorMessage, queryText } = this.state;
         if (isLoading) {
             return null;
         }
         if (errorMessage) {
             return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
         }
-        if (view === null) {
+        if (queryText === null) {
             return <NoStoredProjectsMessage />;
         }
         return (
             <DynamicPortfolio
-                defaultView={view}
-                viewSelectorEnabled={false}
+                queryText={queryText}
+                viewConfigList="Porteføljevisninger for programmets prosjekter"
                 searchBoxLabelText={strings.ProgramPortfolio_SearchBoxLabelText}
                 showCountText={strings.ProgramPortfolio_ShowCountText}
                 loadingText={strings.ProgramPortfolio_LoadingText} />
@@ -58,23 +57,18 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
     /**
      * Build search query from items in stored projects list
      */
-    private async buildViewFromStoredProjects(): Promise<IDynamicPortfolioViewConfig> {
+    private async buildQueryFromStoredProjects(): Promise<string> {
         try {
-            const { fields, refiners } = this.props;
             const { items } = await common.getStoredProjectsListContext();
             if (items.length === 0) {
                 return null;
             }
-            const searchQuery = items.map(({ URL }) => `Path:"${URL}"`).join(" OR ");
-            const queryTemplate = String.format(this.props.queryTemplate, searchQuery);
-            return { fields, refiners, queryTemplate };
+            const queryText = items.map(({ URL }) => `Path:"${URL}"`).join(" OR ");
+            return queryText;
         } catch (err) {
             throw err;
         }
     }
 }
 
-export {
-    IProgramPortfolioProps,
-    IProgramPortfolioState,
-};
+export { IProgramPortfolioProps, IProgramPortfolioState };
