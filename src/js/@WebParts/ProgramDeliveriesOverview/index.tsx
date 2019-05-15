@@ -46,8 +46,7 @@ export default class ProgramDeliveriesOverView extends React.Component<IProgramD
       <>
         <h1>Leveranseoversikt</h1>
         {(!this.state.isLoading && this.state.searchSettings) &&
-          <DeliveriesOverview
-            queryTemplate={this.state.searchSettings.QueryTemplate} />}
+          <DeliveriesOverview queryTemplate={this.state.searchSettings.QueryTemplate} />}
       </>
     );
   }
