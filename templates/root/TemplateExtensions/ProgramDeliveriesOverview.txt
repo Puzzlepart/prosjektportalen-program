@@ -8,7 +8,7 @@
             "RemoveExistingWebParts": true,
             "WebParts": [
                 {
-                    "Title": "ProgramDeliveriesOverview,
+                    "Title": "ProgramDeliveriesOverview",
                     "Zone": "LeftColumn",
                     "Order": 0,
                     "Contents": {
