@@ -3,6 +3,8 @@
     <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/ChartsConfig.xml" />
     <xi:include 
+        xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/ProgramChartsConfig.xml" />
+    <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/DataSources.xml" />
     <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/ListContentConfig.xml" />
@@ -12,6 +14,8 @@
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/DynamicPortfolioRefiners.xml" />
     <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/DynamicPortfolioViews.xml" />
+    <xi:include 
+        xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/ProgramDynamicPortfolioViews.xml" />
     <xi:include 
         xmlns:xi="http://www.w3.org/2001/XInclude" href="Objects/Lists/ProjectConfig.xml" />
     <xi:include 

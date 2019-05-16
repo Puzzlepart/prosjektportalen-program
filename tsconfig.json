@@ -13,7 +13,8 @@
         ],
         "types": [
             "sharepoint",
-            "react"
+            "react",
+            "node"
         ],
         "noImplicitAny": false,
         "allowUnreachableCode": false,

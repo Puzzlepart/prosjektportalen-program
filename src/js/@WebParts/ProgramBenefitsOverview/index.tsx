@@ -32,17 +32,30 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
     }
 
     public render() {
-        if (this.state.isLoading) {
-            return null;
-        }
         if (this.state.errorMessage) {
-            return <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>;
+            return (
+                <>
+                    <h1>Gevinstoversikt</h1>
+                    <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
+                </>
+            );
         }
         if (this.state.queryTemplate === null) {
-            return <NoStoredProjectsMessage />;
+            return (
+                <>
+                    <h1>Gevinstoversikt</h1>
+                    <NoStoredProjectsMessage />
+                </>
+            );
         }
         return (
-            <BenefitsOverview queryTemplate={this.state.queryTemplate} excelExportEnabled={this.props.excelExportEnabled} />
+            <>
+                <h1>Gevinstoversikt</h1>
+                {(!this.state.isLoading) &&
+                    <BenefitsOverview
+                        queryTemplate={this.state.queryTemplate}
+                        excelExportEnabled={this.props.excelExportEnabled} />}
+            </>
         );
     }
 

@@ -3,6 +3,7 @@ import * as strings from "../strings";
 import * as config from "../config";
 import ProjectItem from "./ProjectItem";
 import IStatusMessage from "./IStatusMessage";
+import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
 
 export function getTimestamp(): string {
     return `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
@@ -32,6 +33,24 @@ export async function getStoredProjectsListContext(maxLimit = config.Lists_Store
         }
         items = items.filter(i => i.URL !== null && i.URL.Url !== "").map(({ ID, URL }) => new ProjectItem(ID, URL.Description, URL.Url));
         return { list, properties, items };
+    } catch (err) {
+        throw err;
+    }
+}
+
+/**
+* Build search settings from items in stored projects list
+*/
+export async function buildSearchSettingsFromStoredProjects(items: ProjectItem[], queryTemplate: string): Promise<IDataSourceSearchCustom> {
+    try {
+        if (items.length === 0) {
+            return null;
+        }
+        const searchQuery = items.map(({ URL }) => `Path:"${URL}"`).join(" OR ");
+        return {
+            RowLimit: 500,
+            QueryTemplate: String.format(queryTemplate, searchQuery),
+        };
     } catch (err) {
         throw err;
     }

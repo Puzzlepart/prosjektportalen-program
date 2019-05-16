@@ -1,0 +1,21 @@
+{
+    "Files": [
+        {
+            "Folder": "SitePages",
+            "Src": "{sitecollection}/Resources/SitePage_OneColumn.txt",
+            "Url": "ProgramResourceAllocation.aspx",
+            "Overwrite": true,
+            "RemoveExistingWebParts": true,
+            "WebParts": [
+                {
+                    "Title": "Ressursallokering ",
+                    "Zone": "LeftColumn",
+                    "Order": 0,
+                    "Contents": {
+                        "FileSrc": "{wpgallery}/ProgramResourceAllocation.webpart"
+                    }
+                }
+            ]
+        }
+    ]
+}
