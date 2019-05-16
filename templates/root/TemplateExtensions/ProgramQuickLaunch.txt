@@ -92,8 +92,8 @@
                         "Title": "Gevinstanalyse og gevinstrealiseringsplan"
                     },
                     {
-                        "Url": "Lists/Gevinstsoppflging/AllItems.aspx",
-                        "Title": "Gevinstsoppfølging"
+                        "Url": "Lists/Gevinstoppflging/AllItems.aspx",
+                        "Title": "Gevinstoppfølging"
                     }
                 ]
             },
