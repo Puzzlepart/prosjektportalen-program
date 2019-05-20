@@ -1,7 +1,7 @@
 import WebPartComponent from "prosjektportalen/lib/WebParts/WebPartComponent";
 import ProgramAddProject, { IProgramAddProjectProps } from "./ProgramAddProject";
 import ProgramProjectsTimelineSync, { IProgramProjectsTimelineSyncProps } from "./ProgramProjectsTimelineSync";
-// import ProgramProjectStatus, { IProgramProjectStatusProps } from "./ProgramProjectStatus";
+import ProgramProjectStatus, { IProgramProjectStatusProps } from "./ProgramProjectStatus";
 import ProgramProjectStats from "./ProgramProjectStats";
 import ProgramPortfolio, { IProgramPortfolioProps } from "./ProgramPortfolio";
 import ProgramDeliveriesOverview, { IProgramDeliveriesOverviewProps } from "./ProgramDeliveriesOverview";
@@ -21,7 +21,7 @@ const WebPartComponents: WebPartComponent<any>[] = [
     new WebPartComponent<IProgramDeliveriesOverviewProps>(ProgramDeliveriesOverview, "pp-program-deliveriesoverview", {}),
     new WebPartComponent<IProgramExperienceLogProps>(ProgramExperienceLog, "pp-program-experiencelog", {}),
     new WebPartComponent<IProgramRiskOverviewProps>(ProgramRiskOverview, "pp-program-riskoverview", {}),
-    // new WebPartComponent<IProgramProjectStatusProps>(ProgramProjectStatus, "pp-program-projectstatus", {}),
+    new WebPartComponent<IProgramProjectStatusProps>(ProgramProjectStatus, "pp-program-projectstatus", {}),
     new WebPartComponent<IProgramResourceAllocationProps>(ProgramResourceAllocation, "pp-program-resourceAllocation", {}),
     new WebPartComponent<IProgramPortfolioProps>(ProgramPortfolio, "pp-program-portfolio", {}),
     new WebPartComponent<IProgramBenefitsOverviewProps>(ProgramBenefitsOverview, "pp-program-benefitsoverview", {}),
