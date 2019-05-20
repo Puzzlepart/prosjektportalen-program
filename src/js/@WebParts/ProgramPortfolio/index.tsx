@@ -49,6 +49,7 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
                 viewConfigList="Porteføljevisninger for programmets prosjekter"
                 searchBoxLabelText={strings.ProgramPortfolio_SearchBoxLabelText}
                 showCountText={strings.ProgramPortfolio_ShowCountText}
+                viewSelectorEnabled={false}
                 loadingText={strings.ProgramPortfolio_LoadingText} />
         );
     }
