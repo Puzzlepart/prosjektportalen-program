@@ -29,7 +29,7 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
     if (this.state.errorMessage) {
       return (
         <>
-          <h1>Ressursallokering</h1>
+          <h2>Ressursallokering</h2>
           <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
         </>
       );
@@ -37,14 +37,14 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
     if (this.state.searchSettings === null) {
       return (
         <>
-          <h1>Ressursallokering</h1>
+          <h2>Ressursallokering</h2>
           <NoStoredProjectsMessage />
         </>
       );
     }
     return (
       <>
-        <h1>Ressursallokering</h1>
+        <h2>Ressursallokering</h2>
         {(!this.state.isLoading && this.state.searchSettings) &&
           <ResourceAllocation
             searchConfiguration={this.props.searchConfiguration}

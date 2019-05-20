@@ -29,7 +29,7 @@ export default class ProgramDeliveriesOverView extends React.Component<IProgramD
     if (this.state.errorMessage) {
       return (
         <>
-          <h1>Leveranseoversikt</h1>
+          <h2>Leveranseoversikt</h2>
           <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
         </>
       );
@@ -37,14 +37,14 @@ export default class ProgramDeliveriesOverView extends React.Component<IProgramD
     if (this.state.searchSettings === null) {
       return (
         <>
-          <h1>Leveranseoversikt</h1>
+          <h2>Leveranseoversikt</h2>
           <NoStoredProjectsMessage />
         </>
       );
     }
     return (
       <>
-        <h1>Leveranseoversikt</h1>
+        <h2>Leveranseoversikt</h2>
         {(!this.state.isLoading && this.state.searchSettings) &&
           <DeliveriesOverview queryTemplate={this.state.searchSettings.QueryTemplate} />}
       </>

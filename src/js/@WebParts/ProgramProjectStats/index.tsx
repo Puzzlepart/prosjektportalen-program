@@ -29,7 +29,7 @@ export default class ProgramProjectStats extends React.Component<IProgramProject
         if (this.state.errorMessage) {
             return (
                 <>
-                    <h1>Porteføljeinnsikt</h1>
+                    <h2>Porteføljeinnsikt</h2>
                     <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
                 </>
             );
@@ -37,14 +37,14 @@ export default class ProgramProjectStats extends React.Component<IProgramProject
         if (!this.state.items || this.state.items.length === 0) {
             return (
                 <>
-                    <h1>Porteføljeinnsikt</h1>
+                    <h2>Porteføljeinnsikt</h2>
                     <NoStoredProjectsMessage />
                 </>
             );
         }
         return (
             <>
-                <h1>Porteføljeinnsikt</h1>
+                <h2>Porteføljeinnsikt</h2>
                 {(!this.state.isLoading) &&
                     <ProjectStats
                         viewSelectorEnabled={false}

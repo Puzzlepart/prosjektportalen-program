@@ -35,7 +35,7 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
         if (this.state.errorMessage) {
             return (
                 <>
-                    <h1>Gevinstoversikt</h1>
+                    <h2>Gevinstoversikt</h2>
                     <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
                 </>
             );
@@ -43,14 +43,14 @@ export default class ProgramBenefitsOverview extends React.Component<IProgramBen
         if (this.state.queryTemplate === null) {
             return (
                 <>
-                    <h1>Gevinstoversikt</h1>
+                    <h2>Gevinstoversikt</h2>
                     <NoStoredProjectsMessage />
                 </>
             );
         }
         return (
             <>
-                <h1>Gevinstoversikt</h1>
+                <h2>Gevinstoversikt</h2>
                 {(!this.state.isLoading) &&
                     <BenefitsOverview
                         queryTemplate={this.state.queryTemplate}

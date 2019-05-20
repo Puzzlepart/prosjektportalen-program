@@ -29,7 +29,7 @@ export default class ProgramRiskOverview extends React.Component<IProgramRiskOve
     if (this.state.errorMessage) {
       return (
         <>
-          <h1>Risikooversikt</h1>
+          <h2>Risikooversikt</h2>
           <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
         </>
       );
@@ -37,14 +37,14 @@ export default class ProgramRiskOverview extends React.Component<IProgramRiskOve
     if (this.state.searchSettings === null) {
       return (
         <>
-          <h1>Risikooversikt</h1>
+          <h2>Risikooversikt</h2>
           <NoStoredProjectsMessage />
         </>
       );
     }
     return (
       <>
-        <h1>Risikooversikt</h1>
+        <h2>Risikooversikt</h2>
         {(!this.state.isLoading && this.state.searchSettings) &&
           <RiskMatrix
             queryTemplate={this.state.searchSettings.QueryTemplate} />}
