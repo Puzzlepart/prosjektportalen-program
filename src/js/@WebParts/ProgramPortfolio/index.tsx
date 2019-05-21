@@ -47,6 +47,7 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
             <DynamicPortfolio
                 queryText={queryText}
                 viewConfigList="Porteføljevisninger for programmets prosjekter"
+                newViewUrl="Lists/ProgramDynamicPortfolioViews/NewForm.aspx"
                 searchBoxLabelText={strings.ProgramPortfolio_SearchBoxLabelText}
                 showCountText={strings.ProgramPortfolio_ShowCountText}
                 viewSelectorEnabled={false}
