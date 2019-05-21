@@ -50,7 +50,7 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
                 newViewUrl="Lists/ProgramDynamicPortfolioViews/NewForm.aspx"
                 searchBoxLabelText={strings.ProgramPortfolio_SearchBoxLabelText}
                 showCountText={strings.ProgramPortfolio_ShowCountText}
-                viewSelectorEnabled={false}
+                viewSelectorEnabled={true}
                 loadingText={strings.ProgramPortfolio_LoadingText} />
         );
     }
