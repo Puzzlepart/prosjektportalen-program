@@ -1,5 +1,5 @@
 dependencies:
-  prosjektportalen: 2.5.6
+  prosjektportalen: 2.5.7
 devDependencies:
   '@babel/core': 7.4.4
   '@babel/polyfill': 7.4.4
@@ -6188,7 +6188,7 @@ packages:
       react-is: 16.8.6
     resolution:
       integrity: sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
-  /prosjektportalen/2.5.6:
+  /prosjektportalen/2.5.7:
     dependencies:
       '@pnp/common': 1.3.2
       '@pnp/logging': 1.3.2
@@ -6204,7 +6204,7 @@ packages:
       react: '>=15'
       react-dom: '>=15'
     resolution:
-      integrity: sha512-od/Ml2v1XRe3WUGQWGFcq6Cu/CNhUoPvJUMTGVoJNp99W1gX5W8GRgAbMw00FykCjXAzHgTD25zt20lTfHVS7Q==
+      integrity: sha512-saN6fz+IuoJm99yHxrJz/3KUEJaa2FOvcnFkVaVcVvfz9IvBi8K0KIY+x4TuxLdAMzsNfvR4TSVz4qSrTGgN9A==
   /prr/1.0.1:
     dev: true
     resolution:
@@ -8286,7 +8286,7 @@ specifiers:
   path: ^0.12.7
   plugin-error: ^1.0.1
   prop-types: ^15.6.2
-  prosjektportalen: ^2.5.6
+  prosjektportalen: ^2.5.7
   querystring: ^0.2.0
   raw-loader: ^1.0.0
   react: 16.3.2
