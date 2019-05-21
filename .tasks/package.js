@@ -7,7 +7,6 @@ var gulp = require("gulp"),
     pluginError = require('plugin-error'),
     stylus = require('gulp-stylus'),
     powershell = require("./utils/powershell.js"),
-    settings = require('./@settings.js'),
     configuration = require('./@configuration.js');
 
 gulp.task("packageStyles", (done) => {

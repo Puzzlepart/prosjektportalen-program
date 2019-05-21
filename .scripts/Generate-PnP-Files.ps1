@@ -1,5 +1,5 @@
-$TemplatesPath = "./_templates"
-$TemplatesOutputPath = "./dist/templates"
+$TemplatesPath = ".\_templates"
+$TemplatesOutputPath = ".\dist\templates"
 
 mkdir $TemplatesOutputPath -Force
 

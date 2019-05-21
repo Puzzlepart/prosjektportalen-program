@@ -14,7 +14,7 @@ gulp.task("copyBuild", () => {
 });
 
 gulp.task("copyScripts", () => {
-    return gulp.src(configuration.PATHS.SCRIPTS, { removeBOM: false })
+    return gulp.src(configuration.PATHS.SCRIPTSTOCOPY, { removeBOM: false })
         .pipe(gulp.dest(path.join(configuration.PATHS.DIST, "scripts")))
 });
 
@@ -28,9 +28,9 @@ gulp.task("zipDist", (done) => {
 });
 
 gulp.task("release", (done) => {
-    runSequence("copyPnpTemplates", "stampVersionToTemplates", "packagePnpTemplates", "copyBuild", "copyScripts", "stampVersionToDist", "zipDist", "clean", done);
+    runSequence("copyPnpTemplates", "stampVersionToTemplates", "packagePnpTemplates", "copyScripts", "copyBuild", "stampVersionToDist", "zipDist", "clean", done);
 });
 
 gulp.task("release-dev", (done) => {
-    runSequence("copyPnpTemplates", "stampVersionToTemplates", "packagePnpTemplatesDev", "copyBuild", "copyScripts", "stampVersionToDist", "zipDist", "clean", done);
+    runSequence("copyPnpTemplates", "stampVersionToTemplates", "packagePnpTemplatesDev", "copyScripts", "copyBuild", "stampVersionToDist", "zipDist", "clean", done);
 });
