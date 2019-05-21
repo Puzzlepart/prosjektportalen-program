@@ -1,6 +1,6 @@
 'use strict';
 var gulp = require("gulp"),
-    color = require('gulp-color'),
+    path = require("path"),
     zip = require("gulp-zip"),
     format = require("string-format"),
     runSequence = require("run-sequence"),
@@ -13,6 +13,11 @@ gulp.task("copyBuild", () => {
         .pipe(gulp.dest(configuration.PATHS.DIST))
 });
 
+gulp.task("copyScripts", () => {
+    return gulp.src(configuration.PATHS.SCRIPTS, { removeBOM: false })
+        .pipe(gulp.dest(path.join(configuration.PATHS.DIST, "scripts")))
+});
+
 gulp.task("zipDist", (done) => {
     git.hash(hash => {
         gulp.src(format("{0}/**/*", configuration.PATHS.DIST))
@@ -23,9 +28,9 @@ gulp.task("zipDist", (done) => {
 });
 
 gulp.task("release", (done) => {
-    runSequence("copyPnpTemplates", "stampVersionToTemplates", "packagePnpTemplates", "copyBuild", "stampVersionToDist", "zipDist", "clean", done);
+    runSequence("copyPnpTemplates", "stampVersionToTemplates", "packagePnpTemplates", "copyBuild", "copyScripts", "stampVersionToDist", "zipDist", "clean", done);
 });
 
 gulp.task("release-dev", (done) => {
-    runSequence("copyPnpTemplates", "stampVersionToTemplates", "packagePnpTemplatesDev", "copyBuild", "stampVersionToDist", "zipDist", "clean", done);
+    runSequence("copyPnpTemplates", "stampVersionToTemplates", "packagePnpTemplatesDev", "copyBuild", "copyScripts", "stampVersionToDist", "zipDist", "clean", done);
 });
