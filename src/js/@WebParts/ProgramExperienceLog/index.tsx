@@ -29,7 +29,7 @@ export default class ProgramExperienceLog extends React.Component<IProgramExperi
         if (this.state.errorMessage) {
             return (
                 <>
-                    <h1>Erfaringslogg</h1>
+                    <h2>Erfaringslogg</h2>
                     <MessageBar messageBarType={MessageBarType.error}>{this.state.errorMessage}</MessageBar>
                 </>
             );
@@ -37,14 +37,14 @@ export default class ProgramExperienceLog extends React.Component<IProgramExperi
         if (this.state.searchSettings === null) {
             return (
                 <>
-                    <h1>Erfaringslogg</h1>
+                    <h2>Erfaringslogg</h2>
                     <NoStoredProjectsMessage />
                 </>
             );
         }
         return (
             <>
-                <h1>Erfaringslogg</h1>
+                <h2>Erfaringslogg</h2>
                 {(!this.state.isLoading && this.state.searchSettings) &&
                     <ExperienceLog
                         queryTemplate={this.state.searchSettings.QueryTemplate}
