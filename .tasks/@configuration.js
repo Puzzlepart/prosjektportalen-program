@@ -11,7 +11,7 @@ module.exports = {
         SOURCE_GLOB: "./src/**/*.ts*",
         STYLES_GLOB: "./src/**/*.styl",
         STYLES_MAIN: ["./src/*/pp.program.styl"],
-        SCRIPTS: "./.scripts",
+        SCRIPTS: "./.scripts/**/*",
         RELEASE: "./release",
         BUILD_GLOB: "./build/**/*",
         TEMPLATES: "./templates",

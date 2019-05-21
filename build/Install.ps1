@@ -43,6 +43,9 @@ Param(
     [string]$Logging = "File"
 )
 
+# Fix encoding issues of scripts
+Get-ChildItem .\scripts\* -Recurse *.ps1 | % { $content=$_ | Get-Content; Set-Content -PassThru $_.FullName $content -Encoding UTF8 -Force} > $null
+
 . ./SharedFunctions.ps1
 
 # Handling credentials
@@ -52,7 +55,7 @@ if ($PSCredential -ne $null) {
 elseif ($GenericCredential -ne $null -and $GenericCredential -ne "") {
     $Credential = Get-PnPStoredCredential -Name $GenericCredential -Type PSCredential 
 }
-elseif ($Credential -eq $null -and -not $UseWebLogin.IsPresent -and -not $CurrentCredentials.IsPresent) {
+elseif ($null -eq $Credential -and -not $UseWebLogin.IsPresent -and -not $CurrentCredentials.IsPresent) {
     $Credential = (Get-Credential -Message "Please enter your username and password")
 }
 
@@ -67,7 +70,7 @@ function Start-Install() {
     if (-not $CurrentPPVersion) {
         $CurrentPPVersion = "N/A"
 
-        if ($ProjectPortalReleasePath -eq $null) {
+        if ($null -eq $ProjectPortalReleasePath) {
             Write-Host "Project Portal is not installed on the specified URL. You need to specify ProjectPortalReleasePath to install Project Portal first." -ForegroundColor Red
             exit 1 
         }
