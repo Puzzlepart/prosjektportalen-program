@@ -4,10 +4,11 @@
     [Parameter(Mandatory = $false, HelpMessage = "Use current credentials?")]
     [switch]$CurrentCredentials,
     [Parameter(Mandatory = $false, HelpMessage = "Use Web Login?")]
-    [switch]$UseWebLogin
+    [switch]$UseWebLogin,
+    [Parameter(Mandatory = $false, HelpMessage = "Stored credential from Windows Credential Manager")]
+    [string]$GenericCredential
 )
 
-<# Add ProgramProjectStats #>
 function Add-MissingWebpart($Web, $WebpartName, $WebpartFilename, $RootWeb) {
     $serverRelativeUrl = $RootWeb.ServerRelativeUrl
     $subwebRelativeUrl = $Web.ServerRelativeUrl
@@ -25,13 +26,16 @@ function Add-MissingWebpart($Web, $WebpartName, $WebpartFilename, $RootWeb) {
         }
         $xml = Get-PnPFile -Url "$serverRelativeUrl/_catalogs/wp/Program$WebpartFilename.webpart" -AsString
         $url = "$subwebRelativeUrl/SitePages/Program$WebpartFilename.aspx"
-        Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $url -Xml $xml -ZoneId "Header" -ZoneIndex 1 -Web $Web
+        Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $url -Xml $xml -ZoneId "MainColumn" -ZoneIndex 1 -Web $Web
 
-        $navNode = Get-PnPNavigationNode -Web $Web | Where-Object { $_.Title -Match $WebpartName }
-        if ($null -eq $navNode) {
-            $navParent = Get-PnPNavigationNode -Web $Web | Where-Object { $_.Title -Match "Programmets prosjekter" }
-            Add-PnPNavigationNode -Location "QuickLaunch" -Title $WebpartName -Parent $navParent.Id -Url "$subwebRelativeUrl/SitePages/Program$WebpartFilename.aspx" -Web $Web | Out-Null
-        } 
+        $navParent = Get-PnPNavigationNode -Web $Web | Where-Object { $_.Title -Eq "Programmets prosjekter" }
+        if ($null -ne $navParent) {
+            $navSiblings = Get-PnPProperty -ClientObject $navParent -Property "Children" 
+            $navNode = $navSiblings | Where-Object { $_.Title -Eq $WebpartName }
+            if ($null -eq $navNode) {            
+                Add-PnPNavigationNode -Location "QuickLaunch" -Title $WebpartName -Parent $navParent.Id -Url "$subwebRelativeUrl/SitePages/Program$WebpartFilename.aspx" -Web $Web | Out-Null
+            } 
+        }
     }
     Catch {
         Write-Host $_.Exception.Message
@@ -40,16 +44,16 @@ function Add-MissingWebpart($Web, $WebpartName, $WebpartFilename, $RootWeb) {
 
 if ($CurrentCredentials.IsPresent) {
     Connect-PnPOnline -Url $Url -CurrentCredentials
-}
-elseif ($UseWebLogin.IsPresent) {
+} elseif ($UseWebLogin.IsPresent) {
     Connect-PnPOnline -Url $Url -UseWebLogin
-}
-else {
+} elseif ($GenericCredential -ne $null) {
+    Connect-PnPOnline -Url $Url -Credentials $GenericCredential
+} else {
     Connect-PnPOnline -Url $Url
 }
 
 $missingWebParts = @(
-    @{Filename = "ProjectStats"; Name = "Porteføljeinnsikt"}, 
+    @{Filename = "ProjectStats"; Name = [uri]::UnescapeDataString("Portef%C3%B8ljeinnsikt")}, 
     @{Filename = "ExperienceLog"; Name = "Erfaringslogg"},
     @{Filename = "DeliveriesOverview"; Name = "Leveranseoversikt"}, 
     @{Filename = "RiskOverview"; Name = "Risikooversikt"},
@@ -57,12 +61,12 @@ $missingWebParts = @(
 
 $web = Get-PnPWeb
 
-<# Add Missing SitePages and web parts #>
 $i = 0
 $subwebs = Get-PnPSubWebs
-Write-Host "Adding missing pages and web parts." -ForegroundColor Green
+Write-Host "Adding missing pages and web parts" -ForegroundColor Green
 $subwebs | ForEach-Object {
     Write-Progress -Id 1 -Activity "Updating programs" -Status "$i/$($subwebs.Count)" -PercentComplete (($i / $subwebs.Count) * 100)
+    Write-Host Processing site $_.Title
     $currentWeb = $_
     Try {
         $j = 0
