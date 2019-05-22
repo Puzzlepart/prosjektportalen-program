@@ -43,6 +43,8 @@ Param(
     [string]$Logging = "File"
 )
 
+$ErrorActionPreference = "Stop"
+
 # Fix encoding issues of scripts
 Get-ChildItem .\scripts\* -Recurse *.ps1 | % { $content=$_ | Get-Content; Set-Content -PassThru $_.FullName $content -Encoding UTF8 -Force} > $null
 
