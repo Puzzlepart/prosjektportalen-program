@@ -1,7 +1,6 @@
 {
     "Navigation": {
-        "QuickLaunch": [
-            {
+        "QuickLaunch": [{
                 "Url": "SitePages/ProjectHome.aspx",
                 "Title": "Hjem",
                 "IgnoreExisting": true
@@ -13,26 +12,33 @@
             {
                 "Url": "Lists/Programmets prosjekter/AllItems.aspx",
                 "Title": "Programmets prosjekter",
-                "Children": [
-                    {
+                "Children": [{
                         "Url": "SitePages/Legg til prosjekt.aspx",
                         "Title": "Legg til prosjekt"
                     },
                     {
                         "Url": "SitePages/Programportefolje.aspx",
-                        "Title": "Programportefølje"
+                        "Title": "Porteføljeversikt"
+                    },
+                    {
+                        "Url": "SitePages/ProgramProjectStatus.aspx",
+                        "Title": "Prosjektenes status"
+                    },
+                    {
+                        "Url": "SitePages/Tidslinje.aspx",
+                        "Title": "Tidslinje"
                     },
                     {
                         "Url": "SitePages/ProgramProjectStats.aspx",
-                        "Title": "Porteføljeinnsikt"
-                    },
-                    {
-                        "Url": "SitePages/Program-gevinstoversikt.aspx",
-                        "Title": "Gevinstoversikt"
+                        "Title": "Visuell fremstilling"
                     },
                     {
                         "Url": "SitePages/ProgramExperienceLog.aspx",
                         "Title": "Erfaringslogg"
+                    },
+                    {
+                        "Url": "SitePages/Program-gevinstoversikt.aspx",
+                        "Title": "Gevinstoversikt"
                     },
                     {
                         "Url": "SitePages/ProgramDeliveriesOverview.aspx",
@@ -45,27 +51,16 @@
                     {
                         "Url": "SitePages/ProgramResourceAllocation.aspx",
                         "Title": "Ressursallokering"
-                    },
-                    {
-                        "Url": "SitePages/Tidslinje.aspx",
-                        "Title": "Tidslinje"
-                    },
-                    {
-                        "Url": "SitePages/ProgramProjectStatus.aspx",
-                        "Title": "Prosjektstatus",
-                        "IgnoreExisting": true
                     }
                 ]
             },
             {
                 "Url": "Lists/Oppgaver/AllItems.aspx",
                 "Title": "Oppgaver",
-                "Children": [
-                    {
-                        "Url": "SitePages/Assigned.aspx",
-                        "Title": "Mine prosjektelementer"
-                    }
-                ]
+                "Children": [{
+                    "Url": "SitePages/Assigned.aspx",
+                    "Title": "Mine prosjektelementer"
+                }]
             },
             {
                 "Url": "Delte%20dokumenter/Forms/AllItems.aspx",
@@ -80,16 +75,23 @@
                 "Title": "Programleveranser"
             },
             {
+                "Url": "Lists/Ressursallokering/AllItems.aspx",
+                "Title": "Ressursallokering"
+            },
+            {
                 "Url": "SitePages/GainsOverview.aspx",
                 "Title": "Gevinstoversikt",
-                "Children": [
-                    {
+                "Children": [{
                         "Url": "Lists/Endringsanalyse/AllItems.aspx",
                         "Title": "Endringsanalyse"
                     },
                     {
                         "Url": "Lists/Gevinstanalyse%20og%20gevinstrealiseringsplan/AllItems.aspx",
                         "Title": "Gevinstanalyse og gevinstrealiseringsplan"
+                    },
+                    {
+                        "Url": "Lists/Mleindikatorer/AllItems.aspx",
+                        "Title": "Måleindikatorer"
                     },
                     {
                         "Url": "Lists/Gevinstoppflging/AllItems.aspx",
