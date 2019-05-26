@@ -143,7 +143,7 @@ function Start-Install() {
     try {
         Connect-SharePoint $AssetsUrl
         Write-Host "Deploying required scripts and styling.. "
-        Apply-Template -Template "assets" -Localized -Parameters $MergedParameters
+        Apply-Template -Template "assets" -Parameters $MergedParameters
         Write-Host "DONE"
         Disconnect-PnPOnline
     }
@@ -189,7 +189,7 @@ function Start-Install() {
     try {
         Connect-SharePoint $Url 
         Write-Host "Updating web property bag..."
-        Apply-Template -Template "root" -Localized -Handlers PropertyBagEntries -Parameters $MergedParameters
+        Apply-Template -Template "root" -Handlers PropertyBagEntries -Parameters $MergedParameters
         Write-Host ""
         Disconnect-PnPOnline
     }
