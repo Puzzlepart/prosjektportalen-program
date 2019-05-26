@@ -29,11 +29,15 @@ function Merge-Hashtables {
 }
 
 # Apply tepmplate
-function Apply-Template([string]$Template, [switch]$Localized, $Handlers = "All", $ExcludeHandlers, [HashTable]$Parameters = @{}) {    
-    if ($ExcludeHandlers.IsPresent) {
-        Apply-PnPProvisioningTemplate ".\templates\$($Template).pnp" -Parameters $Parameters -Handlers $Handlers -ExcludeHandlers $ExcludeHandlers
+function Apply-Template([string]$Template, [switch]$Localized, [OfficeDevPnP.Core.Framework.Provisioning.Model.Handlers]$Handlers = "All", [OfficeDevPnP.Core.Framework.Provisioning.Model.Handlers]$ExcludeHandlers, [HashTable]$Parameters = @{}) {    
+    $Language = Get-WebLanguage -ctx (Get-PnPContext)
+    if ($Localized.IsPresent) {
+        $Template = "$($Template)-$($Language)"
+    }
+    if ($ExcludeHandlers -ne $null) {
+        Apply-PnPProvisioningTemplate ".\templates\$($Template).pnp" -Parameters $MergedParameters -ExcludeHandlers $ExcludeHandlers
     } else {
-        Apply-PnPProvisioningTemplate ".\templates\$($Template).pnp" -Parameters $Parameters -Handlers $Handlers
+        Apply-PnPProvisioningTemplate ".\templates\$($Template).pnp" -Parameters $MergedParameters -Handlers $Handlers
     }
 }
 

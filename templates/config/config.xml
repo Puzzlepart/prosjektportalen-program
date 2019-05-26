@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
 <pnp:Provisioning 
     xmlns:pnp="http://schemas.dev.office.com/PnP/2018/01/ProvisioningSchema">
-    <pnp:Preferences></pnp:Preferences>
+    <pnp:Preferences>
+        <pnp:Parameters>
+            <pnp:Parameter Key="DataSourceSiteUrl">{sitecollection}</pnp:Parameter>
+        </pnp:Parameters>
+    </pnp:Preferences>
     <pnp:Templates ID="CONTAINER-PP-PROGRAM">
         <pnp:ProvisioningTemplate ID="TEMPLATE-PP-PROGRAM-CONFIG" Version="0">
             <xi:include 

@@ -40,7 +40,9 @@ Param(
     [switch]$SkipDefaultConfig,
     [Parameter(Mandatory = $false)]
     [ValidateSet('None', 'File', 'Host')]
-    [string]$Logging = "File"
+    [string]$Logging = "File",
+    [Parameter(Mandatory = $false)]
+    [Hashtable]$Parameters
 )
 
 $ErrorActionPreference = "Stop"
@@ -64,6 +66,10 @@ elseif ($null -eq $Credential -and -not $UseWebLogin.IsPresent -and -not $Curren
 if (-not $AssetsUrl) {
     $AssetsUrl = $Url
 }
+
+$AssetsUrlParam = Get-SecondaryUrlAsParam -RootUrl $Url -SecondaryUrl $AssetsUrl
+
+$MergedParameters = (@{"AssetsSiteUrl" = $AssetsUrlParam},$Parameters | Merge-Hashtables)
 
 # Start installation
 function Start-Install() {
@@ -137,7 +143,7 @@ function Start-Install() {
     try {
         Connect-SharePoint $AssetsUrl
         Write-Host "Deploying required scripts and styling.. "
-        Apply-Template -Template "assets" -Localized
+        Apply-Template -Template "assets" -Localized -Parameters $MergedParameters
         Write-Host "DONE"
         Disconnect-PnPOnline
     }
@@ -152,7 +158,7 @@ function Start-Install() {
     try {     
         Connect-SharePoint $Url 
         Write-Host "Deploying root-package with fields, content types, lists and pages..."
-        Apply-Template -Template root -ExcludeHandlers PropertyBagEntries
+        Apply-Template -Template root -ExcludeHandlers PropertyBagEntries -Parameters $MergedParameters
         Write-Host ""
         Disconnect-PnPOnline
     }
@@ -169,7 +175,7 @@ function Start-Install() {
         try {
             Connect-SharePoint $Url 
             Write-Host "Deploying default config.."
-            Apply-Template -Template config
+            Apply-Template -Template config -Parameters $MergedParameters
             Write-Host ""
             Disconnect-PnPOnline
         }
@@ -183,7 +189,7 @@ function Start-Install() {
     try {
         Connect-SharePoint $Url 
         Write-Host "Updating web property bag..."
-        Apply-Template -Template "root" -Localized -Handlers PropertyBagEntries
+        Apply-Template -Template "root" -Localized -Handlers PropertyBagEntries -Parameters $MergedParameters
         Write-Host ""
         Disconnect-PnPOnline
     }
