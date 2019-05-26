@@ -1,4 +1,4 @@
-<#
+﻿<#
 
 .SYNOPSIS
 This script will install Program to a site collection
@@ -123,7 +123,7 @@ function Start-Install() {
             Set-Location $ProjectPortalReleasePath
             if ($Upgrade.IsPresent) {
                 Write-Host "Upgrading Project Portal (estimated approx. 15 minutes)..."
-                .\Upgrade.ps1 -Url $Url -CurrentCredentials:$CurrentCredentials -UseWebLogin:$UseWebLogin -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging         
+                .\Upgrade.ps1 -Url $Url -CurrentCredentials:$CurrentCredentials -UseWebLogin:$UseWebLogin -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging
             } else {
                 Write-Host "Installing Project Portal (estimated approx. 20 minutes)..."      
                 .\Install.ps1 -Url $Url -CurrentCredentials:$CurrentCredentials -UseWebLogin:$UseWebLogin -SkipData -SkipTaxonomy -SkipDefaultConfig -SkipLoadingBundle:$SkipLoadingBundle -Environment:$Environment -AssetsUrl $AssetsUrl -Logging $Logging               
