@@ -350,22 +350,41 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
     }
 
     /**
+     * Get web information of project from source
+     *
+     * @param {common.ProjectItem} project Project
+     */
+    private async getProjectWebInformation(project: common.ProjectItem) {
+        try {
+            const projectWeb = new Web(project.URL);
+
+            const projectWebTitle = await projectWeb.get();
+
+            return projectWebTitle;
+        } catch {
+            throw String.format(strings.ProgramProjectsTimelineSync_ProjectDoesNotExist, project.Title);
+        }
+    }
+
+    /**
      * Sync project to timeline
      *
      * @param {common.ProjectItem} projectToSync Project to sync
      */
     private async syncToProjectsTimelineList(projectToSync: common.ProjectItem): Promise<void> {
         try {
+
             let { list, properties, items } = this.state.timelineList;
             const projectProperties = await this.getProjectProperties(projectToSync);
             let [timelineItem] = items.filter(i => i.URL !== null && i.URL.Url === projectToSync.URL);
+
+            const projectWebTitle = await this.getProjectWebInformation(projectToSync);
+
             const dateValuesToSync = this.getDateValuesToSync(projectProperties, timelineItem);
-            let itemProperties: TimelineItem = { ...dateValuesToSync, Title: projectToSync.Title, URL: { Url: projectToSync.URL, Description: projectToSync.Title } };
-
+            let itemProperties: TimelineItem = { ...dateValuesToSync, Title: projectWebTitle.Title, URL: { Url: projectToSync.URL, Description: projectWebTitle.Title } };
             if (projectProperties.GtProjectPhase && projectProperties.GtProjectPhase.Label) {
-                itemProperties.Title = `${projectToSync.Title} (${projectProperties.GtProjectPhase.Label})`;
+                itemProperties.Title = `${projectWebTitle.Title} (${projectProperties.GtProjectPhase.Label})`;
             }
-
 
             if (timelineItem) {
                 /** Updating existing item */
