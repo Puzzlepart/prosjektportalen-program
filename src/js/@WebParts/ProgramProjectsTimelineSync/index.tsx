@@ -374,6 +374,7 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
             let { list, properties, items } = this.state.timelineList;
             const projectProperties = await this.getProjectProperties(project);
             let [timelineItem] = items.filter(i => i.URL !== null && i.URL.Url === project.URL);
+
             const projectWebTitle = await this.getProjectWebTitle(project);
             const dateValuesToSync = this.getDateValuesToSync(projectProperties, timelineItem);
             let itemProperties: TimelineItem = { ...dateValuesToSync, Title: projectWebTitle, URL: { Url: project.URL, Description: projectWebTitle } };
