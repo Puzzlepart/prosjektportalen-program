@@ -350,14 +350,14 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
     }
 
     /**
-     * Get web title of project from source
+     * Get web title of a project
      *
      * @param {ProjectItem} project Project
      */
-    private async getProjectWebTitle(project: common.ProjectItem) {
+    private async getProjectWebTitle(project: common.ProjectItem): Promise<string> {
         try {
-            const projectWebTitle = await new Web(project.URL).select("Title").get();
-            return projectWebTitle.Title;
+            const projectWeb = await new Web(project.URL).select("Title").get<{ Title: string }>();
+            return projectWeb.Title;
         } catch {
             throw String.format(strings.ProgramProjectsTimelineSync_ProjectDoesNotExist, project.Title);
         }
@@ -376,11 +376,10 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
             let [timelineItem] = items.filter(i => i.URL !== null && i.URL.Url === project.URL);
 
             const projectWebTitle = await this.getProjectWebTitle(project);
-
             const dateValuesToSync = this.getDateValuesToSync(projectProperties, timelineItem);
-            let itemProperties: TimelineItem = { ...dateValuesToSync, Title: projectWebTitle.Title, URL: { Url: project.URL, Description: projectWebTitle.Title } };
+            let itemProperties: TimelineItem = { ...dateValuesToSync, Title: projectWebTitle, URL: { Url: project.URL, Description: projectWebTitle } };
             if (projectProperties.GtProjectPhase && projectProperties.GtProjectPhase.Label) {
-                itemProperties.Title = `${projectWebTitle.Title} (${projectProperties.GtProjectPhase.Label})`;
+                itemProperties.Title = `${projectWebTitle} (${projectProperties.GtProjectPhase.Label})`;
             }
 
             if (timelineItem) {
