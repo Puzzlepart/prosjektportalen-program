@@ -11,6 +11,8 @@
     "author": "@olemp",
     "main": "index.js",
     "scripts": {
+        "watch": "gulp watch",
+        "watchProd": "gulp watchProd",
         "release": "gulp clean && gulp release",
         "postversion": "npm run release"
     },
