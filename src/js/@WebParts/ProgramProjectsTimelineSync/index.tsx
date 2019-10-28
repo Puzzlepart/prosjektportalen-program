@@ -336,7 +336,7 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
     * @param {any} projectProperties Project properties
     * @param {TimelineItem} timelineItem item
     */
-    private getDateValuesToSync(projectProperties, timelineItem): Partial<TimelineItem> {
+    private getDateValuesToSync(projectProperties: any, timelineItem: TimelineItem): Partial<TimelineItem> {
         const timelineDateValuesSyncMapKeys = Object.keys(this.props.timelineDateValuesSyncMap);
         const valuesToSync: Partial<TimelineItem> = timelineDateValuesSyncMapKeys.reduce((obj, fieldKey) => {
             const sourceFieldKey = this.props.timelineDateValuesSyncMap[fieldKey];
@@ -350,29 +350,45 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
     }
 
     /**
+     * Get web title of project from source
+     *
+     * @param {ProjectItem} project Project
+     */
+    private async getProjectWebTitle(project: common.ProjectItem) {
+        try {
+            const projectWebTitle = await new Web(project.URL).select("Title").get();
+            return projectWebTitle.Title;
+        } catch {
+            throw String.format(strings.ProgramProjectsTimelineSync_ProjectDoesNotExist, project.Title);
+        }
+    }
+
+    /**
      * Sync project to timeline
      *
-     * @param {common.ProjectItem} projectToSync Project to sync
+     * @param {common.ProjectItem} project Project to sync
      */
-    private async syncToProjectsTimelineList(projectToSync: common.ProjectItem): Promise<void> {
+    private async syncToProjectsTimelineList(project: common.ProjectItem): Promise<void> {
         try {
+
             let { list, properties, items } = this.state.timelineList;
-            const projectProperties = await this.getProjectProperties(projectToSync);
-            let [timelineItem] = items.filter(i => i.URL !== null && i.URL.Url === projectToSync.URL);
+            const projectProperties = await this.getProjectProperties(project);
+            let [timelineItem] = items.filter(i => i.URL !== null && i.URL.Url === project.URL);
+
+            const projectWebTitle = await this.getProjectWebTitle(project);
+
             const dateValuesToSync = this.getDateValuesToSync(projectProperties, timelineItem);
-            let itemProperties: TimelineItem = { ...dateValuesToSync, Title: projectToSync.Title, URL: { Url: projectToSync.URL, Description: projectToSync.Title } };
-
+            let itemProperties: TimelineItem = { ...dateValuesToSync, Title: projectWebTitle.Title, URL: { Url: project.URL, Description: projectWebTitle.Title } };
             if (projectProperties.GtProjectPhase && projectProperties.GtProjectPhase.Label) {
-                itemProperties.Title = `${projectToSync.Title} (${projectProperties.GtProjectPhase.Label})`;
+                itemProperties.Title = `${projectWebTitle.Title} (${projectProperties.GtProjectPhase.Label})`;
             }
-
 
             if (timelineItem) {
                 /** Updating existing item */
                 const itemId = timelineItem.ID;
                 try {
                     await list.items.getById(itemId).update(itemProperties);
-                    await this.state.storedProjectsList.list.items.getById(projectToSync.ListItemId).update({ TimelineLastSyncTime: new Date() });
+                    await this.state.storedProjectsList.list.items.getById(project.ListItemId).update({ TimelineLastSyncTime: new Date() });
                     this.addSyncMessage(String.format(strings.ProgramProjectsTimelineSync_TimelineItemUpdated, timelineItem.Title), "Refresh");
                 } catch (err) {
                     this.addSyncMessage(String.format(strings.ProgramProjectsTimelineSync_TimelineItemUpdateError, timelineItem.Title), "Error");
@@ -383,7 +399,7 @@ export default class ProgramProjectsTimelineSync extends React.Component<IProgra
                 const { ListItemEntityTypeFullName } = properties;
                 const itemAddResult = await list.items.add(itemProperties, ListItemEntityTypeFullName);
                 timelineItem = itemAddResult.data;
-                await this.state.storedProjectsList.list.items.getById(projectToSync.ListItemId).update({ TimelineLastSyncTime: new Date() });
+                await this.state.storedProjectsList.list.items.getById(project.ListItemId).update({ TimelineLastSyncTime: new Date() });
                 items = items.concat([timelineItem]);
                 this.setState({
                     timelineList: {
