@@ -3,7 +3,7 @@ import * as React from "react";
 import { sp } from "@pnp/sp";
 import { IProgressIndicatorProps, ProgressIndicator } from "office-ui-fabric-react/lib/ProgressIndicator";
 import { ActionButton } from "office-ui-fabric-react/lib/Button";
-import { IColumn, DetailsList, SelectionMode, DetailsListLayoutMode } from "office-ui-fabric-react/lib/DetailsList";
+import { IColumn, DetailsList, SelectionMode, DetailsListLayoutMode, IDetailsList } from "office-ui-fabric-react/lib/DetailsList";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import { Spinner, SpinnerSize } from "office-ui-fabric-react/lib/Spinner";
 import { SearchBox } from "office-ui-fabric-react/lib/SearchBox";
@@ -19,7 +19,7 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
     public static displayName = "ProgramAddProject";
     public static defaultProps = ProgramAddProjectDefaultProps;
 
-    private detailsList: DetailsList;
+    private detailsList: IDetailsList;
     private searchDelayTimer;
 
     /**
@@ -143,7 +143,7 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
         return (
             <div hidden={!!this.state.addProgress}>
                 <DetailsList
-                    ref={ele => this.detailsList = ele}
+                    componentRef={ele => this.detailsList = ele}
                     items={this.state.projects}
                     columns={this.props.columns}
                     onRenderItemColumn={this.onRenderItemColumn}
