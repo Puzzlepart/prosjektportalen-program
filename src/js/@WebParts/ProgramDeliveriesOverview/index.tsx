@@ -1,15 +1,15 @@
 import * as React from "react";
-import IProgramDeliveriesOverviewXProps, { ProgramDeliveriesOverviewDefaultProps } from "./IProgramDeliveriesOverviewXProps";
-import IProgramDeliveriesOverviewXState, { } from "./IProgramDeliveriesOverviewXState";
+import IProgramDeliveriesOverviewProps, { ProgramDeliveriesOverviewDefaultProps } from "./IProgramDeliveriesOverviewProps";
+import IProgramDeliveriesOverviewState, { } from "./IProgramDeliveriesOverviewState";
 import DeliveriesOverview from "prosjektportalen/lib/WebParts/DeliveriesOverview";
 import * as common from "../../@Common";
 import { MessageBar, MessageBarType } from "office-ui-fabric-react/lib/MessageBar";
 import NoStoredProjectsMessage from "../@Components/NoStoredProjectsMessage";
 
-export default class ProgramDeliveriesOverView extends React.Component<IProgramDeliveriesOverviewXProps, IProgramDeliveriesOverviewXState> {
+export default class ProgramDeliveriesOverView extends React.Component<IProgramDeliveriesOverviewProps, IProgramDeliveriesOverviewState> {
   public static defaultProps = ProgramDeliveriesOverviewDefaultProps;
 
-  constructor(props: IProgramDeliveriesOverviewXProps) {
+  constructor(props: IProgramDeliveriesOverviewProps) {
     super(props);
 
     this.state = { isLoading: true };
@@ -25,7 +25,7 @@ export default class ProgramDeliveriesOverView extends React.Component<IProgramD
     }
   }
 
-  public render(): React.ReactElement<IProgramDeliveriesOverviewXProps> {
+  public render(): React.ReactElement<IProgramDeliveriesOverviewProps> {
     if (this.state.errorMessage) {
       return (
         <>
@@ -53,4 +53,4 @@ export default class ProgramDeliveriesOverView extends React.Component<IProgramD
 
 }
 
-export { IProgramDeliveriesOverviewXProps, IProgramDeliveriesOverviewXState };
+export { IProgramDeliveriesOverviewProps, IProgramDeliveriesOverviewState };
