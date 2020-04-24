@@ -113,6 +113,6 @@
         "@types/react-dom": "^16.0.11"
     },
     "dependencies": {
-        "prosjektportalen": "^2.6.11"
+        "prosjektportalen": "^2.6.12"
     }
 }
