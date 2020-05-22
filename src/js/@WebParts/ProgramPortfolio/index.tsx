@@ -44,14 +44,16 @@ export default class ProgramPortfolio extends React.Component<IProgramPortfolioP
             return <NoStoredProjectsMessage />;
         }
         return (
-            <DynamicPortfolio
-                queryText={queryText}
-                viewConfigList="Porteføljevisninger for programmets prosjekter"
-                newViewUrl="Lists/ProgramDynamicPortfolioViews/NewForm.aspx"
-                searchBoxLabelText={strings.ProgramPortfolio_SearchBoxLabelText}
-                showCountText={strings.ProgramPortfolio_ShowCountText}
-                viewSelectorEnabled={true}
-                loadingText={strings.ProgramPortfolio_LoadingText} />
+            <div style={{ height: '100vh' }}>
+                <DynamicPortfolio
+                    queryText={queryText}
+                    viewConfigList="Porteføljevisninger for programmets prosjekter"
+                    newViewUrl="Lists/ProgramDynamicPortfolioViews/NewForm.aspx"
+                    searchBoxLabelText={strings.ProgramPortfolio_SearchBoxLabelText}
+                    showCountText={strings.ProgramPortfolio_ShowCountText}
+                    viewSelectorEnabled={true}
+                    loadingText={strings.ProgramPortfolio_LoadingText} />
+            </div>
         );
     }
 
