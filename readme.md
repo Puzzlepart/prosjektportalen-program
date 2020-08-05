@@ -15,7 +15,7 @@ Prosjektene opprettes og lever i vanlige Prosjektportalen porteføljer, og er s�
 
 ## Installering
 
-Programtilpasningene installeres på en egen områdesamling over en Prosjektportalen-installasjon. Den enkleste metoden er å laste ned siste versjon av Prosjektportalen og siste versjon av program, og så kjøre installasjonen fra program-releasen med en peker til prosjektportalen-releasen.
+Programtilpasningene installeres på en egen områdesamling over en Prosjektportalen-installasjon. **Den enkleste metoden er å laste ned siste versjon av Prosjektportalen og siste versjon av program, og så kjøre installasjonen fra program-releasen med en peker til prosjektportalen-releasen.** Merk: Installasjon over en eksisterende Prosjektportalen-installasjon kan føre til dupliserte verdier og felter.  
 
 Programtilpasninger for Prosjektportalen installeres med Powershell. Se [Installation](https://github.com/Puzzlepart/prosjektportalen-program/wiki/Installation) (dokumentert på engelsk)
 
