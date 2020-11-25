@@ -11,14 +11,13 @@ export default class ProgramDeliveriesOverView extends React.Component<IProgramD
 
   constructor(props: IProgramDeliveriesOverviewProps) {
     super(props);
-
     this.state = { isLoading: true };
   }
 
   public async componentDidMount() {
     try {
       const { items } = await common.getStoredProjectsListContext();
-      const searchSettings = await common.buildSearchSettingsFromStoredProjects(items, this.props.queryTemplate);
+      const searchSettings = await common.buildSearchQueriesFromProgramProjects(items, this.props.queryTemplate);
       this.setState({ searchSettings, isLoading: false });
     } catch (errorMessage) {
       this.setState({ errorMessage, isLoading: false });

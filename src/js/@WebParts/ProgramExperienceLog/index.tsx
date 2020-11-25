@@ -18,7 +18,7 @@ export default class ProgramExperienceLog extends React.Component<IProgramExperi
     public async componentDidMount() {
         try {
             const { items } = await common.getStoredProjectsListContext();
-            const searchSettings = await common.buildSearchSettingsFromStoredProjects(items, this.props.queryTemplate);
+            const searchSettings = await common.buildSearchQueriesFromProgramProjects(items, this.props.queryTemplate);
             this.setState({ searchSettings, isLoading: false });
         } catch (errorMessage) {
             this.setState({ errorMessage, isLoading: false });

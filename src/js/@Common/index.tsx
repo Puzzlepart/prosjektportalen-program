@@ -40,29 +40,30 @@ export async function getStoredProjectsListContext(maxLimit = config.Lists_Store
 }
 
 /**
-* Build search settings from items in stored projects list
+* Build search queries from items in stored projects list
 * 
 * @param {ProjectItem[]} items Project items
-* @param {string} queryTemplate Query template. E.g. Path:{0} where {0} will be replaced with the project item URL
+* @param {string} queryTemplate Query template
 * @param {number} maxQueryLength Max query length
 */
-export async function buildSearchSettingsFromStoredProjects(items: ProjectItem[], queryTemplate: string, maxQueryLength: number = 3000): Promise<IDataSourceSearchCustom[]> {
+export async function buildSearchQueriesFromProgramProjects(items: ProjectItem[], queryTemplate: string, maxQueryLength: number = 3000): Promise<IDataSourceSearchCustom[]> {
     try {
         let index = 0
-        return items.reduce((arr, item) => {
+        const queries = items.reduce((arr, item) => {
             if (arr[index].QueryTemplate == null) {
-                arr[index].QueryTemplate = format(queryTemplate, `Path:${item.URL}`)
+                arr[index].QueryTemplate = `Path:${item.URL}`
             } else if (arr[index].QueryTemplate.length < maxQueryLength) {
-                arr[index].QueryTemplate += `OR ${format(queryTemplate, `Path:${item.URL}`)}`
+                arr[index].QueryTemplate += `OR Path:${item.URL}`
             } else {
                 arr.push({
-                    QueryTemplate: format(queryTemplate, `Path:${item.URL}`),
+                    QueryTemplate: `Path:${item.URL}`,
                     RowLimit: 500,
                 })
                 index++
             }
             return arr
         }, [{ QueryTemplate: null, RowLimit: 500 }])
+        return queries.map(q => ({ ...q, QueryTemplate: format(queryTemplate, q.QueryTemplate) }))
     } catch (err) {
         throw err;
     }
