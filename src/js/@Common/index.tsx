@@ -41,16 +41,29 @@ export async function getStoredProjectsListContext(maxLimit = config.Lists_Store
 /**
 * Build search settings from items in stored projects list
 */
-export async function buildSearchSettingsFromStoredProjects(items: ProjectItem[], queryTemplate: string): Promise<IDataSourceSearchCustom> {
+export async function buildSearchSettingsFromStoredProjects(items: ProjectItem[], queryTemplate: string): Promise<Array<IDataSourceSearchCustom>>{
     try {
         if (items.length === 0) {
             return null;
         }
-        const searchQuery = items.map(({ URL }) => `Path:"${URL}"`).join(" OR ");
-        return {
+        let queryStr = '';
+        let randArr = [];
+        console.log(queryTemplate);
+        await items.map(({ URL }, i) => {
+            console.log(URL)
+            if ((`${queryStr} OR ${URL} ${queryTemplate}`).length >= 3072) {
+                randArr.push({RowLimit: 500, QueryTemplate: String.format(queryTemplate, queryStr)});
+                queryStr = '';
+            } 
+            queryStr += `Path:"${URL}" OR `;
+            if (items.length === i + 1) {
+                randArr.push(String.format(queryTemplate, queryStr));
+            }
+            });
+        return [{
             RowLimit: 500,
-            QueryTemplate: String.format(queryTemplate, searchQuery),
-        };
+            QueryTemplate: randArr,
+        }];
     } catch (err) {
         throw err;
     }
