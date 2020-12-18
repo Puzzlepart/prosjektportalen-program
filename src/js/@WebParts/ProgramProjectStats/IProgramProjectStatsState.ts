@@ -5,5 +5,5 @@ export interface IProgramProjectStatsState {
     isLoading: boolean;
     errorMessage?: string;
     items?: ProjectItem[];
-    searchSettings?: IDataSourceSearchCustom;
+    searchSettings?: IDataSourceSearchCustom[];
 }

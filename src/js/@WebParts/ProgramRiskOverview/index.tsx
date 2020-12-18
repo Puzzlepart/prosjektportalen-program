@@ -47,7 +47,7 @@ export default class ProgramRiskOverview extends React.Component<IProgramRiskOve
         <h2>Risikooversikt</h2>
         {(!this.state.isLoading && this.state.searchSettings) &&
           <RiskMatrix
-            queryTemplate={this.state.searchSettings.QueryTemplate} />}
+        queryTemplate={null} />}
       </>
     );
   }

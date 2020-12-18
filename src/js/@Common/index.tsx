@@ -4,7 +4,7 @@ import * as config from "../config";
 import ProjectItem from "./ProjectItem";
 import IStatusMessage from "./IStatusMessage";
 import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSource";
-import { format } from "office-ui-fabric-react/lib/Utilities";
+ import { format } from "office-ui-fabric-react/lib/Utilities";
 
 export function getTimestamp(): string {
     return `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
@@ -16,7 +16,7 @@ export interface IListContext<T> {
     items: T[];
 }
 
-export async function getStoredProjectsListContext(maxLimit = config.Lists_StoredProjects_ItemsMaxLimit): Promise<IListContext<ProjectItem>> {
+export async function getStoredProjectsListContext(): Promise<IListContext<ProjectItem>> {
     try {
         const list = sp.web.lists.getByTitle(config.Lists_StoredProjects_Title);
         let properties;
@@ -28,9 +28,6 @@ export async function getStoredProjectsListContext(maxLimit = config.Lists_Store
             ]);
         } catch {
             throw strings.Lists_StoredProjects_DoesNotExist;
-        }
-        if (items.length > maxLimit) {
-            throw String.format(strings.Lists_StoredProjects_MaxLimitError, items.length, config.Lists_StoredProjects_ItemsMaxLimit);
         }
         items = items.filter(i => i.URL !== null && i.URL.Url !== "").map(({ ID, URL }) => new ProjectItem(ID, URL.Description, URL.Url));
         return { list, properties, items };
@@ -51,19 +48,19 @@ export async function buildSearchQueriesFromProgramProjects(items: ProjectItem[]
         let index = 0
         const queries = items.reduce((arr, item) => {
             if (arr[index].QueryTemplate == null) {
-                arr[index].QueryTemplate = `Path:${item.URL}`
+                arr[index].QueryTemplate = `Path:${item.URL} `
             } else if (arr[index].QueryTemplate.length < maxQueryLength) {
-                arr[index].QueryTemplate += `OR Path:${item.URL}`
+                arr[index].QueryTemplate += `OR Path:${item.URL} `
             } else {
                 arr.push({
-                    QueryTemplate: `Path:${item.URL}`,
+                    QueryTemplate: format(`Path:${item.URL} `, queryTemplate),
                     RowLimit: 500,
                 })
                 index++
             }
             return arr
         }, [{ QueryTemplate: null, RowLimit: 500 }])
-        return queries.map(q => ({ ...q, QueryTemplate: format(queryTemplate, q.QueryTemplate) }))
+        return queries //.map(q => ({ ...q, QueryTemplate: format(queryTemplate, q.QueryTemplate) }))
     } catch (err) {
         throw err;
     }

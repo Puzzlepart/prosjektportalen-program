@@ -2,5 +2,5 @@ import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSourc
 export interface IProgramResourceAllocationState {
     isLoading: boolean;
     errorMessage?: string;
-    searchSettings?: IDataSourceSearchCustom;
+    searchSettings?: IDataSourceSearchCustom[];
 }

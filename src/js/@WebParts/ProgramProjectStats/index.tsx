@@ -50,7 +50,7 @@ export default class ProgramProjectStats extends React.Component<IProgramProject
                         viewSelectorEnabled={false}
                         renderCommandBar={false}
                         chartsConfigListName="Diagramkonfigurasjon for programmets prosjekter"
-                        queryTemplate={this.state.searchSettings.QueryTemplate}
+                        queryTemplate={this.state.searchSettings}//{this.state.searchSettings.QueryTemplate}
                     />}
             </>
         );

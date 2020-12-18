@@ -47,7 +47,7 @@ export default class ProgramExperienceLog extends React.Component<IProgramExperi
                 <h2>Erfaringslogg</h2>
                 {(!this.state.isLoading && this.state.searchSettings) &&
                     <ExperienceLog
-                        queryTemplate={this.state.searchSettings.QueryTemplate}
+                        queryTemplate={null} //{this.state.searchSettings.QueryTemplate}
                     />}
             </>
         );

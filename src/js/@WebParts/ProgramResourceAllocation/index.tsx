@@ -48,7 +48,7 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
         {(!this.state.isLoading && this.state.searchSettings) &&
           <ResourceAllocation
             searchConfiguration={this.props.searchConfiguration}
-            queryTemplate={this.state.searchSettings.QueryTemplate}
+            queryTemplate= {null}//{this.state.searchSettings.QueryTemplate}
           />}
       </>
     );
