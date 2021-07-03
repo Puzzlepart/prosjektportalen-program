@@ -3,5 +3,5 @@ import { IDataSourceSearchCustom } from "prosjektportalen/lib/WebParts/DataSourc
 export default interface IProgramExperienceLogState {
     isLoading: boolean;
     errorMessage?: string;
-    searchSettings?: IDataSourceSearchCustom;
+    searchSettings?: IDataSourceSearchCustom[];
 }

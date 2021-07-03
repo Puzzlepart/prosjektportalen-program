@@ -18,7 +18,7 @@ export default class ProgramProjectStats extends React.Component<IProgramProject
     public async componentDidMount() {
         try {
             const { items } = await common.getStoredProjectsListContext();
-            const searchSettings = await common.buildSearchSettingsFromStoredProjects(items, this.props.queryTemplate);
+            const searchSettings = await common.buildSearchQueriesFromProgramProjects(items, this.props.queryTemplate);
             this.setState({ items, searchSettings, isLoading: false });
         } catch (errorMessage) {
             this.setState({ errorMessage, isLoading: false });
@@ -50,7 +50,7 @@ export default class ProgramProjectStats extends React.Component<IProgramProject
                         viewSelectorEnabled={false}
                         renderCommandBar={false}
                         chartsConfigListName="Diagramkonfigurasjon for programmets prosjekter"
-                        queryTemplate={this.state.searchSettings.QueryTemplate}
+                        queryTemplate={this.state.searchSettings}//{this.state.searchSettings.QueryTemplate}
                     />}
             </>
         );

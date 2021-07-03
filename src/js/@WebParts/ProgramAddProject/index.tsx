@@ -42,7 +42,7 @@ export default class ProgramAddProject extends React.Component<IProgramAddProjec
 
     public async componentDidMount() {
         try {
-            const storedProjectsList = await common.getStoredProjectsListContext(config.Lists_StoredProjects_ItemsMaxLimit - 1);
+            const storedProjectsList = await common.getStoredProjectsListContext();
             this.setState({
                 storedProjectsList,
                 isLoading: false,

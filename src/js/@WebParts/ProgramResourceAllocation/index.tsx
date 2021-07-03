@@ -18,7 +18,7 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
   public async componentDidMount() {
     try {
       const { items } = await common.getStoredProjectsListContext();
-      const searchSettings = await common.buildSearchSettingsFromStoredProjects(items, this.props.queryTemplate);
+      const searchSettings = await common.buildSearchQueriesFromProgramProjects(items, this.props.queryTemplate);
       this.setState({ searchSettings, isLoading: false });
     } catch (errorMessage) {
       this.setState({ errorMessage, isLoading: false });
@@ -48,7 +48,7 @@ export default class ProgramResourceAllocation extends React.Component<IProgramR
         {(!this.state.isLoading && this.state.searchSettings) &&
           <ResourceAllocation
             searchConfiguration={this.props.searchConfiguration}
-            queryTemplate={this.state.searchSettings.QueryTemplate}
+            queryTemplate= {null}//{this.state.searchSettings.QueryTemplate}
           />}
       </>
     );

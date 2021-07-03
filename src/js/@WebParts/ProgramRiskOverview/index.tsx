@@ -18,7 +18,7 @@ export default class ProgramRiskOverview extends React.Component<IProgramRiskOve
   public async componentDidMount() {
     try {
       const { items } = await common.getStoredProjectsListContext();
-      const searchSettings = await common.buildSearchSettingsFromStoredProjects(items, this.props.queryTemplate);
+      const searchSettings = await common.buildSearchQueriesFromProgramProjects(items, this.props.queryTemplate);
       this.setState({ searchSettings, isLoading: false });
     } catch (errorMessage) {
       this.setState({ errorMessage, isLoading: false });
@@ -47,7 +47,7 @@ export default class ProgramRiskOverview extends React.Component<IProgramRiskOve
         <h2>Risikooversikt</h2>
         {(!this.state.isLoading && this.state.searchSettings) &&
           <RiskMatrix
-            queryTemplate={this.state.searchSettings.QueryTemplate} />}
+        queryTemplate={null} />}
       </>
     );
   }
